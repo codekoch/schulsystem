@@ -2,16 +2,18 @@
 ## Schulsystem - kostenlos, frei, vielseitig und zuverlässig ...
 (wie ein "Schulsystem" sein sollte 😉)
 
-Was die Digitalisierung im Grundsatz angeht, sind sich wahrscheinlich viele Lehrkräfte einig. Kommende Generationen müssen schon in der Schule Kompetenzen erlangen, mit denen sie sich in der zunehmend digitalen Welt zurecht finden können. Diese Kompetenzen müssen jedoch nicht an bestimmten Systemen von speziellen Firmen erlernt werden. Es muss vielmehr ein prinzipielles Verständnis über den Nutzen dieser Medien für bestimmte Situationen erlangt werden. Dabei sollte man vor allem auch lernen, dass es neben dem einen evtl. kommerziellen Produkt auch viele Alternativen gibt, die ebenso oder sogar besser geeignet sein können, um eine bestimmte Problemstellungen zu bewältigen. Letztendlich sollten digtiale Kompetenzen unabhängig von wirtschaftlichen Interessen erworben werden können, was bei den bisher gängigen Initiativen wie z.B. "I-Pad-Klassen" oder "für die Schulzeit kostenlose Microsoftprodukte" durchaus in Frage gestellt werden kann, wenn sie unreflektiert und alternativlos durchgeführt werden.
+Was die Digitalisierung im Grundsatz angeht, sind sich wahrscheinlich viele Lehrkräfte einig. Kommende Generationen müssen schon in der Schule Kompetenzen erlangen, mit denen sie sich in der zunehmend digitalen Welt zurecht finden können. 
 
-Dieses Projekt bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem für die Schule an, das ohne das Sammeln von Nutzerdaten und kommereziellen Interessen auskommt. 
+Diese Kompetenzen müssen jedoch nicht an bestimmten Systemen von speziellen Firmen erlernt werden. Es muss vielmehr ein prinzipielles Verständnis über den Nutzen dieser Medien für bestimmte Situationen erlangt werden. Dabei sollte man vor allem auch lernen, dass es neben dem einen evtl. kommerziellen Produkt auch viele Alternativen gibt, die ebenso oder sogar besser geeignet sein können, um eine bestimmte Problemstellungen zu bewältigen. Letztendlich sollten digtiale Kompetenzen unabhängig von wirtschaftlichen Interessen erworben werden können, was bei den bisher gängigen Initiativen wie z.B. "I-Pad-Klassen" oder "für die Schulzeit kostenlose Microsoftprodukte" durchaus in Frage gestellt werden kann, wenn sie unreflektiert und alternativlos durchgeführt werden.
 
-Schulsystem besteht aus Shellscripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen. Trotzdem hat der Nutzer die Möglichkeit seine gesamten sitzungsdaten auf einem externen Mediuum zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers. 
+Schulsystem bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem für die Schule an, das ohne das Sammeln von Nutzerdaten und kommerziellen Interessen auskommt. 
+
+Schulsystem besteht aus Shellscripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen. Trotzdem hat der Nutzer die Möglichkeit, seine gesamten Sitzungsdaten auf einem externen Medium zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers. 
 
 ## Zu Beginn
-- Install a new linux system based on a debian distrubution (testet with <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>)
-- (optional) make your own changes to the fresh installed system
-## Installing
+- Installiere ein neues Debian basiertes Linuxsystem  (z.B. <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>)
+- (optional) Verändere das System nach deinen Wünschen
+## Installation des Schulsystems
 - Open a terminal
 - Install git
 > sudo apt-get install git
