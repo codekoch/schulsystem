@@ -4,9 +4,9 @@
 
 Was die Digitalisierung im Grundsatz angeht, sind sich wahrscheinlich viele Lehrkräfte einig. Kommende Generationen müssen schon in der Schule Kompetenzen erlangen, mit denen sie sich in der zunehmend digitalen Welt zurecht finden können. 
 
-Aber kann man diese Kompetenzen nur vermitteln, indem man die Angebote von Firmen nutzt, die in erster Linie wirtschaftlichen Interessen folgen? Ist es sinnvoll, bereits Kinder Kinder in eine Abhängigkeit zu versetzen, von der sie sich als Erwachsene nur schwer lösen können? Sollte eine Schule als Werbeträger für Firmen agieren, wenn es andere freie Möglichkeiten gibt?   
+Aber sollte man für dieses Ziel unreflektiert auf die verlockenden Angebote großer Firmen setzten? Ist es sinnvoll, bereits Kinder in eine Abhängigkeit zu versetzen, von der sie sich als Erwachsene nur schwer lösen können? Sollte eine Schule neben ihrem pädagogischen Auftrag als Werbeträger agieren? 
 
-Diese Kompetenzen müssen jedoch nicht an bestimmten Systemen von speziellen Firmen erlernt werden. Es muss vielmehr ein prinzipielles Verständnis über den Nutzen dieser Medien für bestimmte Situationen erlangt werden. Dabei sollte man vor allem auch lernen, dass es neben dem einen evtl. kommerziellen Produkt auch viele Alternativen gibt, die ebenso oder sogar besser geeignet sein können, um eine bestimmte Problemstellungen zu bewältigen. Letztendlich sollten digtiale Kompetenzen unabhängig von wirtschaftlichen Interessen erworben werden können, was bei den bisher gängigen Initiativen wie z.B. "I-Pad-Klassen" oder "für die Schulzeit kostenlose Microsoftprodukte" durchaus in Frage gestellt werden kann, wenn sie unreflektiert und alternativlos durchgeführt werden.
+Sicherlich nicht, wenn es gute Alternativen gibt...
 
 Schulsystem bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem für die Schule an, das ohne das Sammeln von Nutzerdaten und kommerziellen Interessen auskommt. 
 
