@@ -41,35 +41,35 @@ Sicherlich nicht, wenn es gute Alternativen gibt...
 ### Save and load session 
 - Abspeichern und Laden der aktuellen Nutzersitzung:
 
-  ![saveloadsession](https://github.com/codekoch/schooldevice/blob/master/saveLoadSession.png)
+  ![saveloadsession](https://github.com/codekoch/schulsystem/blob/main/saveLoadSession.png)
   
   Das erste Abspeichern dauert einige Zeit, aber danach sollte es dank rsync ziemlich schnell gehen
   (Benutze ein exterens Speichermedium im FAT32 Format and vergiß nicht es auzuwerfen, bevor du es entfernst. USB 3.0 support ist empfohlen.)
 
-### Save changes permanently, activate, deactivate selfhealing
-- login in as a user with admin rights (i.e. in a terminal during user0 session) and use 
+### Veränderungen permanent speichern, Selbstheilung aktivieren und deaktivieren
+- Logge dich als user mit root rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein 
     
     - > sudo /etc/init.d/resethomedir.sh save
 
-        to save permanent changes 
+        um Veränderungen permanent abzuspeichern 
 
-    - > sudo /etc/init.d/resethomedir.sh dactivate
+    - > sudo /etc/init.d/resethomedir.sh deactivate
 
-        to turn off selfhealing of user account user0
+        um die Selbstheilung für den Useraccount user0 zu deaktivieren
 
     - > sudo /etc/init.d/resethomedir.sh activate
 
-        to turn on selfhealing of user account user0
+        um die Selbstheilung für den Useraccount user0 zu aktivieren
         
-### Screenmirroring / remote desktop connection between schooldevices (and other devices)
-![VNC](https://github.com/codekoch/schooldevice/blob/master/VNC.png)
-- <b>Activate</b> with <b>X11VNC Server</b> (Select <b>Accept Connections</b> and Click <b>OK</b>) 
-- <b>Connect</b> with <b>X11VNC Connect</b> (Type in <b>IP address of other schooldevice</b>)
-- Login with <b>empty username</b> and <b>empty password</b> (changes can be done in /etc/guacamole/user-mapping.xml)
-- (connect on every device in the same network via browseraddress http://\<ip-of-schooldevice\>:8080)
+### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen (und anderen Systemen)
+![VNC](https://github.com/codekoch/schulsystem/blob/main/VNC.png)
+- <b>Activierung</b> mit <b>X11VNC Server</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>) 
+- <b>Verbindung</b> mit <b>X11VNC Connect</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein)
+- Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden)
+- (Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080)
 
 
-### Password for user0
-- The selfhealing accounts username is user0 with password user0 
+### Passwort für user0
+- Der Selbstheilende Account hat dden Benutzernamen <b>user0</b> und das Passwort <b>user0</b> 
 
  
