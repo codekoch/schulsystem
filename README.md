@@ -20,12 +20,12 @@ Sicherlich nicht, wenn es gute Alternativen gibt...
 - Installiere git
 > sudo apt-get install git
 - Klone dieses Repository
-> git clone https://github.com/codekoch/schooldevice
+> git clone https://github.com/codekoch/schulsystem
 - Starte die Installation per Shellskript als root 
-> cd schooldevice
+> cd schulsystem
 
 > sudo ./install.sh
-- Entscheide, ob du das zusätzliche Software Pack installieren möchtest (siehe https://github.com/codekoch/schooldevice/blob/master/software.sh)
+- Entscheide, ob du das zusätzliche Software Pack installieren möchtest (siehe https://github.com/codekoch/schulsystem/blob/main/software.sh)
 - Starte den Rechner neu mit dem Autologin in den Useraccount user0 
 > sudo shutdown -r now
 - Passe alles deinen Wünschen nach an
