@@ -4,6 +4,8 @@
 
 Was die Digitalisierung im Grundsatz angeht, sind sich wahrscheinlich viele Lehrkräfte einig. Kommende Generationen müssen schon in der Schule Kompetenzen erlangen, mit denen sie sich in der zunehmend digitalen Welt zurecht finden können. 
 
+Aber ist der richtige Weg, ....
+
 Diese Kompetenzen müssen jedoch nicht an bestimmten Systemen von speziellen Firmen erlernt werden. Es muss vielmehr ein prinzipielles Verständnis über den Nutzen dieser Medien für bestimmte Situationen erlangt werden. Dabei sollte man vor allem auch lernen, dass es neben dem einen evtl. kommerziellen Produkt auch viele Alternativen gibt, die ebenso oder sogar besser geeignet sein können, um eine bestimmte Problemstellungen zu bewältigen. Letztendlich sollten digtiale Kompetenzen unabhängig von wirtschaftlichen Interessen erworben werden können, was bei den bisher gängigen Initiativen wie z.B. "I-Pad-Klassen" oder "für die Schulzeit kostenlose Microsoftprodukte" durchaus in Frage gestellt werden kann, wenn sie unreflektiert und alternativlos durchgeführt werden.
 
 Schulsystem bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem für die Schule an, das ohne das Sammeln von Nutzerdaten und kommerziellen Interessen auskommt. 
