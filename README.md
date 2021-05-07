@@ -16,36 +16,35 @@ Sicherlich nicht, wenn es gute Alternativen gibt...
 - Installiere ein neues Debian basiertes Linuxsystem  (z.B. <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>)
 - (optional) Verändere das System nach deinen Wünschen
 ## Installation des Schulsystems
-- Open a terminal
-- Install git
+- Öffne ein Terminal
+- Installiere git
 > sudo apt-get install git
-- Clone this repository
+- Klone dieses Repository
 > git clone https://github.com/codekoch/schooldevice
-- Start the install shellscript as root 
+- Starte die Installation per Shellskript als root 
 > cd schooldevice
 
 > sudo ./install.sh
-- Decide if you want to install the additional software pack (see https://github.com/codekoch/schooldevice/blob/master/software.sh)
-- Restart to autologin into the new account user0
+- Entscheide, ob du das zusätzliche Software Pack installieren möchtest (siehe https://github.com/codekoch/schooldevice/blob/master/software.sh)
+- Starte den Rechner neu mit dem Autologin in den Useraccount user0 
 > sudo shutdown -r now
-- Customize everything according to your needs
-- Open a terminal, login as a user with admin rights, save the current account settings of user0 and restart system
+- Passe alles deinen Wünschen nach an
+- Öffne ein Terminal, logge dich als Benutzer mit root Rechten ein, speichere die momentanen Einstellungen des user0 Accounts und starte den Rechner neu
 > su {user with admin rights}
 
 > sudo /etc/init.d/resethomedir.sh save
 
 > sudo shutdown -r now
-- Have fun with your new schooldevice 
+- Viel Spaß mit deinem <b>Schulsystem</b>
 
-## Hints
-### Save and load session (to an external device)
-- save and load your current user session:
+## Hinweise zu Bedienung
+### Save and load session 
+- Abspeichern und Laden der aktuellen Nutzersitzung:
 
   ![saveloadsession](https://github.com/codekoch/schooldevice/blob/master/saveLoadSession.png)
   
-  the first save takes some time, but after that it is very fast thanks to rsync
-  
-  (Use an external device with FAT32 filesystem and don't forget to eject before disconnecting. USB 3.0 support is recommended.)
+  Das erste Abspeichern dauert einige Zeit, aber danach sollte es dank rsync ziemlich schnell gehen
+  (Benutze ein exterens Speichermedium im FAT32 Format and vergiß nicht es auzuwerfen, bevor du es entfernst. USB 3.0 support ist empfohlen.)
 
 ### Save changes permanently, activate, deactivate selfhealing
 - login in as a user with admin rights (i.e. in a terminal during user0 session) and use 
