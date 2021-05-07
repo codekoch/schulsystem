@@ -1,14 +1,14 @@
-![schooldevice](https://github.com/codekoch/schulsystem/blob/master/Logo_website.jpg)
+![schulsystem](https://github.com/codekoch/schulsystem/blob/main/Logo_website.png)
 ## Schulsystem - kostenlos, frei, vielseitig und zuverlässig ...
 (wie ein "Schulsystem" sein sollte 😉)
-This project should show that it is possible to get a working operating system for school use without the usual big commercial companies and account bindings. This should be a matter of course for the educational mission of every school and teacher.  
 
-Schooldevice is a shellscript that modifies a linuxdistribution for use in school with one single offline account for multiple users.
-The single offline account acts like a selfhealing account with a reset of all data after restart.
+Was die Digitalisierung im Grundsatz angeht, sind sich wahrscheinlich viele Lehrkräfte einig. Kommende Generationen müssen schon in der Schule Kompetenzen erlangen, mit denen sie sich in der zunehmend digitalen Welt zurecht finden könne. Diese Kompetenzen im Umgang mit der digitalen Welt müssen jedoch nicht an bestimmten Systemen von speziellen Firmen erlernt werden. Es muss vielmehr ein prinzipielles Verständnis über den Nutzen dieser Medien für bestimmte Situationen erlangt werden. Dabei sollte man vor allem auch lernen, dass es neben dem einen evtl. kommerziellen Produkt auch viele Alternativen gibt, die ebenso oder sogar besser geeignet sein können, um eine bestimmte Problemstellungen zu bewältigen. Letztendlich sollten digtiale Kompetenzen unabhängig von wirtschaftlichen Interessen erworben werden können, was bei den bisher gängigen Initiativen wie z.B. "I-Pad-Klassen" oder "für die Schulzeit kostenlose Microsoftprodukte" durchaus in Frage gestellt werden kann, wenn sie unreflektiert und alternativlos durchgeführt werden.
 
-Nevertheless, the current session can be saved to and restored from an external data carrier at any time. Thus the account management is the responsibility of the users and not of the administrators.
+Dieses Projekt bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem für die Schule an, das ohne das Sammeln von Nutzerdaten und kommereziellen Interessen auskommt. 
 
-## Getting Started
+Schulsystem besteht aus Shellscripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen. Trotzdem hat der Nutzer die Möglichkeit seine gesamten sitzungsdaten auf einem externen Mediuum zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers. 
+
+## Zu Beginn
 - Install a new linux system based on a debian distrubution (testet with <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>)
 - (optional) make your own changes to the fresh installed system
 ## Installing
