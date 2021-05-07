@@ -2,8 +2,8 @@
 Version=1.0
 Type=Application
 Name=X11VNC Connect
-Comment=Connect to other schooldevice
-Exec=/usr/bin/connect2schooldevice.sh
+Comment=Verbindung mit anderem Schulsystem
+Exec=/usr/bin/connect2schulsystem.sh
 Icon=computer           
 Path=/tmp/
 Terminal=false
