@@ -38,7 +38,7 @@ sudo apt-get update
 sudo apt-get install -y freerdp2-dev freerdp2-x11
 wget https://git.io/fxZq5 -O guac-install.sh
 chmod +x guac-install.sh
-sudo ./guac-install.sh --mysqlpwd ittaskteam --guacpwd schooldevice --nomfa --installmysql
+sudo ./guac-install.sh --mysqlpwd ittaskteam --guacpwd schulsystem --nomfa --installmysql
 # configure login settings
 sudo echo 'auth-provider: net.sourceforge.guacamole.net.basic.BasicFileAuthenticationProvider' >> /etc/guacamole/guacamole.properties
 sudo echo 'basic-user-mapping: /etc/guacamole/user-mapping.xml' >> /etc/guacamole/guacamole.properties
@@ -60,8 +60,8 @@ sudo cp scripts/showVNCAddress.sh /usr/bin/
 sudo chmod 755 /usr/bin/showVNCAddress.sh
 new='\/usr\/bin\/sh -c "\/usr\/bin\/showVNCAddress.sh;\/usr\/bin\/x11vnc -gui tray=setpass -shared -rfbport 5900 -bg -o %%HOME\/.x11vnc.log.%%VNCDISPLAY"'
 sudo sed -i "s/Exec=.*/Exec=$new/g" /usr/share/applications/x11vnc.desktop 
-sudo cp scripts/connect2schooldevice.sh /usr/bin/
-sudo chmod 755 /usr/bin/connect2schooldevice.sh
+sudo cp scripts/connect2schulsystem.sh /usr/bin/
+sudo chmod 755 /usr/bin/connect2schulsystem.sh
 sudo cp scripts/x11vncConnect.desktop /usr/share/applications/
 sudo chmod 755 /usr/share/applications/x11vncConnect.desktop
 
@@ -71,7 +71,7 @@ sudo chmod 755 /usr/share/applications/x11vncConnect.desktop
 #    snapshotname="`cat snapshotname.txt`" 
 #    yellow_msg "Restore system with snapshot $snapshotname..."
 #    sudo timeshift --restore --snapshot $snapshotname --yes
-#    yellow_msg "Continue with new installation of schooldevice ..."
+#    yellow_msg "Continue with new installation of schulsystem ..."
 #else
 #   if [ -f ./snapshotname.txt ]; then
 #        snapshotname="`cat snapshotname.txt`"
@@ -148,14 +148,14 @@ sudo chown user0 /home/.saves/user0/.config/autostart/notify.desktop
 
 #### set new user background
 yellow_msg "set background for user0"
-sudo cp schooldevice.png /usr/share/xfce4/backdrops/
-sudo chmod 755 /usr/share/xfce4/backdrops/schooldevice.png
+sudo cp Logo_webiste.png /usr/share/xfce4/backdrops/
+sudo chmod 755 /usr/share/xfce4/backdrops/Logo_website.png
 sudo echo '#!/bin/bash' > /usr/bin/setbackground.sh
 sudo echo 'sleep 4' >> /usr/bin/setbackground.sh
 sudo echo 'notify-send -t 10000 "ATTENTION:" "All local data will be lost during logout or restart!\nMake sure your data is backed up in the cloud or on an external device if necessary."' >> /usr/bin/setbackground.sh                                                
-sudo echo 'notify-send -t 5000 "schooldevice" "'$version'"' >> /usr/bin/setbackground.sh
+sudo echo 'notify-send -t 5000 "Schulsystem" "'$version'"' >> /usr/bin/setbackground.sh
 sudo echo 'xfconf-query --channel xfce4-desktop --list | grep last-image | while read path; do ' >> /usr/bin/setbackground.sh
-sudo echo '    xfconf-query --channel xfce4-desktop --property $path --set /usr/share/xfce4/backdrops/schooldevice.png' >> /usr/bin/setbackground.sh
+sudo echo '    xfconf-query --channel xfce4-desktop --property $path --set /usr/share/xfce4/backdrops/Logo_webiste.png' >> /usr/bin/setbackground.sh
 sudo echo ' done ' >> /usr/bin/setbackground.sh
 sudo echo 'xfconf-query --channel xfce4-desktop --list | grep image-style | while read path; do ' >> /usr/bin/setbackground.sh
 sudo echo '    xfconf-query --channel xfce4-desktop --property $path --set 1' >> /usr/bin/setbackground.sh
@@ -192,7 +192,7 @@ sudo echo "user0 ALL=(ALL:ALL) NOPASSWD:/usr/bin/loadSession.sh" >> saveLoadSess
 sudo cp ./saveLoadSession /etc/sudoers.d/saveLoadSession
 sudo chmod 0440 /etc/sudoers.d/saveLoadSession
 
-yellow_msg "Do you wish to install additional software (see: https://github.com/codekoch/schooldevice/blob/master/software.sh)?"
+yellow_msg "Do you wish to install additional software (see: https://github.com/codekoch/schulsystem/blob/main/software.sh)?"
 echo -n "(y/n)? "
 read answer
 if [ "$answer" != "${answer#[Yy]}" ] ;then
