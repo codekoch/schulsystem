@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=SAVE SESSION
+Comment=save user0 session on external media
+Exec=sudo /usr/bin/saveSession.sh
+Icon=view-sort-descending
+Path=/tmp/
+Terminal=false
+StartupNotify=false
