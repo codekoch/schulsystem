@@ -1,4 +1,4 @@
-![schulsystem](https://github.com/codekoch/schulsystem/blob/main/Logo_website.png)
+![schulsystem](https://github.com/codekoch/schulsystem/blob/main/Logo_website.jpg)
 ## Schulsystem - kostenlos, frei, vielseitig und zuverlässig ...
 (wie ein "Schulsystem" sein sollte 😉)
 
