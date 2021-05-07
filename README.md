@@ -4,7 +4,7 @@
 
 Was die Digitalisierung im Grundsatz angeht, sind sich wahrscheinlich viele Lehrkräfte einig. Kommende Generationen müssen schon in der Schule Kompetenzen erlangen, mit denen sie sich in der zunehmend digitalen Welt zurecht finden können. 
 
-Aber sollte man für dieses Ziel unreflektiert auf die verlockenden Angebote großer Firmen setzen? Ist es sinnvoll, bereits Kinder in eine Abhängigkeit zu führen, deren zukünftige Kosten ungewiss sind und von der sie sich als Erwachsene nur schwer lösen können? Sollte eine Schule neben ihrem pädagogischen Auftrag als Werbeträger agieren? 
+Aber sollte man für dieses Ziel unreflektiert auf die verlockenden Angebote großer Firmen setzen? Ist es sinnvoll, bereits Kinder in eine Abhängigkeit zu führen, deren zukünftige Kosten ungewiss sind und von der man sich später als Erwachsener nur schwer lösen kann? Sollte eine Schule neben ihrem pädagogischen Auftrag als Werbeträger agieren? 
 
 Sicherlich nicht, wenn es gute Alternativen gibt...
 
