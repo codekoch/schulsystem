@@ -8,7 +8,7 @@ Aber sollte man für dieses Ziel unreflektiert auf die verlockenden Angebote gro
 
 Sicherlich nicht, wenn es gute Alternativen gibt...
 
-Schulsystem bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem für die Schule an, das ohne das Sammeln von Nutzerdaten und kommerziellen Interessen auskommt. 
+<b>Schulsystem</b> bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem für die Schule an, das ohne das Sammeln von Nutzerdaten und kommerziellen Interessen auskommt. 
 
 Schulsystem besteht aus Shellscripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen. Trotzdem hat der Nutzer die Möglichkeit, seine gesamten Sitzungsdaten auf einem externen Medium zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers. 
 
