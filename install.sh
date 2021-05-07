@@ -152,7 +152,7 @@ sudo cp Logo_webiste.png /usr/share/xfce4/backdrops/
 sudo chmod 755 /usr/share/xfce4/backdrops/Logo_website.png
 sudo echo '#!/bin/bash' > /usr/bin/setbackground.sh
 sudo echo 'sleep 4' >> /usr/bin/setbackground.sh
-sudo echo 'notify-send -t 10000 "ATTENTION:" "All local data will be lost during logout or restart!\nMake sure your data is backed up in the cloud or on an external device if necessary."' >> /usr/bin/setbackground.sh                                                
+sudo echo 'notify-send -t 10000 "ACHTUNG:" "Alle Daten werden nach einem Neustart oder Logout gelöscht!\nStelle sicher, dass die Daten falls nötig auf einem externen Gerät oder in der Cloud gespeichert werden."' >> /usr/bin/setbackground.sh                                                
 sudo echo 'notify-send -t 5000 "Schulsystem" "'$version'"' >> /usr/bin/setbackground.sh
 sudo echo 'xfconf-query --channel xfce4-desktop --list | grep last-image | while read path; do ' >> /usr/bin/setbackground.sh
 sudo echo '    xfconf-query --channel xfce4-desktop --property $path --set /usr/share/xfce4/backdrops/Logo_webiste.png' >> /usr/bin/setbackground.sh
