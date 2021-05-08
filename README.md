@@ -18,7 +18,7 @@ Neben den genannten Features ist das <b>Schulsystem</b> in der Lage seinen Bilds
 https://github.com/codekoch/schulsystem/issues
 
 ## Zu Beginn
-- Installiere ein neues Debian basiertes Linuxsystem  (z.B. <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>)
+- Installiere das Linuxsystem Xubuntu Version 20.4 (Quelle: <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>)
 - (optional) Verändere das System nach deinen Wünschen
 ## Installation des Schulsystems
 - Öffne ein Terminal
