@@ -70,6 +70,6 @@ Sicherlich nicht, wenn es gute Alternativen gibt...
 
 
 ### Passwort für user0
-- Der Selbstheilende Account hat dden Benutzernamen <b>user0</b> und das Passwort <b>user0</b> 
+- Der Selbstheilende Account hat den Benutzernamen <b>user0</b> und das Passwort <b>user0</b> 
 
  
