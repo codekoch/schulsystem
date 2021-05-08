@@ -10,7 +10,7 @@ Sicherlich nicht, wenn es gute Alternativen gibt...
 
 <b>Schulsystem</b> bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem für Schulen an, das ohne das Sammeln von Nutzerdaten und kommerziellen Interessen auskommt. 
 
-<b>Schulsystem</b> besteht aus Shellskripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen und verhält sich damit auf Dauer wie ein frisch installiertes System. Trotzdem hat der Nutzer die Möglichkeit, seine gesamten Sitzungsdaten auf einem externen Medium zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers.
+<b>Schulsystem</b> besteht aus Shellskripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen und verhält sich damit auf Dauer wie ein frisch installiertes System. Trotzdem hat der Nutzer die Möglichkeit, seine gesamten Sitzungsdaten auf einem externen Medium zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers. Neben den genannten Features ist das <b>Schulsystem</b> in der Lage seinen Bildschirm auf beliebige andere Geräte mit einer Browseranwendung wie z.B. Crhome, Safari oder Firefox zu spiegeln, die sich im selben Netzwerk befinden (siehe Hinweise zur Bedienung).  
 
 ## Zu Beginn
 - Installiere ein neues Debian basiertes Linuxsystem  (z.B. <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>)
@@ -61,12 +61,12 @@ Sicherlich nicht, wenn es gute Alternativen gibt...
 
         um die Selbstheilung für den Useraccount user0 zu aktivieren
         
-### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen (und anderen Systemen)
+### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
 ![VNC](https://github.com/codekoch/schulsystem/blob/main/VNC.png)
 - <b>Activierung</b> mit <b>X11VNC Server</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>) 
 - <b>Verbindung</b> mit <b>X11VNC Connect</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein)
 - Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden)
-- (Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080)
+- Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080
 
 
 ### Passwort für user0
