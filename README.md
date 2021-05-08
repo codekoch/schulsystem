@@ -49,7 +49,7 @@ https://github.com/codekoch/schulsystem/issues
   ![saveloadsession](https://github.com/codekoch/schulsystem/blob/main/saveLoadSession.png)
   
   Das erste Abspeichern dauert einige Zeit, aber danach sollte es dank rsync ziemlich schnell gehen
-  (Benutze ein exterens Speichermedium im FAT32 Format and vergiß nicht es auzuwerfen, bevor du es entfernst. USB 3.0 support ist empfohlen.)
+  (Benutze ein exterens Speichermedium im FAT32 Format and vergiß nicht es auzuwerfen, bevor du es entfernst. USB 3.0 Support ist empfohlen.)
 
 ### Veränderungen permanent speichern, Selbstheilung aktivieren und deaktivieren
 - Logge dich als user mit root rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein 
