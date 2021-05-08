@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=SAVE SESSION
-Comment=save user0 session on external media
+Comment=Nutzerkonto auf externes Medium speichern
 Exec=sudo /usr/bin/saveSession.sh
 Icon=view-sort-descending
 Path=/tmp/
