@@ -18,16 +18,16 @@ echo -e "\\033[34;1m${@}\033[0m"
 }
 
 #### get latest version of current system
-yellow_msg "Updating and upgrading the current system..."
+yellow_msg "Das aktuelle System wird auf den neuesten Stand gebracht..."
 sudo apt-get update
 sudo apt-get -y upgrade
 
-yellow_msg "Installing some software..."
+yellow_msg "Installiere benötigte Software..."
 #### install snap
 sudo apt-get install -y snapd
 sudo apt-get install -y rsync
 
-yellow_msg "Installing vnc server and web connection capability..."
+yellow_msg "Installiere x11vnc und guacamole (Remote Dekstop Verbindung per Browser) ..."
 #### install screen mirroring via webbrowser
 ### install vnc-server
 sudo apt-get install -y x11vnc
@@ -55,6 +55,7 @@ sudo echo '<% response.sendRedirect("/guacamole"); %>' > /var/lib/tomcat9/webapp
 sudo chmod 755 /var/lib/tomcat9/webapps/ROOT/index.jsp
 sudo systemctl restart tomcat9 guacd
 
+yellow_msg "Installiere einige Skripts für die vereinfachte Verbindung ..."
 ### install some shellscripts and changes to connect easier
 sudo cp scripts/showVNCAddress.sh /usr/bin/
 sudo chmod 755 /usr/bin/showVNCAddress.sh
@@ -96,7 +97,7 @@ sudo chmod 755 /usr/share/applications/x11vncConnect.desktop
 #fi
 
 #### add user user0
-yellow_msg "adding user user0 with password user0..." 
+yellow_msg "Richte das Nutzerkonto user0 ein ..." 
 sudo adduser user0 << EOF 
 user0
 user0
@@ -111,6 +112,7 @@ sudo passwd -d user0
 #### set group rights
 usermod -a -G adm,dialout,fax,cdrom,floppy,tape,dip,video,plugdev user0 
 
+yellow_msg "Installiere die Selbstheilung von user0 ..." 
 #### set selfhealing home of user user0
 yellow_msg "setup selfhealing account for user0..."
 sudo cp scripts/resethomedir.sh /etc/init.d/
@@ -120,7 +122,7 @@ chmod 755 /etc/init.d/resethomedirstart.sh
 sudo /etc/init.d/resethomedir.sh save
 
 #### set autologin of user user0
-yellow_msg "set autologin for user0"
+yellow_msg "Richte das Autologin für user0 ein ..."
 sudo mkdir /etc/lightdm/lightdm.conf.d/
 sudo echo '[Seat:*]' > /etc/lightdm/lightdm.conf.d/60-autologin.conf
 sudo echo 'display-setup-script=/etc/init.d/resethomedirstart.sh' >> /etc/lightdm/lightdm.conf.d/60-autologin.conf
@@ -132,7 +134,7 @@ sudo echo "xserver-command=X -s 0 dpms">> /etc/lightdm/lightdm.conf.d/60-autolog
 sudo chmod 755 /etc/lightdm/lightdm.conf.d/60-autologin.conf
 
 #### Notify that you are in a selfhealing account
-yellow_msg "adding autostart-script"
+yellow_msg "Richte das Autostart-Skript ein..."
 sudo mkdir /home/.saves/user0/.config/
 sudo chown user0 /home/.saves/user0/.config/
 sudo mkdir /home/.saves/user0/.config/autostart/
@@ -147,7 +149,7 @@ sudo echo 'Comment=Startup Script' >> /home/.saves/user0/.config/autostart/notif
 sudo chown user0 /home/.saves/user0/.config/autostart/notify.desktop
 
 #### set new user background
-yellow_msg "set background for user0"
+yellow_msg "Richte das Startskript und den Background für das Nutzerkonto user0 ein"
 sudo cp Logo_webiste.png /usr/share/xfce4/backdrops/
 sudo chmod 755 /usr/share/xfce4/backdrops/Logo_website.png
 sudo echo '#!/bin/bash' > /usr/bin/setbackground.sh
@@ -166,7 +168,7 @@ sudo echo 'xset -dpms' >> /usr/bin/setbackground.sh
 sudo chmod 755  /usr/bin/setbackground.sh
 
 #### set save and load session ability
-yellow_msg "set save and load session ability"
+yellow_msg "Richte die eigenständige Nutzerdatenverwaltung ein (save/load session) ...  "
 desktop_path=$(xdg-user-dir DESKTOP | grep -Eo '[^/]+/?$')  
 sudo cp scripts/saveSession.sh /usr/bin/
 sudo cp scripts/loadSession.sh /usr/bin/
@@ -192,10 +194,10 @@ sudo echo "user0 ALL=(ALL:ALL) NOPASSWD:/usr/bin/loadSession.sh" >> saveLoadSess
 sudo cp ./saveLoadSession /etc/sudoers.d/saveLoadSession
 sudo chmod 0440 /etc/sudoers.d/saveLoadSession
 
-yellow_msg "Do you wish to install additional software (see: https://github.com/codekoch/schulsystem/blob/main/software.sh)?"
-echo -n "(y/n)? "
+yellow_msg "Soll zusätzliche Software installiert werden (siehe: https://github.com/codekoch/schulsystem/blob/main/software.sh)?"
+echo -n "(j/n)? "
 read answer
-if [ "$answer" != "${answer#[Yy]}" ] ;then
+if [ "$answer" != "${answer#[Jj]}" ] ;then
     sudo ./software.sh
     green_msg "Have fun!!"
     
