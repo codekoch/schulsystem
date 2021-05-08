@@ -12,6 +12,9 @@ Sicherlich nicht, wenn es gute Alternativen gibt...
 
 <b>Schulsystem</b> besteht aus Shellskripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen und verhält sich damit auf Dauer wie ein frisch installiertes System. Trotzdem hat der Nutzer die Möglichkeit, seine gesamten Sitzungsdaten auf einem externen Medium zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers. Neben den genannten Features ist das <b>Schulsystem</b> in der Lage seinen Bildschirm auf beliebige andere Geräte mit einer Browseranwendung wie z.B. Crhome, Safari oder Firefox zu spiegeln, die sich im selben Netzwerk befinden (siehe Hinweise zur Bedienung).  
 
+Änderungswünsche, Verbessungen und Hilfe ist jederzeit willkommen:
+https://github.com/codekoch/schulsystem/issues
+
 ## Zu Beginn
 - Installiere ein neues Debian basiertes Linuxsystem  (z.B. <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>)
 - (optional) Verändere das System nach deinen Wünschen
