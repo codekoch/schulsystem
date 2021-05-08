@@ -43,6 +43,13 @@ https://github.com/codekoch/schulsystem/issues
 - Viel Spaß mit deinem <b>Schulsystem</b>
 
 ## Hinweise zu Bedienung
+### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
+![VNC](https://github.com/codekoch/schulsystem/blob/main/VNC.png)
+- <b>Activierung</b> mit <b>X11VNC Server</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>) 
+- <b>Verbindung</b> mit <b>X11VNC Connect</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein)
+- Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden)
+- Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080
+
 ### Save and load session 
 - Abspeichern und Laden der aktuellen Nutzersitzung:
 
@@ -66,14 +73,6 @@ https://github.com/codekoch/schulsystem/issues
 
         um die Selbstheilung für den Useraccount user0 zu aktivieren
         
-### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
-![VNC](https://github.com/codekoch/schulsystem/blob/main/VNC.png)
-- <b>Activierung</b> mit <b>X11VNC Server</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>) 
-- <b>Verbindung</b> mit <b>X11VNC Connect</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein)
-- Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden)
-- Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080
-
-
 ### Passwort für user0
 - Der Selbstheilende Account hat den Benutzernamen <b>user0</b> und das Passwort <b>user0</b> 
 
