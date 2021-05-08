@@ -33,7 +33,7 @@ https://github.com/codekoch/schulsystem/issues
 - Entscheide, ob du das zusätzliche Software Pack installieren möchtest (siehe https://github.com/codekoch/schulsystem/blob/main/software.sh).
 - Starte den Rechner neu mit dem Autologin in den Useraccount user0. 
 > sudo shutdown -r now
-- Passe alles deinen Wünschen an.
+- Verändere die Kontoeinstellungen nach deinen Wünschen (Hintegrundbild, evtl. Einstellungen in Programmen etc.).
 - Öffne ein Terminal, logge dich als Benutzer mit root Rechten ein, speichere die momentanen Einstellungen des user0 Accounts und starte den Rechner neu.
 > su {user with admin rights}
 
