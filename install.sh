@@ -156,7 +156,7 @@ sudo echo 'sleep 4' >> /usr/bin/setbackground.sh
 sudo echo 'notify-send -t 10000 "ACHTUNG:" "Alle Daten werden nach einem Neustart oder Logout gelöscht!\nStelle sicher, dass die Daten falls nötig auf einem externen Gerät oder in der Cloud gespeichert werden."' >> /usr/bin/setbackground.sh                                                
 sudo echo 'notify-send -t 5000 "Schulsystem" "'$version'"' >> /usr/bin/setbackground.sh
 sudo echo 'xfconf-query --channel xfce4-desktop --list | grep last-image | while read path; do ' >> /usr/bin/setbackground.sh
-sudo echo '    xfconf-query --channel xfce4-desktop --property $path --set /usr/share/xfce4/backdrops/Logo_webiste.png' >> /usr/bin/setbackground.sh
+sudo echo '    xfconf-query --channel xfce4-desktop --property $path --set /usr/share/xfce4/backdrops/Logo_website.png' >> /usr/bin/setbackground.sh
 sudo echo ' done ' >> /usr/bin/setbackground.sh
 sudo echo 'xfconf-query --channel xfce4-desktop --list | grep image-style | while read path; do ' >> /usr/bin/setbackground.sh
 sudo echo '    xfconf-query --channel xfce4-desktop --property $path --set 1' >> /usr/bin/setbackground.sh
