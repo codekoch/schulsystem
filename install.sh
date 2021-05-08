@@ -149,7 +149,7 @@ sudo chown user0 /home/.saves/user0/.config/autostart/notify.desktop
 
 #### set new user background
 yellow_msg "Richte das Startskript und den Background für das Nutzerkonto user0 ein"
-sudo cp Logo_webiste.png /usr/share/xfce4/backdrops/
+sudo cp Logo_website.png /usr/share/xfce4/backdrops/
 sudo chmod 755 /usr/share/xfce4/backdrops/Logo_website.png
 sudo echo '#!/bin/bash' > /usr/bin/setbackground.sh
 sudo echo 'sleep 4' >> /usr/bin/setbackground.sh
