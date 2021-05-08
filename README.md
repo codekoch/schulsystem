@@ -42,6 +42,8 @@ https://github.com/codekoch/schulsystem/issues
 > sudo shutdown -r now
 - Viel Spaß mit deinem <b>Schulsystem</b>!
 
+![schulsystem2](https://github.com/codekoch/schulsystem/blob/main/schulsystem.png)
+
 ## Hinweise zu Bedienung
 ### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
 ![VNC](https://github.com/codekoch/schulsystem/blob/main/VNC.png)
