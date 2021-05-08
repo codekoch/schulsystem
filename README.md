@@ -34,7 +34,7 @@ https://github.com/codekoch/schulsystem/issues
 - Starte den Rechner neu mit und warte auf das Autologin in das neue Nutzerkonto user0. 
 > sudo shutdown -r now
 - Verändere die Kontoeinstellungen nach deinen Wünschen (Hintegrundbild, evtl. Einstellungen in Programmen etc.).
-- Öffne ein Terminal, logge dich als Benutzer mit root Rechten ein, speichere die momentanen Einstellungen des user0 Accounts und starte den Rechner neu.
+- Öffne ein Terminal, logge dich als Benutzer mit root Rechten ein, speichere die momentanen Einstellungen des Kontos von user0 und starte den Rechner neu.
 > su {user with admin rights}
 
 > sudo /etc/init.d/resethomedir.sh save
