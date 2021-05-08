@@ -50,7 +50,7 @@ https://github.com/codekoch/schulsystem/issues
 - Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden)
 - Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080
 
-### Save and load session 
+### Speicherung und Wiederherstellung des Benutzerkontos samt aller Einstellungen / Save and load session 
 - Abspeichern und Laden der aktuellen Nutzersitzung:
 
   ![saveloadsession](https://github.com/codekoch/schulsystem/blob/main/saveLoadSession.png)
