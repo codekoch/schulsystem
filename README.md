@@ -8,6 +8,8 @@ Aber muss man zwangläufig für dieses Ziel die Angebote großer Firmen nutzen, 
 
 Sicherlich nicht, wenn es gute Alternativen gibt...
 
+Bei der Wahl des Betriebssystems für Schulgeräte gibt es diese auf jeden Fall: 
+
 Das <b>Schulsystem</b> bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem speziell für den Mehrbenutzerbetrieb an Schulen, das ohne das Sammeln von Nutzerdaten und kommerzielle Interessen auskommt. 
 
 Das <b>Schulsystem</b> besteht aus Shellskripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen und verhält sich damit auf Dauer wie ein frisch installiertes System. Trotzdem hat der Nutzer die Möglichkeit, seine gesamten Sitzungsdaten auf einem externen Medium zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers.
