@@ -6,7 +6,7 @@
 
 Aber muss man zwangläufig für dieses Ziel die Angebote großer Firmen nutzen, deren zukünftige Kosten ungewiss sind? Ist es sinnvoll, bereits Kinder in eine Abhängigkeit zu führen, von der sie sich später als Erwachsene nur schwer lösen können? Sollte eine Schule neben ihrem pädagogischen Auftrag auch Werbeträger für kommerzielle Produkte sein? 
 
-Sicherlich nicht, wenn es gute Alternativen gibt...
+Sicherlich nicht, wenn es Alternativen gibt...
 
 Bei der Wahl des Betriebssystems für Schulgeräte gibt es diese auf jeden Fall: 
 
