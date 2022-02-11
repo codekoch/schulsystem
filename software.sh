@@ -41,6 +41,8 @@ sudo apt-get install -y python-pip
 
 sudo apt-get install -y nodejs
 
+sudo apt-get install -y npm
+
 sudo apt-get install -y feh
 
 sudo apt-get install -y gparted
@@ -73,16 +75,26 @@ sudo add-apt-repository ppa:gezakovacs/ppa -y
 sudo apt-get update
 sudo apt-get install -y unetbootin
 
-#### Veyon
+#### Veyon (deaktiviert)
 #sudo add-apt-repository ppa:veyon/stable -y
 #sudo apt-get update
 #sudo apt-get install -y veyon
+
+### BobDude
+wget "http://www.bob3.org/downloads/bobdude-1.3.1.tar.bz2"
+tar -xjf bobdude-1.3.1.tar.bz2
+cd bobdude-1.3.1
+./configure --sysconfdir=/etc
+make
+sudo make install
+cd ..
+
 
 ### Virtual Box
 sudo apt-get install -y virtualbox
 sudo apt-get install -y virtualbox-ext-pack
 
-#### Linux Live Kit
+#### Linux Live Kit (deaktiviert)
 #sudo apt-get install -y squashfs-tools
 #sudo apt-get install -y genisoimage 
 #sudo apt-get install -y zip 
