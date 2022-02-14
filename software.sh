@@ -111,3 +111,6 @@ sudo apt-get install -y virtualbox-ext-pack
 #sudo echo './build' >> /usr/bin/buildLinuxLive.sh
 #sudo chmod 755 /usr/bin/buildLinuxLive.sh
 
+### Software Verzeichnis für user0 zugänglich machen
+cp -R software /tmp/
+chmod 777 /tmp/software/
