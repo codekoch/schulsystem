@@ -63,12 +63,12 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
 #### Openboard
-wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.0a1/openboard_ubuntu_20.04_1.6.0-a.1_amd64.deb
-sudo apt install -y ./openboard_ubuntu_20.04_1.6.0-a.1_amd64.deb
+wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.1/openboard_ubuntu_20.04_1.6.1_amd64.deb
+sudo apt install -y ./openboard_ubuntu_20.04_1.6.1_amd64.deb
 
 #### Greenfoot
-wget http://www.greenfoot.org/download/files/Greenfoot-linux-361.deb
-sudo apt install -y ./Greenfoot-linux-361.deb
+wget http://www.greenfoot.org/download/files/Greenfoot-linux-370.deb
+sudo apt install -y ./Greenfoot-linux-370.deb
 
 #### unetbootin
 sudo add-apt-repository ppa:gezakovacs/ppa -y
