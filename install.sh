@@ -25,11 +25,15 @@ sudo apt-get -y upgrade
 yellow_msg "Installiere benötigte Software..."
 #### install snap
 sudo apt-get install -y snapd
+
+#### install rsync
 sudo apt-get install -y rsync
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 382003C2C8B7B4AB813E915B14E4942973C62A1B -y
-sudo add-apt-repository "deb http://ppa.launchpad.net/nemh/systemback/ubuntu xenial main" -y
+
+#### install systemback fork (from https://github.com/BluewhaleRobot/systemback)
+sudo sh -c 'echo "deb [arch=amd64] http://mirrors.bwbot.org/ stable main" > /etc/apt/sources.list.d/systemback.list'
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key 50B2C005A67B264F
 sudo apt-get update
-sudo apt-get install -y systemback
+sudo apt-get install systemback
 
 yellow_msg "Installiere x11vnc und guacamole (Remote Dekstop Verbindung per Browser) ..."
 #### install screen mirroring via webbrowser
