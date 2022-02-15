@@ -26,6 +26,9 @@ yellow_msg "Installiere benötigte Software..."
 #### install snap
 sudo apt-get install -y snapd
 sudo apt-get install -y rsync
+sudo add-apt-repository ppa:nemh/systemback -y
+sudo apt-get update
+sudo apt-get install -y systemback
 
 yellow_msg "Installiere x11vnc und guacamole (Remote Dekstop Verbindung per Browser) ..."
 #### install screen mirroring via webbrowser
