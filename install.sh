@@ -26,7 +26,8 @@ yellow_msg "Installiere benötigte Software..."
 #### install snap
 sudo apt-get install -y snapd
 sudo apt-get install -y rsync
-sudo add-apt-repository ppa:nemh/systemback -y
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 382003C2C8B7B4AB813E915B14E4942973C62A1B -y
+sudo add-apt-repository "deb http://ppa.launchpad.net/nemh/systemback/ubuntu xenial main" -y
 sudo apt-get update
 sudo apt-get install -y systemback
 
