@@ -53,7 +53,7 @@ https://github.com/codekoch/schulsystem/issues
 
 ## Alternative Installation
 - Lade unter https://schulsystem.org/images/schulsystem.iso ein fertiges Image herunter, das die oben erwähnte Installation bereits enthält
-- Erstelle mit der iso-Datei ein Startmedium
+- Erstelle mit der iso-Datei ein Startmedium z.B. mit https://unetbootin.github.io/
 - Die iso-Datei enhält sowohl eine Live- als auch eine Installtionsversion des Schulsystems
 
 ## Hinweise zu Bedienung
