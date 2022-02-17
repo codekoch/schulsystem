@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Name=Bildschirm empfangen
-Comment=Verbindung mit anderem Schulsystem
+Comment=Bildschirm eines anderen Schulsystems anzeigen
 Exec=/usr/bin/connect2schulsystem.sh
 Icon=computer           
 Path=/tmp/
