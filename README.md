@@ -51,6 +51,11 @@ https://github.com/codekoch/schulsystem/issues
 
 ![schulsystem2](https://github.com/codekoch/schulsystem/blob/main/schulsystem.png)
 
+## Alternative Installation
+- Lade unter https://schulsystem.org/images/schulsystem.iso ein fertiges Image herunter, das die oben erwähnte Installation bereits enthält
+- Erstelle mit der iso-Datei ein Startmedium
+- Die iso-Datei enhält sowohl eine Live- als auch eine Installtionsversion des Schulsystems
+
 ## Hinweise zu Bedienung
 ### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
 ![VNC](https://github.com/codekoch/schulsystem/blob/main/VNC.png)
