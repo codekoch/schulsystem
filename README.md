@@ -54,7 +54,7 @@ https://github.com/codekoch/schulsystem/issues
 ### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
 ![VNC](https://github.com/codekoch/schulsystem/blob/main/VNC.png)
 - <b>Aktivierung</b> mit <b>Bildschirm teilen</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>) 
-- <b>Verbindung</b> mit <b>XBildschirm empfangen</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein)
+- <b>Verbindung</b> mit <b>Bildschirm empfangen</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein)
 - Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden)
 - Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080
 
