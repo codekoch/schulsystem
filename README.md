@@ -69,7 +69,7 @@ https://github.com/codekoch/schulsystem/issues
 ### SCHULSYSTEM-TO-GO
 - Das Projekt <b>systemback</b> und der Fork <b>https://github.com/BluewhaleRobot/systemback</b> ist im Schulsystem integriert, so dass jederzeit ein Startmedium z.B. ein USB-Stick mit dem Abbild des laufenden Schulsystems erstellt werden kann
 - Für die Erstellung ist allerdings ein user mit root-Rechten (Administratorrechten) und ein Medium mit ausreichend viel Speicherplatz (>= 8GB) nötig
-- Vor der Installation sollte das externe Medium nur eine einzige Partition mit FAT32 Formatiertung enthalten. Dies kann z.B. mit GParted errreicht werden.   
+- Vor der Installation sollte das externe Medium nur eine einzige Partition mit FAT32 Formatiertung enthalten. Dies kann z.B. mit GParted errreicht werden   
 
 ### Veränderungen permanent speichern, Selbstheilung aktivieren und deaktivieren
 - Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein 
