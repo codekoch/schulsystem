@@ -1,7 +1,7 @@
 [Desktop Entry]
 Version=1.0
 Type=Application
-Name=X11VNC Connect
+Name=Bildschirm empfangen
 Comment=Verbindung mit anderem Schulsystem
 Exec=/usr/bin/connect2schulsystem.sh
 Icon=computer           
