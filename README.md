@@ -66,7 +66,7 @@ https://github.com/codekoch/schulsystem/issues
   Das erste Abspeichern dauert einige Zeit, aber danach sollte es dank rsync ziemlich schnell gehen
   (Benutze ein externes Speichermedium im FAT32 Format and vergiss nicht es auszuwerfen, bevor du es entfernst. USB 3.0 Support ist empfohlen.)
 
-### SCHULSYSTEM-TO-GO - Startmedium mit dem Abbild des laufenden Systems erstellen
+### SCHULSYSTEM-TO-GO
 - Das Projekt <b>systemback</b> und der Fork <b>https://github.com/BluewhaleRobot/systemback</b> ist im Schulsystem integriert, so dass jederzeit ein Startmedium z.B. ein USB-Stick mit dem Abbild des laufenden Schulsystems erstellt werden kann
 - Für die Erstellung ist allerdings ein user mit root-Rechten (Administratorrechten) und ein Medium mit ausreichend viel Speicherplatz (>= 8GB) nötig  
 
