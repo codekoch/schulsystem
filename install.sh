@@ -33,7 +33,7 @@ sudo apt-get install -y rsync
 sudo sh -c 'echo "deb [arch=amd64] http://mirrors.bwbot.org/ stable main" > /etc/apt/sources.list.d/systemback.list'
 sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key 50B2C005A67B264F
 sudo apt-get update
-sudo apt-get install systemback
+sudo apt-get install -y systemback
 
 yellow_msg "Installiere x11vnc und guacamole (Remote Dekstop Verbindung per Browser) ..."
 #### install screen mirroring via webbrowser
