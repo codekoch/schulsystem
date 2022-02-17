@@ -68,7 +68,9 @@ yellow_msg "Installiere einige Skripts für die vereinfachte Verbindung ..."
 sudo cp scripts/showVNCAddress.sh /usr/bin/
 sudo chmod 755 /usr/bin/showVNCAddress.sh
 new='\/usr\/bin\/sh -c "\/usr\/bin\/showVNCAddress.sh;\/usr\/bin\/x11vnc -gui tray=setpass -shared -rfbport 5900 -bg -o %%HOME\/.x11vnc.log.%%VNCDISPLAY"'
-sudo sed -i "s/Exec=.*/Exec=$new/g" /usr/share/applications/x11vnc.desktop 
+sudo sed -i "s/Exec=.*/Exec=$new/g" /usr/share/applications/x11vnc.desktop
+sudo sed -i "s/Name=.*/Name=Bildschirm teilen/g" /usr/share/applications/x11vnc.desktop
+sudo sed -i "s/Comment=.*/Comment=Bildschirm dieses Schulsystems teilen/g" /usr/share/applications/x11vnc.desktop
 sudo cp scripts/connect2schulsystem.sh /usr/bin/
 sudo chmod 755 /usr/bin/connect2schulsystem.sh
 sudo cp scripts/x11vncConnect.desktop /usr/share/applications/
