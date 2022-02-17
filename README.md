@@ -53,9 +53,9 @@ https://github.com/codekoch/schulsystem/issues
 
 ## Alternative Installation
 - Lade unter https://schulsystem.org/images/schulsystem.iso ein fertiges Image (ca. 6.4 GB) herunter, das die oben erwähnte Installation bereits enthält
-- Erstelle mit der iso-Datei ein Startmedium z.B. mit https://unetbootin.github.io/
+- Erstelle ein Startmedium mit der heruntergeladenen iso-Datei  (z.B. mit https://www.ventoy.net/en/index.html)
 - Die iso-Datei enhält sowohl eine Live- als auch eine Installtionsversion des Schulsystems
-- Der Datenträger für das Startmedium sollte mindestens 8GB Speicherplatz haben und USB 3.0 fähig sein. Empfehlenswert ist es außerdem, ihn vorher mit dem Dateisystem FAT32 zu formatieren. 
+- Der Datenträger für das Startmedium sollte mindestens 8GB Speicherplatz haben und USB 3.0 fähig sein
 
 ## Hinweise zu Bedienung
 ### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
