@@ -52,35 +52,35 @@ https://github.com/codekoch/schulsystem/issues
 ![schulsystem2](https://github.com/codekoch/schulsystem/blob/main/schulsystem.png)
 
 ## Alternative Installation des Schulsystems
-- Lade unter https://schulsystem.org/images/schulsystem.iso ein fertiges Image (ca. 6.4 GB) herunter, das die oben erwähnte Installation bereits enthält
-- Erstelle ein Startmedium mit der heruntergeladenen iso-Datei  (z.B. mit https://www.ventoy.net/en/index.html)
-- Die iso-Datei enhält sowohl eine Live- als auch eine Installtionsversion des Schulsystems
-- Der Datenträger für das Startmedium sollte mindestens 8GB Speicherplatz haben und USB 3.0 fähig sein
+- Lade unter https://schulsystem.org/images/schulsystem.iso ein fertiges Image (ca. 6.4 GB) herunter, das die oben erwähnte Installation bereits enthält.
+- Erstelle ein Startmedium mit der heruntergeladenen iso-Datei  (z.B. mit https://www.ventoy.net/en/index.html).
+- Die iso-Datei enhält sowohl eine Live- als auch eine Installtionsversion des Schulsystems.
+- Der Datenträger für das Startmedium sollte mindestens 8GB Speicherplatz haben und USB 3.0 fähig sein.
 
 ## Hinweise zu Bedienung
 ### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
 ![VNC](https://github.com/codekoch/schulsystem/blob/main/BildschirmTeilenEmpfangen.png)
-- <b>Aktivierung</b> mit <b>Bildschirm teilen</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>) 
-- <b>Verbindung</b> mit <b>Bildschirm empfangen</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein)
-- Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden)
-- Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080
+- <b>Aktivierung</b> mit <b>Bildschirm teilen</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>). 
+- <b>Verbindung</b> mit <b>Bildschirm empfangen</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein).
+- Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden).
+- Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080.
 
 ### Speicherung und Wiederherstellung des Benutzerkontos samt aller Einstellungen / Save and load session 
 - Abspeichern und Laden der aktuellen Nutzersitzung:
 
   ![saveloadsession](https://github.com/codekoch/schulsystem/blob/main/saveLoadSession.png)
   
-  Das erste Abspeichern dauert einige Zeit, aber danach sollte es dank rsync ziemlich schnell gehen
+  Das erste Abspeichern dauert einige Zeit, aber danach sollte es dank rsync ziemlich schnell gehen.
   (Benutze ein externes Speichermedium im FAT32 Format and vergiss nicht es auszuwerfen, bevor du es entfernst. USB 3.0 Support ist empfohlen.)
 
 ### SCHULSYSTEM-TO-GO
 ![SCHULSYSTEMTOGO](https://github.com/codekoch/schulsystem/blob/main/SCHULSYSTEMTOGO.png)
-- Das Projekt <b>systemback</b> und der Fork <b>https://github.com/BluewhaleRobot/systemback</b> sind im Schulsystem integriert, so dass jederzeit ein Startmedium z.B. ein USB-Stick mit dem Abbild des laufenden Schulsystems erstellt werden kann
-- Für die Erstellung ist allerdings ein user mit root-Rechten (Administratorrechten) und ein Medium mit ausreichend viel Speicherplatz (>= 8GB) nötig
-- Vor der Installation sollte das externe Medium nur eine einzige Partition mit FAT32 Formatiertung enthalten. Dies kann z.B. mit GParted errreicht werden   
+- Das Projekt <b>systemback</b> und der Fork <b>https://github.com/BluewhaleRobot/systemback</b> sind im Schulsystem integriert, so dass jederzeit ein Startmedium z.B. ein USB-Stick mit dem Abbild des laufenden Schulsystems erstellt werden kann. Dieses können Schüler und Schülerinnen z.B. mit nach Hause nehmen, um dort dieselben Arbeitsbedingungen wie in der Schule zu haben.
+- Für die Erstellung ist allerdings ein user mit root-Rechten (Administratorrechten) und ein Medium mit ausreichend viel Speicherplatz (>= 8GB) nötig.
+- Vor der Installation sollte das externe Medium nur eine einzige Partition mit FAT32 Formatiertung enthalten. Dies kann z.B. mit GParted errreicht werden.   
 
 ### Veränderungen permanent speichern, Selbstheilung aktivieren und deaktivieren
-- Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein 
+- Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein. 
     
     - > sudo /etc/init.d/resethomedir.sh save
 
@@ -95,6 +95,6 @@ https://github.com/codekoch/schulsystem/issues
         um die Selbstheilung für den Useraccount user0 zu aktivieren
         
 ### Passwort für user0
-- Der Selbstheilende Account hat den Benutzernamen <b>user0</b> und das Passwort <b>user0</b> 
+- Der Selbstheilende Account hat den Benutzernamen <b>user0</b> und das Passwort <b>user0</b>. 
 
  
