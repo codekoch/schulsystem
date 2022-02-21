@@ -74,6 +74,7 @@ https://github.com/codekoch/schulsystem/issues
   (Benutze ein externes Speichermedium im FAT32 Format and vergiss nicht es auszuwerfen, bevor du es entfernst. USB 3.0 Support ist empfohlen.)
 
 ### SCHULSYSTEM-TO-GO
+![SCHULSYSTEMTOGO](https://github.com/codekoch/schulsystem/blob/main/SCHULSYSTEMTOGO.png)
 - Das Projekt <b>systemback</b> und der Fork <b>https://github.com/BluewhaleRobot/systemback</b> sind im Schulsystem integriert, so dass jederzeit ein Startmedium z.B. ein USB-Stick mit dem Abbild des laufenden Schulsystems erstellt werden kann
 - Für die Erstellung ist allerdings ein user mit root-Rechten (Administratorrechten) und ein Medium mit ausreichend viel Speicherplatz (>= 8GB) nötig
 - Vor der Installation sollte das externe Medium nur eine einzige Partition mit FAT32 Formatiertung enthalten. Dies kann z.B. mit GParted errreicht werden   
