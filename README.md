@@ -51,7 +51,7 @@ https://github.com/codekoch/schulsystem/issues
 
 ![schulsystem2](https://github.com/codekoch/schulsystem/blob/main/schulsystem.png)
 
-## Alternative Installation
+## Alternative Installation des Schulsystems
 - Lade unter https://schulsystem.org/images/schulsystem.iso ein fertiges Image (ca. 6.4 GB) herunter, das die oben erwähnte Installation bereits enthält
 - Erstelle ein Startmedium mit der heruntergeladenen iso-Datei  (z.B. mit https://www.ventoy.net/en/index.html)
 - Die iso-Datei enhält sowohl eine Live- als auch eine Installtionsversion des Schulsystems
