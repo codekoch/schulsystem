@@ -101,6 +101,7 @@ https://github.com/codekoch/schulsystem/issues
 ### schnelles Backup und Restore vom gesamten System über rsync und ssh-repository 
 <b>Backup:</b>
 > sudo rsync / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*"} {username}@{server-ip}:/{Server-Ordner} --delete
+
 <b>Restore:</b>
 > sudo rsync {username}@{server-ip}:/{Server-Ordner} / --delete  
  
