@@ -98,4 +98,9 @@ https://github.com/codekoch/schulsystem/issues
 ### Passwort für user0
 - Der Selbstheilende Account hat den Benutzernamen <b>user0</b> und das Passwort <b>user0</b>. 
 
+### schnelles Backup und Restore vom gesamten System über rsync und ssh-repository 
+<b>Backup:</b>
+> sudo rsync / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*"} <i><username></i>@<server-ip>:/<Server-Ordner> --delete
+<b>Restore:</b>
+> sudo rsync <i><username></i>@<server-ip>:/<Server-Ordner> / --delete  
  
