@@ -102,8 +102,8 @@ https://github.com/codekoch/schulsystem/issues
 - Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein. 
 
 <b>Backup:</b>
-> sudo rsync / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*"} {username}@{server-ip}:/{Server-Ordner} --delete
+> sudo rsync -avz / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*"} {username}@{server-ip}:/{Server-Ordner} --delete
 
 <b>Restore:</b>
-> sudo rsync {username}@{server-ip}:/{Server-Ordner} / --delete  
+> sudo rsync -avz {username}@{server-ip}:/{Server-Ordner} --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*"} / --delete  
  
