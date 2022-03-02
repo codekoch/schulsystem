@@ -58,6 +58,9 @@ https://github.com/codekoch/schulsystem/issues
 - Der Datenträger für das Startmedium sollte mindestens 8GB Speicherplatz haben und USB 3.0 fähig sein.
 
 ## Hinweise zu Bedienung
+### Grundlegende Hinweise
+Grundlegende Hinweise zur Bedienung des Systems (Programaufruf, Bildschirmeinstellungen, Sound etc.) in der pdf-Datei unter https://github.com/codekoch/schulsystem/blob/main/Schulsystem_Basics.pdf zu finden.
+
 ### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
 ![VNC](https://github.com/codekoch/schulsystem/blob/main/BildschirmTeilenEmpfangen.png)
 - <b>Aktivierung</b> mit <b>Bildschirm teilen</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>). 
