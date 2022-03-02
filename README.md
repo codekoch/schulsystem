@@ -106,4 +106,12 @@ https://github.com/codekoch/schulsystem/issues
 
 <b>Restore:</b>
 > sudo rsync -avz {username}@{server-ip}:/{Server-Ordner} --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*"} / --delete  
- 
+
+<b>konkretes Beispiel:</b>
+
+<b>Backup:</b>
+> sudo rsync -avz / --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*"} ithelfer@10.16.101.5:~/rsync --delete
+
+<b>Restore:</b>
+> sudo rsync -avz ithelfer@10.16.101.5:~/rsync --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*"} / --delete
+
