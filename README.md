@@ -105,10 +105,10 @@ Grundlegende Hinweise zur Bedienung des Systems (Programaufruf, Bildschirmeinste
 - Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein. 
 
 <b>Backup:</b>
-> sudo rsync -avz / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*"} {username}@{server-ip}:/{Server-Ordner} --delete
+> sudo rsync -avz / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","SCHULSYSTEM.iso","swapfile"} {username}@{server-ip}:/{Server-Ordner} --delete
 
 <b>Restore:</b>
-> sudo rsync -avz {username}@{server-ip}:/{Server-Ordner} --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*"} / --delete  
+> sudo rsync -avz {username}@{server-ip}:/{Server-Ordner} --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","SCHULSYSTEM.iso","swapfile"} / --delete  
 
 <b>konkretes Beispiel:</b>
 
