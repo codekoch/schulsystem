@@ -100,3 +100,8 @@ Grundlegende Hinweise zur Bedienung des Systems (Programaufruf, Bildschirmeinste
         
 ### Passwort für user0
 - Der Selbstheilende Account hat den Benutzernamen <b>user0</b> und das Passwort <b>user0</b>. 
+
+### Dateien zwischen mehrern System verteilen
+Snapdrop ist eine gute kostenlose Alternative zu AirDrop und vor allem Betriebssystem unabhängig
+https://snapdrop.net/
+
