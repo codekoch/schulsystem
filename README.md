@@ -113,7 +113,7 @@ Grundlegende Hinweise zur Bedienung des Systems (Programaufruf, Bildschirmeinste
 <b>konkretes Beispiel:</b>
 
 <b>Backup:</b>
-> sudo rsync -avz / --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","*.iso","swapfile"} ithelfer@10.16.101.5:~/rsync --delete
+> sudo rsync -avz / --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","SCHULSYSTEM.iso","swapfile"} ithelfer@10.16.101.5:~/rsync --delete
 
 <b>Restore:</b>
 > sudo rsync -avz ithelfer@10.16.101.5:~/rsync --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","SCHULSYSTEM.iso","swapfile"} / --delete
