@@ -100,21 +100,3 @@ Grundlegende Hinweise zur Bedienung des Systems (Programaufruf, Bildschirmeinste
         
 ### Passwort für user0
 - Der Selbstheilende Account hat den Benutzernamen <b>user0</b> und das Passwort <b>user0</b>. 
-
-### schnelles Backup und Restore vom gesamten System über rsync und ssh-repository 
-- Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein. 
-
-<b>Backup:</b>
-> sudo rsync -avz / --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","SCHULSYSTEM.iso","swapfile"} {username}@{server-ip}:/{Server-Ordner} --delete
-
-<b>Restore:</b>
-> sudo rsync -avz {username}@{server-ip}:/{Server-Ordner} --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","SCHULSYSTEM.iso","swapfile"} / --delete  
-
-<b>konkretes Beispiel:</b>
-
-<b>Backup:</b>
-> sudo rsync -avz / --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","SCHULSYSTEM.iso","swapfile"} ithelfer@10.16.101.5:~/rsync --delete
-
-<b>Restore:</b>
-> sudo rsync -avz ithelfer@10.16.101.5:~/rsync --exclude={"/dev/","/proc/","/sys/","/tmp/","/run/","/mnt/","/media/*","SCHULSYSTEM.iso","swapfile"} / --delete
-
