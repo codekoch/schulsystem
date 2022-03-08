@@ -105,6 +105,8 @@ sudo usermod -a -G dialout user0
 ### Virtual Box
 sudo apt-get install -y virtualbox
 sudo apt-get install -y virtualbox-ext-pack
+sudo apt-get install -y virtualbox-qt 
+sudo apt-get install -y virtualbox-dkms
 
 #### Linux Live Kit (deaktiviert)
 #sudo apt-get install -y squashfs-tools
