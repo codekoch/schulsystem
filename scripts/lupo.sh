@@ -3,6 +3,7 @@
 # prerequisite:
 #  * wine (tested with v3.0)
 #  * winetricks (newer is always better)
+
 ## Get some colors
 function red_msg() {
 echo -e "\\033[31;1m${@}\033[0m"
