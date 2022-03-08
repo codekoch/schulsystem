@@ -43,7 +43,7 @@ if [ ! -d ~/lupo ]; then
   rm ~/lupo/drive_c/lupo/*.zip
 fi
 chmod 777 $1
-cp $1 ~/lupo/drive_c/lupo/
+cp $1 ~/Schreibtisch
 
 wine ~/lupo/drive_c/lupo/LuPO_NRW_SV.exe
 
