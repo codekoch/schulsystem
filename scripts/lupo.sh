@@ -1,5 +1,4 @@
 #!/bin/bash
-# source: https://www.svws.nrw.de/cgi-bin/yabb2/YaBB.pl?num=1421236234/5#5
 # prerequisite:
 #  * wine (tested with v3.0)
 #  * winetricks (newer is always better)
@@ -26,7 +25,7 @@ yellow_msg "./lupo.sh lupofile.lpo"
 exit
 fi
 
-yellow_msg "Installiere die WINE Umgebung und starte LuPO_NRW_SV.exe."
+yellow_msg "Installiere WINE Umgebung und starte LuPO_NRW_SV.exe."
 yellow_msg "Die Lupodatei $1 ist unter C:\lupo\ zu finden..."
 
 export WINEPREFIX=~/lupo
