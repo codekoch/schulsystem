@@ -42,8 +42,8 @@ if [ ! -d ~/lupo ]; then
   unzip ~/lupo/drive_c/lupo/LuPO_NRW_2_1_6_2_0.zip -d ~/lupo/drive_c/lupo/
   rm ~/lupo/drive_c/lupo/*.zip
 fi
-chmod 777 $1
-cp $1 ~/Desktop
+chmod 777 ./$1
+cp ./$1 ~/Desktop
 
 wine ~/lupo/drive_c/lupo/LuPO_NRW_SV.exe
 
