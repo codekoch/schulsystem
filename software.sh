@@ -57,10 +57,16 @@ sudo apt-get install -y stellarium
 
 sudo apt-get install -y tigervnc-viewer
 
+#### Wine
+
 sudo apt-get install -y wine
 
 sudo apt-get install -y winetricks
 
+#### LuPo Support (https://www.svws.nrw.de/download/lupo/lupo-download)
+sudo cp scripts/lupo.sh /usr/bin/
+sudo chown root /usr/bin/lupo.sh
+sudo chmod 0755 /usr/bin/lupo.sh
 
 #### Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
