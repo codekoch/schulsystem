@@ -57,6 +57,10 @@ sudo apt-get install -y stellarium
 
 sudo apt-get install -y tigervnc-viewer
 
+sudo apt-get install -y wine
+
+sudo apt-get install -y winetricks
+
 
 #### Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
