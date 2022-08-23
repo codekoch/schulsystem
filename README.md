@@ -55,7 +55,7 @@ https://github.com/codekoch/schulsystem/issues
 - Lade unter https://schulsystem.org/images/schulsystem.iso ein fertiges Image (ca. 6.4 GB) herunter, das die oben erwähnte Installation bereits enthält.
 - Erstelle ein Startmedium mit der heruntergeladenen iso-Datei  (z.B. mit https://www.ventoy.net/en/index.html).
 - Die iso-Datei enhält sowohl eine Live- als auch eine Installtionsversion des Schulsystems.
-- Der Datenträger für das Startmedium sollte mindestens 8GB Speicherplatz haben und USB 3.0 fähig sein.
+- Der Datenträger für das Startmedium sollte mindestens 8GB Speicherplatz haben und mindestens USB 3.1 fähig sein.
 
 ## Hinweise zu Bedienung
 ### Grundlegende Hinweise
