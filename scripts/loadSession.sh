@@ -1,5 +1,5 @@
 #!/bin/bash
-su user0 -c 'zenity --info --width 300 --text "Bitte beende alle laufenden Anwendungen...\nund schließe ein externes Medium im FAT32 Format an, das mindestens USB 3.1 unterstützt." --title "ACHTUNG!"' 
+su user0 -c 'zenity --info --width 300 --text "Bitte beende alle laufenden Anwendungen...\nund schließe ein externes Medium im FAT32 Format an,\ndas mindestens USB 3.1 unterstützt." --title "ACHTUNG!"' 
 path=`su user0 -c 'zenity --file-selection --directory --title="Wähle das Verzeichnis mit dem Backup des Nutzerkontos" --filename=/media/user0/'` 
 if [[ $path =~ /media/user0/*/ ]];then
  cd /
