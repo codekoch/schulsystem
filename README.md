@@ -76,9 +76,9 @@ Grundlegende Hinweise zur Bedienung des Systems (Programaufruf, Bildschirmeinste
   Das erste Abspeichern dauert einige Zeit, aber danach sollte es dank rsync ziemlich schnell gehen.
  
 ACHTUNG: 
-Benutze ein externes Speichermedium im FAT32 Format and vergiss nicht es auszuwerfen, bevor du es entfernst.
-USB 3.1 Support ist empfohlen.
-Der Name des Sticks darf keine Sonderzeichen, Leerzeichen oder Umlaute enthalten.
+Benutze als externes Speichermedium am besten ein USB-Stick, der mindestens USB 3.1 unterstütz und im FAT32 Format formatiert wurde.
+Der Name des Sticks sollte keine Sonderzeichen, Leerzeichen oder Umlaute enthalten.
+Vergiss nicht den Stick auszuwerfen, bevor du ihn entfernst.
 
 ### SCHULSYSTEM-TO-GO
 ![SCHULSYSTEMTOGO](https://github.com/codekoch/schulsystem/blob/main/SCHULSYSTEMTOGO.png)
