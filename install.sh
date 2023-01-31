@@ -29,6 +29,9 @@ sudo apt-get install -y snapd
 #### install rsync
 sudo apt-get install -y rsync
 
+#### iperf for network analysis
+sudo apt-get install -y iperf
+
 #### install systemback fork (from https://github.com/BluewhaleRobot/systemback)
 sudo sh -c 'echo "deb [arch=amd64] http://mirrors.bwbot.org/ stable main" > /etc/apt/sources.list.d/systemback.list'
 sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key 50B2C005A67B264F
