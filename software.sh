@@ -21,7 +21,6 @@ sudo snap install arduino
 
 
 ### via apt-get 
-sudo apt-get install -y iperf
 
 sudo apt-get install -y cura
 
