@@ -92,8 +92,7 @@ sudo apt-get install -y unetbootin
 #sudo apt-get install -y veyon
 
 ### BobDude
-sudo apt -y --purge remove libboost-dev libboost-doc libboost1.71-all-dev
-sudo apt-get install -y libboost1.67-all-dev libwxgtk3.0-gtk3-dev libusb-1.0-0-dev bison++ flex-old make gcc g++ libcanberra-gtk-module libcanberra-gtk3-module
+sudo apt-get install libboost-all-dev libwxgtk3.0-gtk3-dev libusb-1.0-0-dev bison++ flex-old make gcc g++ libcanberra-gtk-module libcanberra-gtk3-module
 wget "http://download.savannah.gnu.org/releases/avrdude/avrdude-6.3.tar.gz"
 tar -xzf avrdude-6.3.tar.gz
 cd avrdude-6.3
@@ -102,9 +101,9 @@ make
 sudo make install
 sudo ldconfig
 cd ..
-wget "http://www.bob3.org/downloads/bobdude-1.4.0.tar.bz2"
-tar -xjf bobdude-1.4.0.tar.bz2
-cd bobdude-1.4.0
+wget "http://www.bob3.org/downloads/bobdude-1.4.3.tar.bz2"
+tar -xjf bobdude-1.4.3.tar.bz2
+cd bobdude-1.4.3
 ./configure --sysconfdir=/etc
 make
 sudo make install
