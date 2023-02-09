@@ -27,7 +27,7 @@ sudo echo 'notify-send -t 5000 "+Fix" "'$fixversion'"' >> /usr/bin/setbackground
 ########
 ######## ab hier kommt der Code der für die individuellen Veränderungen sorgt
 ########
-sudo apt-get install libboost-all-dev libwxgtk3.0-gtk3-dev libusb-1.0-0-dev bison++ flex-old make gcc g++ libcanberra-gtk-module libcanberra-gtk3-module
+sudo apt-get install -y libboost-all-dev libwxgtk3.0-gtk3-dev libusb-1.0-0-dev bison++ flex-old make gcc g++ libcanberra-gtk-module libcanberra-gtk3-module
 wget "http://download.savannah.gnu.org/releases/avrdude/avrdude-6.3.tar.gz"
 tar -xzf avrdude-6.3.tar.gz
 cd avrdude-6.3
