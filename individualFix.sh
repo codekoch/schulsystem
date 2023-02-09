@@ -1,5 +1,5 @@
 #!/bin/bash
-fixversion='BobDude3'
+fixversion='BobDude 1.4.3'
 
 ## Get some colors
 function red_msg() {
