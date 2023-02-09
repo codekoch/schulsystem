@@ -17,7 +17,7 @@ echo -e "\\033[34;1m${@}\033[0m"
 }
 
 
-#### individuelle Veränderungen
+#### individuelle Veränderungen:
 fixversion='BobDude 1.4.3'
 yellow_msg "Installiere die individuellen Veränderungen (Fix $fixversion)..."
 sudo echo 'notify-send -t 5000 "+Fix" "'$fixversion'"' >> /usr/bin/setbackground.sh
