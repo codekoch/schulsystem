@@ -20,7 +20,7 @@ Neben den genannten Features ist das <b>Schulsystem</b> in der Lage, seinen Bild
 https://github.com/codekoch/schulsystem/issues
 
 ## Zu Beginn
-- Installiere das Linuxsystem Xubuntu Version 20.4 (Quelle: <a href=https://xubuntu.org/>Xubuntu 20.4 LTS 64bit</a>).
+- Installiere das Linuxsystem Xubuntu Version 22.04 (Quelle: <a href=https://xubuntu.org/>Xubuntu 22.04 LTS 64bit</a>).
   - Wie du einen bootfähigen USB-Stick mit einem installationsfähigen Linuxsystem von einer heruntergeladenen iso-Datei erstellst, erfährst du im Internet ;-)   
     oder unter https://www.thomas-krenn.com/de/wiki/Ubuntu_von_einem_USB_Stick_installieren 
   - Prinzipiell ist es auch kein Problem, das Linuxsystem und damit das Schulsystem auf einem externen Datenträger oder neben einem bereits vorhandenen 
