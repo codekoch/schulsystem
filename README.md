@@ -109,3 +109,6 @@ Vergiss nicht den Stick auszuwerfen, bevor du ihn entfernst.
 Snapdrop ist eine gute kostenlose Alternative zu AirDrop und vor allem Betriebssystem unabhängig
 https://snapdrop.net/
 
+### Individuelle Veränderungen am System per Skript einspielen
+- Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein
+
