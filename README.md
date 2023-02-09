@@ -109,6 +109,11 @@ Vergiss nicht den Stick auszuwerfen, bevor du ihn entfernst.
 Snapdrop ist eine gute kostenlose Alternative zu AirDrop und vor allem Betriebssystem unabhängig
 https://snapdrop.net/
 
-### Individuelle Veränderungen am System per Skript einspielen
-- Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein
+### Individuelle Veränderungen am System per Skript einspielen (siehe Datei <a href=https://github.com/codekoch/schulsystem/blob/main/individualFix.sh>individualFix.sh</a>)
+- Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0)
+- Wechsle in das Verzeichnis, das das Github Repository des Schulsystems enthält und gebe den Befehl "git pull" ein
+oder 
+- erzeuge ein neues Verzeichnis mit dem Github Repository des Schulsystems (git clone https://github.com/codekoch/schulsystem) und wechsle in das neue Verzeichnis (cd schulsystem)
+- Installiere die Veränderung mit
+> sudo ./individualFix.sh
 
