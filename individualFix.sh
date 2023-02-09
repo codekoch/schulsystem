@@ -1,5 +1,4 @@
 #!/bin/bash
-fixversion='BobDude 1.4.3'
 
 ## Get some colors
 function red_msg() {
@@ -17,12 +16,10 @@ function blue_msg() {
 echo -e "\\033[34;1m${@}\033[0m"
 }
 
-#### get latest version of current system
-yellow_msg "Das aktuelle System wird auf den neuesten Stand gebracht..."
-sudo apt-get update
-sudo apt-get -y upgrade
+
 #### individuelle Veränderungen
-yellow_msg "Installiere die individuellen Veränderungen..."
+fixversion='BobDude 1.4.3'
+yellow_msg "Installiere die individuellen Veränderungen (Fix $fixversion)..."
 sudo echo 'notify-send -t 5000 "+Fix" "'$fixversion'"' >> /usr/bin/setbackground.sh
 ########
 ######## ab hier kommt der Code der für die individuellen Veränderungen sorgt
