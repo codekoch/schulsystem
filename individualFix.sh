@@ -40,6 +40,8 @@ cd bobdude-1.4.3
 make
 sudo make install
 cd ..
+sudo usermod -a -G dialout user1
+sudo usermod -a -G dialout user0
 ########
 ######## Ende des inidivuellen Codes
 ########
