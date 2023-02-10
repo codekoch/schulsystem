@@ -42,6 +42,7 @@ sudo make install
 cd ..
 sudo usermod -a -G dialout user1
 sudo usermod -a -G dialout user0
+sudo /etc/init.d/resethomedir.sh save
 ########
 ######## Ende des inidivuellen Codes
 ########
