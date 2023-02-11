@@ -27,7 +27,8 @@ fi
 
 yellow_msg "Installiere WINE Umgebung und starte LuPO_NRW_SV.exe."
 yellow_msg "Die bearbeitete Lupodatei (Eine Kopie von $1) liegt nach dem Schliessen des Programms auf dem Desktop!"
-
+chmod 777 ./$1
+cp ./$1 ~/Desktop
 export WINEPREFIX=~/lupo
 export WINEARCH=win32
 if [ ! -d ~/lupo ]; then
@@ -42,8 +43,7 @@ if [ ! -d ~/lupo ]; then
   unzip ~/lupo/drive_c/lupo/LuPO_NRW_2_1_6_2_0.zip -d ~/lupo/drive_c/lupo/
   rm ~/lupo/drive_c/lupo/*.zip
 fi
-chmod 777 ./$1
-cp ~/Downloads/$1 ~/Desktop
+
 
 wine ~/lupo/drive_c/lupo/LuPO_NRW_SV.exe
 
