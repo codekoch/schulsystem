@@ -24,6 +24,8 @@ sudo snap install arduino
 
 sudo apt-get install -y cura
 
+sudo apt-get install -y umbrello
+
 sudo apt-get install -y ballerburg
 
 sudo apt-get install -y qrencode
