@@ -16,9 +16,9 @@ Das <b>Schulsystem</b> besteht aus Shellskripten, die ein Linuxsystem für die B
 
 Das <b>Schulsystem</b>  kann seinen Bildschirm auf beliebige andere Geräte mit einer Browseranwendung wie z.B. Chrome, Safari oder Firefox spiegeln, die sich im selben Netzwerk befinden (siehe Hinweise zur Bedienung).
 
-Neben den genannten Features enthält das <b>Schulsystem</b> noch viele Weitere...und außerdem gilt:
+Neben den genannten Features enthält das <b>Schulsystem</b> noch viele Weitere ... siehe unten.
 
-Änderungswünsche, Verbessungen und Hilfe sind jederzeit willkommen:
+Außerdem gilt: Änderungswünsche, Verbessungen und Hilfe sind jederzeit willkommen:
 https://github.com/codekoch/schulsystem/issues
 
 ## Zu Beginn
