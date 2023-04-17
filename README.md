@@ -32,9 +32,9 @@ https://github.com/codekoch/schulsystem/issues
 ## Installation des Schulsystems
 - Öffne ein Eingabefenster (Terminal).
 - Installiere git.
-> sudo apt-get install git
+```sudo apt-get install git```
 - Klone dieses Repository.
-> git clone https://github.com/codekoch/schulsystem
+```git clone https://github.com/codekoch/schulsystem```
 - Starte die Installation per Shellskript als root. 
 > cd schulsystem
 
