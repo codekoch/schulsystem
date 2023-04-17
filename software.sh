@@ -76,8 +76,8 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
 #### Openboard
-wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.3/openboard_ubuntu_22.04_1.6.3_amd64.deb
-sudo apt install -y ./openboard_ubuntu_22.04_1.6.3_amd64.deb
+wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.4/openboard_ubuntu_22.04_1.6.4_amd64.deb
+sudo apt install -y ./openboard_ubuntu_22.04_1.6.4_amd64.deb
 
 #### Greenfoot
 wget http://www.greenfoot.org/download/files/Greenfoot-linux-371.deb
