@@ -36,19 +36,19 @@ https://github.com/codekoch/schulsystem/issues
 - Klone dieses Repository.
 >```git clone https://github.com/codekoch/schulsystem```
 - Starte die Installation per Shellskript als root. 
-> cd schulsystem
+> ```cd schulsystem```
 
-> sudo ./install.sh
+> ```sudo ./install.sh```
 - Entscheide, ob du das zusätzliche Software Pack installieren möchtest (siehe https://github.com/codekoch/schulsystem/blob/main/software.sh).
 - Starte den Rechner neu mit und warte auf das Autologin in das neue Nutzerkonto user0. 
-> sudo shutdown -r now
+> ```sudo shutdown -r now```
 - Verändere die Kontoeinstellungen nach deinen Wünschen (Hintegrundbild, evtl. Einstellungen in Programmen etc.).
 - Öffne ein Terminal, logge dich als Benutzer mit root Rechten ein, speichere die momentanen Einstellungen des Kontos von user0 und starte den Rechner neu.
-> su {user with admin rights}
+> ```su {user with admin rights}```
 
-> sudo /etc/init.d/resethomedir.sh save
+> ```sudo /etc/init.d/resethomedir.sh save```
 
-> sudo shutdown -r now
+> ```sudo shutdown -r now```
 - Viel Spaß mit deinem <b>Schulsystem</b>!
 
 ![schulsystem2](https://github.com/codekoch/schulsystem/blob/main/schulsystem.png)
@@ -92,15 +92,15 @@ Vergiss nicht den Stick auszuwerfen, bevor du ihn entfernst.
 ### Veränderungen permanent speichern, Selbstheilung aktivieren und deaktivieren
 - Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein. 
     
-    - > sudo /etc/init.d/resethomedir.sh save
+    - > ```sudo /etc/init.d/resethomedir.sh save```
 
         um Veränderungen permanent abzuspeichern 
 
-    - > sudo /etc/init.d/resethomedir.sh deactivate
+    - > ```sudo /etc/init.d/resethomedir.sh deactivate```
 
         um die Selbstheilung für den Useraccount user0 zu deaktivieren
 
-    - > sudo /etc/init.d/resethomedir.sh activate
+    - > ```sudo /etc/init.d/resethomedir.sh activate```
 
         um die Selbstheilung für den Useraccount user0 zu aktivieren
         
@@ -116,5 +116,5 @@ https://snapdrop.net/
 - Wechsle in das Verzeichnis, das das Github Repository des Schulsystems enthält und gebe den Befehl "git pull" ein
 oder erzeuge ein neues Verzeichnis mit dem Github Repository des Schulsystems (git clone https://github.com/codekoch/schulsystem) und wechsle in das neue Verzeichnis (cd schulsystem)
 - Installiere die Veränderung mit
-> sudo ./individualFix.sh
+> ```sudo ./individualFix.sh```
 
