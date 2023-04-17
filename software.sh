@@ -75,6 +75,12 @@ sudo chmod 0755 /usr/bin/lupo.sh
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
+#### Edge
+sudo apt install -y software-properties-common apt-transport-https wget
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+sudo apt install -y microsoft-edge-dev
+
 #### Openboard
 wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.4/openboard_ubuntu_22.04_1.6.4_amd64.deb
 sudo apt install -y ./openboard_ubuntu_22.04_1.6.4_amd64.deb
