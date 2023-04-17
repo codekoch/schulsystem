@@ -1,5 +1,5 @@
 #!/bin/bash
-version='Version 1.4'
+version='Version 1.6'
 
 ## Get some colors
 function red_msg() {
@@ -25,6 +25,9 @@ sudo apt-get -y upgrade
 yellow_msg "Installiere benötigte Software..."
 #### install snap
 sudo apt-get install -y snapd
+
+#### install salt
+curl -L https://bootstrap.saltproject.io | sudo sh -s --
 
 #### install rsync
 sudo apt-get install -y rsync
