@@ -140,6 +140,7 @@ sudo /etc/init.d/resethomedir.sh save
 
 #### set autologin of user user0
 yellow_msg "Richte das Autologin für user0 ein ..."
+sudo rm /etc/lightdm/lightdm.conf
 sudo mkdir /etc/lightdm/lightdm.conf.d/
 sudo echo '[Seat:*]' > /etc/lightdm/lightdm.conf.d/60-autologin.conf
 sudo echo 'display-setup-script=/etc/init.d/resethomedirstart.sh' >> /etc/lightdm/lightdm.conf.d/60-autologin.conf
