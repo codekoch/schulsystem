@@ -137,7 +137,7 @@ sudo cp -R linux-live /opt/
 sudo chmod -R 755 /opt/linux-live
 echo '#!/bin/bash' | sudo tee /usr/bin/buildLinuxLive.sh
 echo 'cd /opt/linux-live' | sudo tee -a /usr/bin/buildLinuxLive.sh
-echo './build' | tee -a /usr/bin/buildLinuxLive.sh
+echo './build' | sudo tee -a /usr/bin/buildLinuxLive.sh
 sudo chmod 755 /usr/bin/buildLinuxLive.sh
 
 ### Software Verzeichnis für user0 zugänglich machen
