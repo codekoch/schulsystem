@@ -36,12 +36,12 @@ sudo apt-get install -y rsync
 sudo apt-get install -y iperf
 
 #### install systemback fork (from https://github.com/BluewhaleRobot/systemback)
-sudo sh -c 'echo "deb [arch=amd64] http://mirrors.bwbot.org/ stable main" > /etc/apt/sources.list.d/systemback.list'
-sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key 50B2C005A67B264F
-sudo apt-get update
-sudo apt-get install -y systemback
-sudo sed -i "s/Comment=.*/Comment=Bootfähigen Datenträger mit einem Abbild dieses Systems erstellen (Live-System inkl. Installationsmöglichkeit)/g" /usr/share/applications/systemback.desktop
-sudo sed -i "s/Name=.*/Name=SCHULSYSTEM-TO-GO/g" /usr/share/applications/systemback.desktop
+#sudo sh -c 'echo "deb [arch=amd64] http://mirrors.bwbot.org/ stable main" > /etc/apt/sources.list.d/systemback.list'
+#sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key 50B2C005A67B264F
+#sudo apt-get update
+#sudo apt-get install -y systemback
+#sudo sed -i "s/Comment=.*/Comment=Bootfähigen Datenträger mit einem Abbild dieses Systems erstellen (Live-System inkl. Installationsmöglichkeit)/g" /usr/share/applications/systemback.desktop
+#sudo sed -i "s/Name=.*/Name=SCHULSYSTEM-TO-GO/g" /usr/share/applications/systemback.desktop
 
 yellow_msg "Installiere x11vnc und guacamole (Remote Dekstop Verbindung per Browser) ..."
 #### install screen mirroring via webbrowser
