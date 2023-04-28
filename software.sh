@@ -126,19 +126,24 @@ sudo apt-get install -y virtualbox-ext-pack
 sudo apt-get install -y virtualbox-qt 
 sudo apt-get install -y virtualbox-dkms
 
+#### Iso-Datei von Xubuntu herunterladen
+sudo mkdir /isos
+sudo chmod 755 /isos
+cd /isos
+wget http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04/release/xubuntu-22.04.2-desktop-amd64.iso
+
 #### Linux Live Kit (deaktiviert)
-sudo apt-get install -y genisoimage 
+#sudo apt-get install -y genisoimage 
 #sudo apt-get install -y aufs-dkms 
-git clone https://github.com/Tomas-M/linux-live
-sudo mkdir /a
-sudo  sed -i 's/VMLINUZ=\/vmlinuz/VMLINUZ=\/boot\/vmlinuz/g' linux-live/config
-sudo  sed -i 's|LIVEKITDATA=/tmp|LIVEKITDATA=/a|g' linux-live/config
-sudo cp -R linux-live /opt/
-sudo chmod -R 755 /opt/linux-live
-echo '#!/bin/bash' | sudo tee /usr/bin/buildLinuxLive.sh
-echo 'cd /opt/linux-live' | sudo tee -a /usr/bin/buildLinuxLive.sh
-echo './build' | sudo tee -a /usr/bin/buildLinuxLive.sh
-sudo chmod 755 /usr/bin/buildLinuxLive.sh
+#git clone https://github.com/Tomas-M/linux-live
+#sudo  sed -i 's/VMLINUZ=\/vmlinuz/VMLINUZ=\/boot\/vmlinuz/g' linux-live/config
+#sudo  sed -i 's|LIVEKITDATA=/tmp|LIVEKITDATA=/a|g' linux-live/config
+#sudo cp -R linux-live /opt/
+#sudo chmod -R 755 /opt/linux-live
+#echo '#!/bin/bash' | sudo tee /usr/bin/buildLinuxLive.sh
+#echo 'cd /opt/linux-live' | sudo tee -a /usr/bin/buildLinuxLive.sh
+#echo './build' | sudo tee -a /usr/bin/buildLinuxLive.sh
+#sudo chmod 755 /usr/bin/buildLinuxLive.sh
 
 ### Software Verzeichnis für user0 zugänglich machen
 cp -R software /tmp/
