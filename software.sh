@@ -133,19 +133,22 @@ cd /isos
 wget http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04/release/xubuntu-22.04.2-desktop-amd64.iso
 
 #### gnome-network-displays
-# git clone https://gitlab.gnome.org/GNOME/gnome-network-displays.git
-# echo 'SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="11:22:33:44:55:66", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan0"' | sudo tee  /etc/udev/rules.d/70-persistent-net.rules
-# sudo apt-get install -y libgstreamer-plugins-base1.0-dev libgstrtspserver-1.0-dev gstreamer1.0-rtsp
-# sudo apt-get install -y libgtk-3-dev libnm-dev libpulse-dev x264
-# sudo apt-get install -y libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
-# sudo apt-get install -y libavahi-gobject-dev
-# cd gnome-network-displays-master/sudo  
-# sudo apt-get install meson gettext appstream-util
-# sudo apt-get install libprotobuf-c-dev 
-# sudo apt-get install libprotobuf-c1
-# sudo apt install libjson-glib-dev
-# sudo apt install libsoup-3.0-dev 
-# sudo meson install
+git clone https://gitlab.gnome.org/GNOME/gnome-network-displays.git
+adress=`ip addr show $(iw dev | awk '/Interface/{print $2}') | awk '/ether/{print $2}'`
+echo 'SUBSYSTEM=="net", ACTION=="add", DRIVERS=="?*", ATTR{address}=="'$adress'", ATTR{type}=="1", KERNEL=="wlan*", NAME="wlan0"' | sudo tee  /etc/udev/rules.d/70-persistent-net.rules
+sudo apt-get install -y libgstreamer-plugins-base1.0-dev libgstrtspserver-1.0-dev gstreamer1.0-rtsp
+sudo apt-get install -y libgtk-3-dev libnm-dev libpulse-dev x264
+sudo apt-get install -y libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-alsa gstreamer1.0-gl gstreamer1.0-gtk3 gstreamer1.0-qt5 gstreamer1.0-pulseaudio
+sudo apt-get install -y libavahi-gobject-dev 
+sudo apt-get install meson gettext appstream-util
+sudo apt-get install libprotobuf-c-dev 
+sudo apt-get install libprotobuf-c1
+sudo apt install libjson-glib-dev
+sudo apt install libsoup-3.0-dev 
+cd gnome-network-displays-master/
+sudo meson build
+cd build
+sudo meson install
 
 #### Linux Live Kit (deaktiviert)
 #sudo apt-get install -y genisoimage 
