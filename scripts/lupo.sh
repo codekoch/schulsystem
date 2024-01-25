@@ -37,10 +37,10 @@ if [ ! -d ~/lupo ]; then
   winetricks -q jet40
   mkdir ~/lupo/drive_c/lupo
   cd ~/lupo/drive_c/lupo
-  wget -P ~/lupo/drive_c/lupo https://www.svws.nrw.de/system/files/zip_und_exe/2021-03/LuPO_NRW_2_1_6_2_0.zip
+  wget -P ~/lupo/drive_c/lupo https://www.svws.nrw.de/system/files/zip_und_exe/2023-11/lupo_nrw_2_1_7_2_1.zip
   wget -P ~/lupo/drive_c/lupo https://www.svws.nrw.de/system/files/zip_und_exe/2018-11/Beispieldatenbank.zip
   unzip ~/lupo/drive_c/lupo/Beispieldatenbank.zip -d ~/lupo/drive_c/lupo/
-  unzip ~/lupo/drive_c/lupo/LuPO_NRW_2_1_6_2_0.zip -d ~/lupo/drive_c/lupo/
+  unzip ~/lupo/drive_c/lupo/lupo_nrw_2_1_7_2_1.zip -d ~/lupo/drive_c/lupo/
   rm ~/lupo/drive_c/lupo/*.zip
 fi
 
