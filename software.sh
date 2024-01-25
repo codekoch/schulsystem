@@ -70,6 +70,8 @@ sudo apt-get install -y wine
 
 sudo apt-get install -y winetricks
 
+sudo winetricks --self-update
+
 #### LuPo Support (https://www.svws.nrw.de/download/lupo/lupo-download)
 sudo cp scripts/lupo.sh /usr/bin/
 sudo chown root /usr/bin/lupo.sh
