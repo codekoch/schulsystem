@@ -18,15 +18,25 @@ echo -e "\\033[34;1m${@}\033[0m"
 
 
 #### individuelle Veränderungen:
-fixversion='Lupo 2024'
+fixversion='Kali auf Virtual Box'
 yellow_msg "Installiere die individuellen Veränderungen (Fix $fixversion)..."
 sudo echo 'notify-send -t 5000 "+Fix" "'$fixversion'"' >> /usr/bin/setbackground.sh
 ########
 ######## ab hier kommt der Code der für die individuellen Veränderungen sorgt
 ########
-sudo cp scripts/lupo.sh /usr/bin/
+sudo apt update
+sudo apt install --reinstall linux-headers-$(uname -r) virtualbox-dkms dkms
+sudo mkdir /vbox
+cd /vbox
+wget https://cdimage.kali.org/kali-2024.1/kali-linux-2024.1-virtualbox-amd64.7z
+7z x kali-linux-2024.1-virtualbox-amd64.7z
+sudo chmod -R 770 *
+yellow_msg "Nach einem Neustart muss noch"
+yellow_msg "modprobe vboxdrv"
+yellow_msg "eingegeben werden!"
 
-sudo winetricks --self-update
+
+
 ########
 ######## Ende des inidivuellen Codes
 ########
