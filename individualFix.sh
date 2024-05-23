@@ -25,7 +25,7 @@ sudo echo 'notify-send -t 5000 "+Fix" "'$fixversion'"' >> /usr/bin/setbackground
 ######## ab hier kommt der Code der für die individuellen Veränderungen sorgt
 ########
 sudo apt update
-sudo apt install --reinstall linux-headers-$(uname -r) virtualbox-dkms dkms
+sudo apt install -y --reinstall linux-headers-$(uname -r) virtualbox-dkms dkms
 sudo mkdir /vbox
 cd /vbox
 wget https://cdimage.kali.org/kali-2024.1/kali-linux-2024.1-virtualbox-amd64.7z
