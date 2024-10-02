@@ -92,8 +92,8 @@ wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.4/openboa
 sudo apt install -y ./openboard_ubuntu_22.04_1.6.4_amd64.deb
 
 #### Greenfoot
-wget http://www.greenfoot.org/download/files/Greenfoot-linux-371.deb
-sudo apt install -y ./Greenfoot-linux-371.deb
+wget https://www.greenfoot.org/download/files/Greenfoot-linux-382.deb
+sudo apt install -y ./Greenfoot-linux-382.deb
 
 #### unetbootin
 sudo add-apt-repository ppa:gezakovacs/ppa -y
@@ -136,7 +136,7 @@ sudo apt-get install -y virtualbox-dkms
 sudo mkdir /isos
 sudo chmod 755 /isos
 cd /isos
-wget http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04/release/xubuntu-22.04.2-desktop-amd64.iso
+wget http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/24.04.1/release/xubuntu-24.04.1-desktop-amd64.iso
 
 #### gnome-network-displays
 #git clone https://gitlab.gnome.org/GNOME/gnome-network-displays.git
