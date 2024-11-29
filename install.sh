@@ -43,46 +43,47 @@ sudo apt-get install -y iperf
 #sudo sed -i "s/Comment=.*/Comment=Bootfähigen Datenträger mit einem Abbild dieses Systems erstellen (Live-System inkl. Installationsmöglichkeit)/g" /usr/share/applications/systemback.desktop
 #sudo sed -i "s/Name=.*/Name=SCHULSYSTEM-TO-GO/g" /usr/share/applications/systemback.desktop
 
-yellow_msg "Installiere x11vnc und guacamole (Remote Dekstop Verbindung per Browser) ..."
+### Guacamole Not working since ubuntu 22.04
+#yellow_msg "Installiere x11vnc und guacamole (Remote Dekstop Verbindung per Browser) ..."
 #### install screen mirroring via webbrowser
 ### install vnc-server
-sudo apt-get install -y x11vnc
+#sudo apt-get install -y x11vnc
 
 ### install apache guacamole for web-vnc access
-sudo add-apt-repository ppa:remmina-ppa-team/remmina-next -y
-sudo apt-get update
-sudo apt-get install -y freerdp2-dev freerdp2-x11
-wget https://git.io/fxZq5 -O guac-install.sh
-chmod +x guac-install.sh
-sudo ./guac-install.sh --mysqlpwd ittaskteam --guacpwd schulsystem --nomfa --installmysql
+#sudo add-apt-repository ppa:remmina-ppa-team/remmina-next -y
+#sudo apt-get update
+#sudo apt-get install -y freerdp2-dev freerdp2-x11
+#wget https://git.io/fxZq5 -O guac-install.sh
+#chmod +x guac-install.sh
+#sudo ./guac-install.sh --mysqlpwd ittaskteam --guacpwd schulsystem --nomfa --installmysql
 # configure login settings
-sudo echo 'auth-provider: net.sourceforge.guacamole.net.basic.BasicFileAuthenticationProvider' >> /etc/guacamole/guacamole.properties
-sudo echo 'basic-user-mapping: /etc/guacamole/user-mapping.xml' >> /etc/guacamole/guacamole.properties
-sudo echo '<user-mapping>' > /etc/guacamole/user-mapping.xml
-sudo echo ' ' >> /etc/guacamole/user-mapping.xml
-sudo echo '    <authorize username="" password=""> ' >> /etc/guacamole/user-mapping.xml
-sudo echo '        <protocol>vnc</protocol> ' >> /etc/guacamole/user-mapping.xml
-sudo echo '        <param name="hostname">localhost</param> ' >> /etc/guacamole/user-mapping.xml
-sudo echo '        <param name="port">5900</param>' >> /etc/guacamole/user-mapping.xml
-sudo echo '    </authorize>' >> /etc/guacamole/user-mapping.xml
-sudo echo '</user-mapping>' >> /etc/guacamole/user-mapping.xml
-sudo rm -R /var/lib/tomcat9/webapps/ROOT/index.html
-sudo echo '<% response.sendRedirect("/guacamole"); %>' > /var/lib/tomcat9/webapps/ROOT/index.jsp
-sudo chmod 755 /var/lib/tomcat9/webapps/ROOT/index.jsp
-sudo systemctl restart tomcat9 guacd
+#sudo echo 'auth-provider: net.sourceforge.guacamole.net.basic.BasicFileAuthenticationProvider' >> /etc/guacamole/guacamole.properties
+#sudo echo 'basic-user-mapping: /etc/guacamole/user-mapping.xml' >> /etc/guacamole/guacamole.properties
+#sudo echo '<user-mapping>' > /etc/guacamole/user-mapping.xml
+#sudo echo ' ' >> /etc/guacamole/user-mapping.xml
+#sudo echo '    <authorize username="" password=""> ' >> /etc/guacamole/user-mapping.xml
+#sudo echo '        <protocol>vnc</protocol> ' >> /etc/guacamole/user-mapping.xml
+#sudo echo '        <param name="hostname">localhost</param> ' >> /etc/guacamole/user-mapping.xml
+#sudo echo '        <param name="port">5900</param>' >> /etc/guacamole/user-mapping.xml
+#sudo echo '    </authorize>' >> /etc/guacamole/user-mapping.xml
+#sudo echo '</user-mapping>' >> /etc/guacamole/user-mapping.xml
+#sudo rm -R /var/lib/tomcat9/webapps/ROOT/index.html
+#sudo echo '<% response.sendRedirect("/guacamole"); %>' > /var/lib/tomcat9/webapps/ROOT/index.jsp
+#sudo chmod 755 /var/lib/tomcat9/webapps/ROOT/index.jsp
+#sudo systemctl restart tomcat9 guacd
 
-yellow_msg "Installiere einige Skripts für die vereinfachte Verbindung ..."
+#yellow_msg "Installiere einige Skripts für die vereinfachte Verbindung ..."
 ### install some shellscripts and changes to connect easier
-sudo cp scripts/showVNCAddress.sh /usr/bin/
-sudo chmod 755 /usr/bin/showVNCAddress.sh
-new='\/usr\/bin\/sh -c "\/usr\/bin\/showVNCAddress.sh;\/usr\/bin\/x11vnc -gui tray=setpass -shared -rfbport 5900 -bg -o %%HOME\/.x11vnc.log.%%VNCDISPLAY"'
-sudo sed -i "s/Exec=.*/Exec=$new/g" /usr/share/applications/x11vnc.desktop
-sudo sed -i "s/Name=.*/Name=Bildschirm teilen/g" /usr/share/applications/x11vnc.desktop
-sudo sed -i "s/Comment=.*/Comment=Bildschirm dieses Schulsystems teilen/g" /usr/share/applications/x11vnc.desktop
-sudo cp scripts/connect2schulsystem.sh /usr/bin/
-sudo chmod 755 /usr/bin/connect2schulsystem.sh
-sudo cp scripts/x11vncConnect.desktop /usr/share/applications/
-sudo chmod 755 /usr/share/applications/x11vncConnect.desktop
+#sudo cp scripts/showVNCAddress.sh /usr/bin/
+#sudo chmod 755 /usr/bin/showVNCAddress.sh
+#new='\/usr\/bin\/sh -c "\/usr\/bin\/showVNCAddress.sh;\/usr\/bin\/x11vnc -gui tray=setpass -shared -rfbport 5900 -bg -o %%HOME\/.x11vnc.log.%%VNCDISPLAY"'
+#sudo sed -i "s/Exec=.*/Exec=$new/g" /usr/share/applications/x11vnc.desktop
+#sudo sed -i "s/Name=.*/Name=Bildschirm teilen/g" /usr/share/applications/x11vnc.desktop
+#sudo sed -i "s/Comment=.*/Comment=Bildschirm dieses Schulsystems teilen/g" /usr/share/applications/x11vnc.desktop
+#sudo cp scripts/connect2schulsystem.sh /usr/bin/
+#sudo chmod 755 /usr/bin/connect2schulsystem.sh
+#sudo cp scripts/x11vncConnect.desktop /usr/share/applications/
+#sudo chmod 755 /usr/share/applications/x11vncConnect.desktop
 
 #### installation of timeshift (experimental)
 #if [ "$1" == "reset" ]; then
