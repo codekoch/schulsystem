@@ -92,8 +92,8 @@ wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.4/openboa
 sudo apt install -y ./openboard_ubuntu_22.04_1.6.4_amd64.deb
 
 #### Greenfoot
-wget https://www.greenfoot.org/download/files/Greenfoot-linux-382.deb
-sudo apt install -y ./Greenfoot-linux-382.deb
+wget https://www.greenfoot.org/download/files/Greenfoot-linux-390.deb
+sudo apt install -y ./Greenfoot-linux-390.deb
 
 #### unetbootin
 sudo add-apt-repository ppa:gezakovacs/ppa -y
