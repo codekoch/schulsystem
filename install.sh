@@ -26,6 +26,8 @@ yellow_msg "Installiere benötigte Software..."
 #### install snap
 sudo apt-get install -y snapd
 
+#### install curl
+sudo apt-get install -y curl
 #### install salt
 curl -L https://bootstrap.saltproject.io | sudo sh -s --
 
