@@ -88,8 +88,8 @@ sudo add-apt-repository -y "deb [arch=amd64] https://packages.microsoft.com/repo
 sudo apt install -y microsoft-edge-dev
 
 #### Openboard
-wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.6.4/openboard_ubuntu_22.04_1.6.4_amd64.deb
-sudo apt install -y ./openboard_ubuntu_22.04_1.6.4_amd64.deb
+wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.7.2/openboard_debian_12_1.7.2_amd64.deb
+sudo apt install -y ./openboard_debian_12_1.7.2_amd64.deb
 
 #### Greenfoot
 wget https://www.greenfoot.org/download/files/Greenfoot-linux-390.deb
@@ -101,9 +101,9 @@ sudo apt-get update
 sudo apt-get install -y unetbootin
 
 #### Veyon (deaktiviert)
-#sudo add-apt-repository ppa:veyon/stable -y
-#sudo apt-get update
-#sudo apt-get install -y veyon
+sudo add-apt-repository ppa:veyon/stable -y
+sudo apt-get update
+sudo apt-get install -y veyon
 
 ### BobDude
 sudo apt-get install -y libboost-all-dev libwxgtk3.0-gtk3-dev libusb-1.0-0-dev bison++ flex-old make gcc g++ libcanberra-gtk-module libcanberra-gtk3-module
