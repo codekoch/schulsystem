@@ -136,7 +136,7 @@ sudo apt-get install -y virtualbox-dkms
 sudo mkdir /isos
 sudo chmod 755 /isos
 cd /isos
-wget http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/24.04.1/release/xubuntu-24.04.1-desktop-amd64.iso
+wget http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso
 
 #### gnome-network-displays
 #git clone https://gitlab.gnome.org/GNOME/gnome-network-displays.git
