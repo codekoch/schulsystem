@@ -18,24 +18,20 @@ echo -e "\\033[34;1m${@}\033[0m"
 
 
 #### individuelle Veränderungen:
-fixversion='Kali auf Virtual Box'
+fixversion='Bobdue'
 yellow_msg "Installiere die individuellen Veränderungen (Fix $fixversion)..."
 sudo echo 'notify-send -t 5000 "+Fix" "'$fixversion'"' >> /usr/bin/setbackground.sh
 ########
 ######## ab hier kommt der Code der für die individuellen Veränderungen sorgt
 ########
-sudo apt update
-sudo apt install -y --reinstall linux-headers-$(uname -r) virtualbox-dkms dkms
-sudo mkdir /vbox
-sudo chmod -R 777 /vbox
-cd /vbox
-wget https://cdimage.kali.org/kali-2024.1/kali-linux-2024.1-virtualbox-amd64.7z
-7z x kali-linux-2024.1-virtualbox-amd64.7z
-sudo chmod -R 777 *
-yellow_msg "Nach einem Neustart muss noch"
-yellow_msg "modprobe vboxdrv"
-yellow_msg "eingegeben werden!"
-
+sudo apt-get install libboost-all-dev libwxgtk3.0-gtk3-dev libusb-1.0-0-dev bison++ flex-old make gcc g++ libcanberra-gtk-module libcanberra-gtk3-module
+wget "https://downloads.bob3.org/bobdude/bobdude-1.5.0.tar.bz2"
+tar -xjf bobdude-1.5.0.tar.bz2
+cd bobdude-1.5.0
+./configure
+make
+sudo make install
+cd ..
 
 
 ########
