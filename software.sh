@@ -1,5 +1,5 @@
 #!/bin/bash
-
+$workingpath = `pwd`
 ### via snap 
 sudo apt-get install -y default-jdk
 
@@ -170,5 +170,6 @@ wget http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04.5/release/
 #sudo chmod 755 /usr/bin/buildLinuxLive.sh
 
 ### Software Verzeichnis für user0 zugänglich machen
+cd $workingpath
 cp -R software /tmp/
 chmod 777 /tmp/software/
