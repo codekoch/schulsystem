@@ -106,17 +106,17 @@ sudo apt-get update
 sudo apt-get install -y veyon
 
 ### BobDude
-sudo apt-get install libboost-all-dev libwxgtk3.2-dev libusb-1.0-0-dev bison++ flex libfl-dev make gcc g++ libcanberra-gtk-module libcanberra-gtk3-module
-wget "https://downloads.bob3.org/bobdude/bobdude-1.5.0.tar.bz2"
-tar -xjf bobdude-1.5.0.tar.bz2
-cd bobdude-1.5.0
-./configure
-make
-sudo make install
-cd ..
+#sudo apt-get install libboost-all-dev libwxgtk3.2-dev libusb-1.0-0-dev bison++ flex libfl-dev make gcc g++ libcanberra-gtk-module libcanberra-gtk3-module
+#wget "https://downloads.bob3.org/bobdude/bobdude-1.5.0.tar.bz2"
+#tar -xjf bobdude-1.5.0.tar.bz2
+#cd bobdude-1.5.0
+#./configure
+#make
+#sudo make install
+#cd ..
 
-sudo usermod -a -G dialout user1
-sudo usermod -a -G dialout user0
+#sudo usermod -a -G dialout user1
+#sudo usermod -a -G dialout user0
 
 
 ### Virtual Box
