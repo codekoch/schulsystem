@@ -1,5 +1,5 @@
 #!/bin/bash
-$workingpath = `pwd`
+workingpath=`pwd`
 ### via snap 
 sudo apt-get install -y default-jdk
 
