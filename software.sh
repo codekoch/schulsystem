@@ -92,8 +92,8 @@ wget https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.7.2/openboa
 sudo apt install -y ./openboard_debian_12_1.7.2_amd64.deb
 
 #### Greenfoot
-wget https://www.greenfoot.org/download/files/Greenfoot-linux-390.deb
-sudo apt install -y ./Greenfoot-linux-390.deb
+wget https://www.greenfoot.org/download/files/Greenfoot-linux-x64-390.deb
+sudo apt install -y ./Greenfoot-linux-x64-390.deb
 
 #### unetbootin
 sudo add-apt-repository ppa:gezakovacs/ppa -y
