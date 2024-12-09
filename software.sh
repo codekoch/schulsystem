@@ -15,6 +15,8 @@ sudo snap install --classic eclipse
 
 sudo snap install blender --classic
 
+sudo snap install cura-slicer 
+
 sudo snap install bluej
 
 sudo snap install arduino
