@@ -12,6 +12,7 @@ case "$1" in
          then               
                 sudo rsync -a $TMPDIR/$USER/ /home/$USER/ --delete
                 sudo rm -r -f /tmp/*
+                sudo passwd -d "$USER"
                 echo "The homedir of $USER is now resetted!"
          else 
                 echo "The Backup-Directory doesn't exists!"
