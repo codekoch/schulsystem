@@ -18,16 +18,14 @@ echo -e "\\033[34;1m${@}\033[0m"
 
 
 #### individuelle Veränderungen:
-fixversion='Greenfoot & Cura'
+fixversion='user0 Lock'
 yellow_msg "Installiere die individuellen Veränderungen (Fix $fixversion)..."
 sudo echo 'notify-send -t 5000 "+Fix" "'$fixversion'"' >> /usr/bin/setbackground.sh
 ########
 ######## ab hier kommt der Code der für die individuellen Veränderungen sorgt
 ########
-wget https://www.greenfoot.org/download/files/Greenfoot-linux-x64-390.deb
-sudo apt install -y ./Greenfoot-linux-x64-390.deb
-sudo snap install cura-slicer 
-
+sudo chmod 700 /usr/bin/mugshot
+sudo cp scripts/resethomedir.sh /etc/init.d/
 ########
 ######## Ende des inidivuellen Codes
 ########
