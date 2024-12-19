@@ -140,6 +140,7 @@ sudo cp scripts/resethomedirstart.sh /etc/init.d/
 chmod 755 /etc/init.d/resethomedir.sh
 chmod 755 /etc/init.d/resethomedirstart.sh
 sudo /etc/init.d/resethomedir.sh save
+sudo chmod 700 /usr/bin/mugshot
 
 #### set autologin of user user0
 yellow_msg "Richte das Autologin für user0 ein ..."
