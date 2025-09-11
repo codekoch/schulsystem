@@ -11,6 +11,8 @@ case "$1" in
          if [ -d $TMPDIR/$USER ]
          then               
                 sudo rsync -a $TMPDIR/$USER/ /home/$USER/ --delete
+                sudo chown user0 -R /home/$USER/
+                sudo chmod 755 -R /home/$USER/
                 sudo rm -r -f /tmp/*
                 sudo passwd -d "$USER"
                 echo "The homedir of $USER is now resetted!"
@@ -25,6 +27,8 @@ case "$1" in
          fi
                 sudo mkdir -p $TMPDIR/$USER
                 sudo rsync -a /home/$USER/ $TMPDIR/$USER/ --delete
+                sudo chown root -R $TMPDIR/$USER/
+                sudo chmod 755 -R $TMPDIR/$USER/
                 wait
          if [ -d $TMPDIR/$USER ]
          then
