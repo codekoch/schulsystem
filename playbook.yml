@@ -193,15 +193,13 @@
 
     - name: Eggs DEB herunterladen
       get_url:
-        url: https://sourceforge.net/projects/penguins-eggs/files/Packages/debs/penguins-eggs_25.12.3-1_arm64.deb/download
+        url: https://penguins-eggs.net/basket/index.php/packages/?p=packages%2Fdebs&view=penguins-eggs_25.12.3-1_amd64.deb
         dest: /tmp/eggs.deb
       ignore_errors: yes
-      register: eggs_download
 
-    - name: Eggs installieren (Versuch 1)
+    - name: Eggs installieren
       apt:
         deb: /tmp/eggs.deb
-      when: eggs_download is succeeded
       ignore_errors: yes
 
     # =========================================================================
