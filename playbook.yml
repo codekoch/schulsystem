@@ -92,18 +92,7 @@
       loop:
         - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
         - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse"
-
-    # Wir ignorieren Fehler hier, falls die Firewall blockt. 
-    # Das System ist auch ohne diese PPAs nutzbar.
-    - name: PPAs hinzufügen (Best Effort)
-      apt_repository:
-        repo: "{{ item }}"
-        state: present
-        update_cache: yes
-      loop:
-        - ppa:veyon/stable
-      ignore_errors: yes
-  
+     
     # =========================================================================
     # 2. SOFTWARE INSTALLATION (APT)
     # =========================================================================
