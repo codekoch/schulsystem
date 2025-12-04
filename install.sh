@@ -5,38 +5,69 @@
 # Bricht das Skript ab, wenn ein Fehler passiert
 set -e
 
+# --- KONFIGURATION FÜR DEN SCHÜLER-USER ---
+# Welches Passwort soll user0 bekommen? (Standard: "schule")
+KIOSK_CLEAR_PASS="schule"
+# ------------------------------------------
+
 echo "=========================================="
-echo "   Schulsystem Installer v2 (Ansible)"
+echo "   Schulsystem Installer v4 (Secure)"
 echo "=========================================="
 
-# 1. Prüfen, ob wir root sind (optional, aber gut für apt)
-# Wir nutzen sudo vor den Befehlen, falls der User das Skript ohne sudo startet.
+# 1. System vorbereiten
+echo "[1/4] System-Update und Installation von Ansible/Python..."
+sudo apt update -q
+sudo apt install -y ansible git python3
 
-echo "[1/3] System-Update und Installation von Ansible/Git..."
-sudo apt update
-sudo apt install -y ansible 
+# 2. Passwort abfragen (NUR ADMIN)
+echo ""
+echo "[2/4] Benutzer-Konfiguration"
+echo "HINWEIS: Der Nutzer 'user0' erhält automatisch das Passwort: '$KIOSK_CLEAR_PASS'"
+echo "Bitte geben Sie nun ein SICHERES Passwort für den Administrator 'linuxadmin' ein."
+echo ""
 
-# 2. Inventory Check
-# Falls du vergessen hast, die inventory Datei mitzuliefern, erstellen wir sie temporär.
+while true; do
+    read -s -p "Admin-Passwort: " ADMIN_PASS
+    echo ""
+    read -s -p "Admin-Passwort wiederholen: " ADMIN_PASS_CONFIRM
+    echo ""
+    
+    if [ -z "$ADMIN_PASS" ]; then
+        echo "Fehler: Das Passwort darf nicht leer sein."
+    elif [ "$ADMIN_PASS" != "$ADMIN_PASS_CONFIRM" ]; then
+        echo "Fehler: Die Passwörter stimmen nicht überein."
+    else
+        break
+    fi
+done
+
+echo "Generiere Passwort-Hashes..."
+
+# Python-Script zum Erzeugen der Hashes (SHA-512)
+# Wir erzeugen zwei verschiedene Hashes (Admin via Eingabe, Kiosk via Variable)
+ADMIN_HASH=$(python3 -c 'import crypt, sys; print(crypt.crypt(sys.argv[1], crypt.mksalt(crypt.METHOD_SHA512)))' "$ADMIN_PASS")
+KIOSK_HASH=$(python3 -c 'import crypt, sys; print(crypt.crypt(sys.argv[1], crypt.mksalt(crypt.METHOD_SHA512)))' "$KIOSK_CLEAR_PASS")
+
+# 3. Inventory Check
 if [ ! -f "inventory" ]; then
-    echo "[2/3] Keine Inventory-Datei gefunden. Erstelle temporäres Inventory für localhost..."
+    echo "[3/4] Erstelle temporäres Inventory..."
     echo "[computers]" > inventory
     echo "localhost ansible_connection=local" >> inventory
-else
-    echo "[2/3] Inventory Datei gefunden."
 fi
 
-# 3. Ansible Playbook starten
-echo "[3/3] Starte Ansible Playbook..."
+# 4. Ansible Playbook starten
+echo "[4/4] Starte Ansible Playbook..."
 echo "      (Dauert je nach Internetverbindung 10-20 Minuten)"
 echo "------------------------------------------"
 
-# Wir nutzen '-K' (ask-become-pass), damit Ansible nach dem Sudo-Passwort fragt,
-# falls es nötig ist. Wenn du das Skript schon mit 'sudo ./install.sh' gestartet hast,
-# ist das Passwort meist gecacht oder nicht nötig, aber -K ist sicherer.
-ansible-playbook -i inventory playbook.yml
+# Wir übergeben BEIDE Hashes an das Playbook
+ansible-playbook -i inventory playbook.yml -K \
+  -e "admin_password_hash='$ADMIN_HASH'" \
+  -e "kiosk_password_hash='$KIOSK_HASH'"
 
 echo "=========================================="
 echo "   INSTALLATION ABGESCHLOSSEN"
+echo "   Admin: linuxadmin (Ihr Passwort)"
+echo "   Kiosk: user0      (Passwort: $KIOSK_CLEAR_PASS)"
 echo "   Bitte Rechner neu starten!"
 echo "=========================================="
