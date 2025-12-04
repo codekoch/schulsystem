@@ -1,5 +1,5 @@
 ---
-- name: Schulsystem Installation & Konfiguration (Final Fixed)
+- name: Schulsystem Installation & Konfiguration (Final v6)
   hosts: computers
   become: yes
 
@@ -75,6 +75,7 @@
           - gpg-agent
           - curl
           - ca-certificates
+          - gnupg2
         state: present
         update_cache: yes
 
@@ -86,15 +87,17 @@
         - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
         - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse"
 
-    # Jetzt sollte das Hinzufügen der PPAs funktionieren, da gpg installiert ist
-    - name: PPAs hinzufügen
+    # FIX: Keyserver Port 80 erzwingen, um Firewall zu umgehen
+    - name: PPAs hinzufügen (mit Port 80 Fix)
       apt_repository:
         repo: "{{ item }}"
         state: present
         update_cache: yes
+        keyserver: hkp://keyserver.ubuntu.com:80
       loop:
         - ppa:gezakovacs/ppa
         - ppa:veyon/stable
+      ignore_errors: yes
 
     - name: Microsoft Edge Repository hinzufügen
       block:
@@ -130,6 +133,7 @@
           - microsoft-edge-dev
           - unetbootin
         state: present
+      ignore_errors: yes
 
     # =========================================================================
     # 3. EXTERNE DEB PAKETE
@@ -212,6 +216,7 @@
         - apt:
             name: eggs
             state: present
+      ignore_errors: yes
 
     # =========================================================================
     # 6. USER & GRUPPEN SETUP
