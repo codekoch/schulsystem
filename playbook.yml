@@ -134,6 +134,19 @@
       apt:
         deb: /tmp/greenfoot.deb
       ignore_errors: yes
+    
+    # Filius
+    - name: Filius herunterladen
+      get_url:
+        url: https://www.lernsoftware-filius.de/downloads/Setup/filius_2.9.4_all.deb
+        dest: /tmp/filius.deb
+      ignore_errors: yes
+
+    - name: Filius installieren
+      apt:
+        deb: /tmp/filius.deb
+      ignore_errors: yes
+     
 
     # --- VIRTUALBOX ---
     - name: VirtualBox Lizenz akzeptieren
