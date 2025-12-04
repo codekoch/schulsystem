@@ -28,6 +28,8 @@ do_restore() {
     pkill -u $USER || true
     sleep 1
 
+    usermod -c "user0" $USER
+    
     # 2. RSYNC RESTORE
     # --delete: Löscht alles, was der Schüler neu erstellt hat
     rsync -a --delete --force "$TEMPLATE_DIR/" "$HOME_DIR/"
