@@ -97,7 +97,6 @@
         state: present
         update_cache: yes
       loop:
-        - ppa:gezakovacs/ppa
         - ppa:veyon/stable
       ignore_errors: yes
 
@@ -137,7 +136,6 @@
       apt:
         name:
           - microsoft-edge-dev
-          - unetbootin
         state: present
       ignore_errors: yes
 
