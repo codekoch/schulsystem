@@ -1,0 +1,160 @@
+---
+- name: Schulsystem Installation & Konfiguration (v2)
+  hosts: computers
+  become: yes
+
+  vars:
+    admin_user: "linuxadmin"
+    kiosk_user: "user0"
+    template_dir: "/home/{{ admin_user }}/TEMPLATE"
+    
+    # Software Liste (Ergänze nach Bedarf)
+    packages:
+      - xubuntu-desktop
+      - vim
+      - curl
+      - git
+      - rsync
+      - htop
+      - tree
+      # Netzwerk & Fernwartung
+      - openssh-server
+      - veyon-service
+      # Anwendungen
+      - firefox
+      - firefox-locale-de
+      - vlc
+      - libreoffice
+      - libreoffice-l10n-de
+      - gimp
+      - geogebra
+      - scratch
+      # Dependencies für ISO Creator (Eggs)
+      - xorriso
+      - isolinux
+      - syslinux-utils
+      - squashfs-tools
+
+  tasks:
+    # --- 1. SOFTWARE INSTALLATION ---
+    - name: System aktualisieren und Software installieren
+      apt:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+
+    # --- 2. ISO CREATOR (PENGUINS EGGS) ---
+    - name: Penguin's Eggs herunterladen und installieren
+      apt:
+        deb: https://sourceforge.net/projects/penguins-eggs/files/get-eggs/eggs_9.6.5-1_amd64.deb/download
+      ignore_errors: yes
+      register: eggs_install
+
+    - name: Fallback - Eggs via PPA installieren
+      block:
+        - apt_repository:
+            repo: ppa:pieroproietti/penguins-eggs
+        - apt:
+            name: eggs
+            state: present
+      when: eggs_install is failed
+
+    # --- 3. USER SETUP ---
+    - name: Admin User anlegen
+      user:
+        name: "{{ admin_user }}"
+        shell: /bin/bash
+        groups: sudo,plugdev,users
+        append: yes
+
+    - name: Kiosk User anlegen
+      user:
+        name: "{{ kiosk_user }}"
+        shell: /bin/bash
+        groups: audio,video,plugdev,users
+        append: yes
+
+    # --- 4. VEYON CONFIG ---
+    - name: Veyon Gruppe anlegen
+      group:
+        name: veyon-student
+        state: present
+
+    - name: Kiosk User zu Veyon hinzufügen
+      user:
+        name: "{{ kiosk_user }}"
+        groups: veyon-student
+        append: yes
+
+    - name: Veyon Config importieren (falls vorhanden)
+      command: veyon-cli config import files/veyon-config.json
+      args:
+        removes: files/veyon-config.json
+      ignore_errors: yes
+
+    # --- 5. HINTERGRUNDBILD ---
+    - name: Wallpaper kopieren
+      copy:
+        src: files/schulsystem-wallpaper.jpg
+        dest: /usr/share/backgrounds/schulsystem-wallpaper.jpg
+        mode: '0644'
+        owner: root
+      ignore_errors: yes # Falls du kein Bild hast, läuft es trotzdem weiter
+
+    # --- 6. KIOSK MECHANIK ---
+    - name: Template Verzeichnis anlegen
+      file:
+        path: "{{ template_dir }}"
+        state: directory
+        owner: "{{ admin_user }}"
+        group: "{{ admin_user }}"
+        mode: '0755'
+
+    - name: Reset-Skript installieren
+      copy:
+        src: files/reset-kiosk.sh
+        dest: /usr/local/bin/reset-kiosk.sh
+        mode: '0755'
+
+    - name: ISO-Skript installieren
+      copy:
+        src: files/create-iso.sh
+        dest: /usr/local/bin/create-iso.sh
+        mode: '0755'
+
+    - name: Systemd Service installieren
+      copy:
+        src: files/kiosk-reset.service
+        dest: /etc/systemd/system/kiosk-reset.service
+        mode: '0644'
+      notify: restart_kiosk_service
+
+    # --- 7. INITIALISIERUNG ---
+    # Kopiert beim allerersten Mal /etc/skel in das Template, damit user0 nicht leer startet
+    - name: Initiales Template befüllen (nur wenn leer)
+      shell: |
+        if [ -z "$(ls -A {{ template_dir }})" ]; then
+           rsync -a /etc/skel/ {{ template_dir }}/
+           chown -R {{ kiosk_user }}:{{ kiosk_user }} {{ template_dir }}
+        fi
+      register: template_init
+      changed_when: template_init.stdout != ""
+
+    # --- 8. DIENSTE STARTEN ---
+    - name: Dienste aktivieren
+      systemd:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+        daemon_reload: yes
+      loop:
+        - kiosk-reset.service
+        - ssh
+        - veyon.service
+
+  handlers:
+    - name: restart_kiosk_service
+      systemd:
+        name: kiosk-reset.service
+        state: restarted
+        daemon_reload: yes

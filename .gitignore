@@ -1,0 +1,7 @@
+*.retry
+*.log
+*.iso
+.DS_Store
+# Falls du Test-Keys generierst, nicht hochladen:
+id_rsa
+id_rsa.pub

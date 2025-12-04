@@ -1,0 +1,13 @@
+[Unit]
+Description=Reset Kiosk User Home Directory
+# WICHTIG: Muss laufen, BEVOR der Login-Manager (LightDM/GDM) startet
+Before=display-manager.service
+After=systemd-user-sessions.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/reset-kiosk.sh restore
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

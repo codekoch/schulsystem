@@ -1,120 +1,106 @@
-![schulsystem](https://github.com/codekoch/schulsystem/blob/main/Logo_website.jpg)
-## Schulsystem - kostenlos, frei, vielseitig und zuverlässig ...
-(wie ein "Schulsystem" sein sollte 😉)
+# Schulsystem (v2.0) - Open Source Schullösung
 
-Über die Zielsetzung der Digitalisierung sind sich wahrscheinlich viele Lehrkräfte einig. Kommende Generationen müssen schon in der Schule Kompetenzen erlangen, mit denen sie sich in der zunehmend digitalen Welt zurecht finden können. 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![System: Linux](https://img.shields.io/badge/System-Xubuntu_22.04_LTS-blue.svg)](https://xubuntu.org/)
+[![Management: Ansible](https://img.shields.io/badge/Management-Ansible-red.svg)](https://www.ansible.com/)
 
-Aber muss man zwangläufig für dieses Ziel die Angebote großer Firmen nutzen, deren zukünftige Kosten ungewiss sind? Ist es sinnvoll, bereits Kinder in eine Abhängigkeit zu führen, von der sie sich später als Erwachsene nur schwer lösen können? Sollte eine Schule neben ihrem pädagogischen Auftrag auch Werbeträger für kommerzielle Produkte sein? 
+Das Projekt **Schulsystem** verwandelt eine Standard-Linux-Installation (bevorzugt Xubuntu LTS) in eine wartungsarme, robuste und datenschutzfreundliche Lernumgebung für Schulen.
 
-Sicherlich nicht, wenn es Alternativen gibt...
+Es wurde entwickelt, um Lehrkräften und Administratoren die Arbeit zu erleichtern, indem es das System nach jedem Neustart automatisch in einen sauberen Ursprungszustand zurücksetzt ("Selbstheilung").
 
-Bei der Wahl des Betriebssystems für Schulgeräte gibt es diese auf jeden Fall: 
+> **Hinweis für Nutzer der alten Version:** Die ursprünglichen Shell-Skripte (`install.sh`, `software.sh`) und die Systemback-Integration sind im Branch `legacy-shell-scripts` archiviert. Die Version 2.0 setzt vollständig auf **Ansible** und moderne Imaging-Tools.
 
-Das <b>Schulsystem</b> bietet ein einfaches, wartungsfreies und trotzdem vielseitges Betriebssystem speziell für den Mehrbenutzerbetrieb an Schulen, das ohne das Sammeln von Nutzerdaten und kommerzielle Interessen auskommt. 
+## ✨ Features
 
-Das <b>Schulsystem</b> besteht aus Shellskripten, die ein Linuxsystem für die Benutzung in der Schule optimieren. Das resultierende System ist selbstheilend und benötigt keinerlei Logindaten. Es löscht beim Neustart alle vom Nutzer getätigten Veränderungen und verhält sich damit auf Dauer wie ein frisch installiertes System. Trotzdem hat der Nutzer die Möglichkeit, seine gesamten Sitzungsdaten auf einem externen Medium zu speichern und wieder herzustellen. Somit ist das Accountmanagement gewissermaßen in der Verwantwortung jedes einzelnen Nutzers.
+* **🔒 Selbstheilung (Kiosk-Modus):** Jeder Neustart setzt das Schüler-Profil (`user0`) auf einen definierten Standard zurück. Viren, verstellte Einstellungen oder gelöschte Icons sind nach einem Reboot Geschichte.
+* **🚀 Performance & SSD-Schonung:** Dank intelligenter `rsync`-Technologie wird beim Reset nur die Differenz zurückgesetzt. Das beschleunigt den Bootvorgang massiv und schont die Schreibzyklen der Festplatten.
+* **👁️ Veyon Integration:** Vorbereitet für das Klassenraum-Management mit Veyon (Bildschirmübertragung, Sperren, Demos).
+* **💾 ISO-Erstellung:** Erstellen Sie jederzeit per Knopfdruck ein bootfähiges Installations-Image (ISO) Ihres fertig eingerichteten Systems (powered by *Penguin's Eggs*).
+* **🐧 Datenschutz & Nachhaltigkeit:** Keine Telemetrie, kein Cloud-Zwang. Läuft hervorragend auf älterer Hardware (Upcycling).
+* **🛠️ Infrastructure as Code:** Die gesamte Installation wird über ein Ansible-Playbook gesteuert.
 
-Das <b>Schulsystem</b>  kann seinen Bildschirm auf beliebige andere Geräte mit einer Browseranwendung wie z.B. Chrome, Safari oder Firefox spiegeln, die sich im selben Netzwerk befinden (siehe Hinweise zur Bedienung).
+## 📋 Voraussetzungen
 
-Neben den genannten Features enthält das <b>Schulsystem</b> noch viele Weitere ... siehe unten.
+* Ein PC/Laptop mit einer frischen Installation von **Xubuntu 22.04 LTS** (oder neuer).
+* Internetverbindung während der Installation.
+* Admin-Rechte (sudo).
 
-Außerdem gilt: Änderungswünsche, Verbessungen und Hilfe sind jederzeit willkommen:
-https://github.com/codekoch/schulsystem/issues
+## 🚀 Installation
 
-## Zu Beginn
-- Installiere das Linuxsystem Xubuntu Version 22.04 (Quelle: <a href=https://xubuntu.org/>Xubuntu 22.04 LTS 64bit</a>).
-  - Wie du einen bootfähigen USB-Stick mit einem installationsfähigen Linuxsystem von einer heruntergeladenen iso-Datei erstellst, erfährst du im Internet ;-)   
-    oder unter https://www.thomas-krenn.com/de/wiki/Ubuntu_von_einem_USB_Stick_installieren 
-  - Prinzipiell ist es auch kein Problem, das Linuxsystem und damit das Schulsystem auf einem externen Datenträger oder neben einem bereits vorhandenen 
-    Betriebsystem zu installieren
-- (optional) Verändere das System nach deinen Wünschen.
+Die Installation erfolgt nun vollautomatisch über Ansible. Es müssen keine Skripte mehr manuell angepasst werden.
 
-## Installation des Schulsystems
-- Öffne ein Eingabefenster (Terminal).
-- Installiere git.
->```sudo apt-get install git```
-- Klone dieses Repository.
->```git clone https://github.com/codekoch/schulsystem```
-- Starte die Installation per Shellskript als root. 
-> ```cd schulsystem```
+1.  **Ansible & Git installieren:**
+    Öffnen Sie ein Terminal auf dem frischen System und führen Sie aus:
+    ```bash
+    sudo apt update
+    sudo apt install ansible git -y
+    ```
 
-> ```sudo ./install.sh```
-- Entscheide, ob du das zusätzliche Software Pack installieren möchtest (siehe https://github.com/codekoch/schulsystem/blob/main/software.sh).
-- Starte den Rechner neu mit und warte auf das Autologin in das neue Nutzerkonto user0. 
-> ```sudo shutdown -r now```
-- Verändere die Kontoeinstellungen nach deinen Wünschen (Hintegrundbild, evtl. Einstellungen in Programmen etc.).
-- Öffne ein Terminal, logge dich als Benutzer mit root Rechten ein, speichere die momentanen Einstellungen des Kontos von user0 und starte den Rechner neu.
-> ```su {user with admin rights}```
+2.  **Repository klonen:**
+    ```bash
+    git clone [https://github.com/codekoch/schulsystem.git](https://github.com/codekoch/schulsystem.git)
+    cd schulsystem
+    ```
 
-> ```sudo /etc/init.d/resethomedir.sh save```
+3.  **Installation starten:**
+    ```bash
+    ansible-playbook -i inventory playbook.yml
+    ```
+    *Geben Sie bei Aufforderung Ihr `sudo`-Passwort ein.*
 
-> ```sudo shutdown -r now```
-- Viel Spaß mit deinem <b>Schulsystem</b>!
+Das Skript installiert nun alle Softwarepakete (LibreOffice, Geogebra, Veyon, etc.), legt die Nutzer `linuxadmin` und `user0` an und richtet den Selbstheilungs-Mechanismus ein.
 
-![schulsystem2](https://github.com/codekoch/schulsystem/blob/main/schulsystem.png)
+---
 
-## Alternative Installation des Schulsystems
-- Lade unter https://schulsystem.org/images/schulsystem.iso ein fertiges Image (ca. 6.4 GB) herunter, das die oben erwähnte Installation bereits enthält.
-- Erstelle ein Startmedium mit der heruntergeladenen iso-Datei  (z.B. mit https://www.ventoy.net/en/index.html).
-- Die iso-Datei enhält sowohl eine Live- als auch eine Installtionsversion des Schulsystems.
-- Der Datenträger für das Startmedium sollte mindestens 8GB Speicherplatz haben und mindestens USB 3.1 fähig sein.
+## 🛠️ Administration & Nutzung
 
-## Hinweise zu Bedienung
-### Grundlegende Hinweise
-Grundlegende Hinweise zur Bedienung des Systems (Programaufruf, Bildschirmeinstellungen, Sound etc.) in der pdf-Datei unter https://github.com/codekoch/schulsystem/blob/main/Schulsystem_Basics.pdf zu finden.
+### 1. Das System anpassen (Der "Save"-Befehl)
+Da das System sich bei jedem Neustart zurücksetzt, gehen Änderungen am Desktop von `user0` normalerweise verloren. Um Änderungen (z.B. neues Hintergrundbild, Lesezeichen, Icons) dauerhaft zu speichern:
 
-### Bildschirmspiegelung / Remote Desktop Verbindung zwischen zwei Schulsystemen und anderen Systemen
-![VNC](https://github.com/codekoch/schulsystem/blob/main/BildschirmTeilenEmpfangen.png)
-- <b>Aktivierung</b> mit <b>Bildschirm teilen</b> (Wähle <b>Accept Connections</b> und klicke auf <b>OK</b>). 
-- <b>Verbindung</b> mit <b>Bildschirm empfangen</b> (Gebe die <b>IP Adresse des anderen Schulsystems</b> ein).
-- Logge dich mit <b>leerem Benutzernamen</b> und <b>leerem Passwort</b> ein (Veränderungen können in /etc/guacamole/user-mapping.xml vorgenommen werden).
-- Verbinde dich mit jedem anderem System im selben Netzwerk über die Browseradresse http://\<IP-des-Schulsystems\>:8080.
+1.  Loggen Sie sich ganz normal als `user0` ein.
+2.  Nehmen Sie alle gewünschten Änderungen vor.
+3.  Öffnen Sie ein Terminal und führen Sie aus:
+    ```bash
+    sudo reset-kiosk.sh save
+    ```
+4.  Fertig! Dieser Zustand ist nun das neue "Standard-Template".
 
-### Speicherung und Wiederherstellung des Benutzerkontos samt aller Einstellungen / Save and load session 
-- Abspeichern und Laden der aktuellen Nutzersitzung:
+### 2. Ein ISO-Image erstellen
+Möchten Sie den aktuellen Stand auf 30 andere Rechner klonen? Erstellen Sie einfach ein installierbares ISO:
 
-  ![saveloadsession](https://github.com/codekoch/schulsystem/blob/main/saveLoadSession.png)
-  
-  Das erste Abspeichern dauert einige Zeit, aber danach sollte es dank rsync ziemlich schnell gehen.
- 
-ACHTUNG: 
-Benutze als externes Speichermedium am besten ein USB-Stick, der mindestens USB 3.1 unterstütz und im FAT32 Format formatiert wurde.
-Der Name des Sticks sollte keine Sonderzeichen, Leerzeichen oder Umlaute enthalten.
-Vergiss nicht den Stick auszuwerfen, bevor du ihn entfernst.
+1.  Führen Sie als Admin aus:
+    ```bash
+    sudo create-iso.sh
+    ```
+2.  Das fertige ISO finden Sie anschließend im Ordner `/home/eggs/`.
+3.  Kopieren Sie das ISO auf einen USB-Stick (empfohlen: [Ventoy](https://www.ventoy.net)) und installieren Sie damit weitere Rechner.
 
-### SCHULSYSTEM-TO-GO
-![SCHULSYSTEMTOGO](https://github.com/codekoch/schulsystem/blob/main/SCHULSYSTEMTOGO.png)
-- Das Projekt <b>systemback</b> und der Fork <b>https://github.com/BluewhaleRobot/systemback</b> sind im Schulsystem integriert, so dass jederzeit ein Startmedium z.B. ein USB-Stick mit dem Abbild des laufenden Schulsystems erstellt werden kann. Dieses können Schüler und Schülerinnen z.B. mit nach Hause nehmen, um dort dieselben Arbeitsbedingungen wie in der Schule zu haben.
-- Für die Erstellung ist allerdings ein user mit root-Rechten (Administratorrechten) und ein Medium mit ausreichend viel Speicherplatz (>= 8GB) nötig.
-- Vor der Installation sollte das externe Medium nur eine einzige Partition mit FAT32 Formatiertung enthalten. Dies kann z.B. mit GParted errreicht werden.   
-- Weitere Informationen sind unter https://wiki.ubuntuusers.de/Archiv/Systemback/ zu finden.
+### 3. Fernwartung (Optional)
+Das System installiert automatisch einen OpenSSH-Server.
+Um Software auf allen Rechnern im Netzwerk nachzuinstallieren, passen Sie einfach die Datei `inventory` an (tragen Sie dort die IP-Adressen der Schul-PCs ein) und lassen Sie das Playbook erneut laufen.
 
-### Veränderungen permanent speichern, Selbstheilung aktivieren und deaktivieren
-- Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0) und gebe folgende Kommandos ein. 
-    
-    - > ```sudo /etc/init.d/resethomedir.sh save```
+---
 
-        um Veränderungen permanent abzuspeichern 
+## 👤 Benutzerkonten
 
-    - > ```sudo /etc/init.d/resethomedir.sh deactivate```
+| Benutzer | Funktion | Passwort (Standard) | Besonderheit |
+| :--- | :--- | :--- | :--- |
+| **linuxadmin** | Administrator | *(wird bei Install gesetzt)* | Hat sudo-Rechte, Profil bleibt erhalten. |
+| **user0** | Schüler / Lehrer | *(keines / auto-login)* | **Wird bei jedem Neustart zurückgesetzt!** |
 
-        um die Selbstheilung für den Useraccount user0 zu deaktivieren
+> **Wichtig:** Bitte setzen Sie nach der Installation sichere Passwörter für die Benutzer:
+> `sudo passwd linuxadmin` und `sudo passwd user0`.
 
-    - > ```sudo /etc/init.d/resethomedir.sh activate```
+## 📂 Struktur der Dateien
 
-        um die Selbstheilung für den Useraccount user0 zu aktivieren
-        
-### Passwort für user0
-- Der Selbstheilende Account hat den Benutzernamen <b>user0</b> und das Passwort <b>user0</b>. 
+* `playbook.yml`: Die Hauptsteuerung der Installation (hier Software hinzufügen/entfernen).
+* `files/reset-kiosk.sh`: Das Herzstück. Verwaltet den Reset und das Speichern.
+* `files/create-iso.sh`: Wrapper für die ISO-Erstellung.
+* `files/schulsystem-wallpaper.jpg`: Das Standard-Hintergrundbild.
 
-### Dateien zwischen mehrern System verteilen
-Snapdrop ist eine gute kostenlose Alternative zu AirDrop und vor allem Betriebssystem unabhängig
-https://snapdrop.net/
+## Lizenz
 
-### Individuelle Veränderungen am System per Skript einspielen (siehe Datei <a href=https://github.com/codekoch/schulsystem/blob/main/individualFix.sh>individualFix.sh</a>)
-- Logge dich als user mit root-Rechten ein (z.B. per Terminal während einer Sitzung von user0)
-- Wechsle in das Verzeichnis, das das Github Repository des Schulsystems enthält und gebe den Befehl "git pull" ein
-oder erzeuge ein neues Verzeichnis mit dem Github Repository des Schulsystems (git clone https://github.com/codekoch/schulsystem) und wechsle in das neue Verzeichnis (cd schulsystem)
-- Installiere die Veränderung mit
-> ```sudo ./individualFix.sh```
+Dieses Projekt steht unter der [MIT Lizenz](LICENSE). Sie können es frei verwenden, verändern und an Ihrer Schule einsetzen.
 
+---
+*Entwickelt von [codekoch](https://github.com/codekoch).*
