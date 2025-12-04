@@ -17,7 +17,7 @@ echo "=========================================="
 # 1. System vorbereiten
 echo "[1/4] System-Update und Installation von Ansible/Python..."
 sudo apt update -q
-sudo apt install -y ansible git python3
+sudo apt install -y ansible openssl
 
 # 2. Passwort abfragen (NUR ADMIN)
 echo ""
@@ -45,8 +45,8 @@ echo "Generiere Passwort-Hashes..."
 
 # Python-Script zum Erzeugen der Hashes (SHA-512)
 # Wir erzeugen zwei verschiedene Hashes (Admin via Eingabe, Kiosk via Variable)
-ADMIN_HASH=$(python3 -c 'import crypt, sys; print(crypt.crypt(sys.argv[1], crypt.mksalt(crypt.METHOD_SHA512)))' "$ADMIN_PASS")
-KIOSK_HASH=$(python3 -c 'import crypt, sys; print(crypt.crypt(sys.argv[1], crypt.mksalt(crypt.METHOD_SHA512)))' "$KIOSK_CLEAR_PASS")
+ADMIN_HASH=$(openssl passwd -6 "$ADMIN_PASS")
+KIOSK_HASH=$(openssl passwd -6 "$KIOSK_CLEAR_PASS")
 
 # 3. Inventory Check
 if [ ! -f "inventory" ]; then
