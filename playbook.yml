@@ -38,7 +38,7 @@
       - feh
       - simplescreenrecorder
       - qrencode
-      - blender # (Auch als Snap möglich, hier via Apt wenn gewünscht, sonst unten einkommentieren)
+      # blender (Wird aktuell als Snap Paket installiert, hier via Apt, wenn gewünscht, einkommentieren)
       # Bildung / Schule
       - geogebra
       - scratch
@@ -155,7 +155,7 @@
           - netbeans
           - intellij-idea-community
           - eclipse
-          # - blender (Falls Apt Version zu alt, hier einkommentieren)
+          - blender 
         classic: yes
         state: present
 
