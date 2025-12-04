@@ -34,7 +34,7 @@ echo "------------------------------------------"
 # Wir nutzen '-K' (ask-become-pass), damit Ansible nach dem Sudo-Passwort fragt,
 # falls es nötig ist. Wenn du das Skript schon mit 'sudo ./install.sh' gestartet hast,
 # ist das Passwort meist gecacht oder nicht nötig, aber -K ist sicherer.
-ansible-playbook -i inventory playbook.yml -K
+ansible-playbook -i inventory playbook.yml
 
 echo "=========================================="
 echo "   INSTALLATION ABGESCHLOSSEN"
