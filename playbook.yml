@@ -1,5 +1,5 @@
 ---
-- name: Schulsystem Installation & Konfiguration (Final)
+- name: Schulsystem Installation & Konfiguration (Final Fixed)
   hosts: computers
   become: yes
 
@@ -8,15 +8,13 @@
     kiosk_user: "user0"
     template_dir: "/home/{{ admin_user }}/TEMPLATE"
     
-    # Hinweis: admin_password_hash und kiosk_password_hash werden 
-    # vom install.sh Skript übergeben (-e "var=...").
+    # Hashes werden vom install.sh übergeben.
     
     # --- BASIS PAKET LISTE ---
     packages_system:
       - xubuntu-desktop
-      - lightdm          # Wichtig für Auto-Login
+      - lightdm
       - vim
-      - curl
       - git
       - rsync
       - htop
@@ -25,7 +23,6 @@
       - net-tools
       - unrar
       - python3-pip
-      - software-properties-common
       - apt-transport-https
       # ISO Tools
       - xorriso
@@ -58,7 +55,6 @@
       - wine
       - winetricks
 
-    # Pakete, die manchmal Fehler werfen oder fehlen könnten (Best Effort)
     packages_edu:
       - geogebra
       - scratch
@@ -69,9 +65,19 @@
 
   tasks:
     # =========================================================================
-    # 1. REPOSITORIES & SYSTEM
+    # 1. VORBEREITUNG (WICHTIG: Tools für PPAs zuerst!)
     # =========================================================================
     
+    - name: Notwendige Tools für Repository-Management installieren
+      apt:
+        name:
+          - software-properties-common
+          - gpg-agent
+          - curl
+          - ca-certificates
+        state: present
+        update_cache: yes
+
     - name: Universe und Multiverse Repositories aktivieren
       apt_repository:
         repo: "{{ item }}"
@@ -80,9 +86,12 @@
         - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
         - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse"
 
+    # Jetzt sollte das Hinzufügen der PPAs funktionieren, da gpg installiert ist
     - name: PPAs hinzufügen
       apt_repository:
         repo: "{{ item }}"
+        state: present
+        update_cache: yes
       loop:
         - ppa:gezakovacs/ppa
         - ppa:veyon/stable
@@ -96,7 +105,7 @@
             repo: "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
             state: present
 
-    - name: Apt Cache aktualisieren
+    - name: Apt Cache komplett aktualisieren
       apt:
         update_cache: yes
 
@@ -123,7 +132,7 @@
         state: present
 
     # =========================================================================
-    # 3. EXTERNE DEB PAKETE (Robuster Download)
+    # 3. EXTERNE DEB PAKETE
     # =========================================================================
 
     - name: Google Chrome
@@ -208,7 +217,7 @@
     # 6. USER & GRUPPEN SETUP
     # =========================================================================
 
-    - name: Admin User anlegen (Wird nur beim ersten Mal gesetzt)
+    - name: Admin User anlegen
       user:
         name: "{{ admin_user }}"
         password: "{{ admin_password_hash }}"
@@ -217,7 +226,7 @@
         groups: sudo,plugdev,users
         append: yes
 
-    - name: Kiosk User anlegen (Passwort wird immer gesetzt)
+    - name: Kiosk User anlegen
       user:
         name: "{{ kiosk_user }}"
         password: "{{ kiosk_password_hash }}"
@@ -289,20 +298,22 @@
         dest: /usr/share/backgrounds/schulsystem-wallpaper.jpg
         mode: '0644'
       ignore_errors: yes
-  
+
+    # FIX: Hier wurde der Syntax-Fehler behoben.
+    # Wir haben den Block aufgeteilt in zwei separate Tasks.
     - name: ISO Download Ordner erstellen
       file:
-            path: /isos
-            state: directory
-            mode: '0755'
+        path: /isos
+        state: directory
+        mode: '0755'
 
-    - name: Xubuntu ISO laden (Timeout 15m)
+    - name: Xubuntu ISO herunterladen (Timeout 15m)
       get_url:
         url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso
         dest: /isos/xubuntu-22.04.5-desktop-amd64.iso
         mode: '0644'
         timeout: 900
-        
+
     # =========================================================================
     # 9. KIOSK MECHANIK
     # =========================================================================
