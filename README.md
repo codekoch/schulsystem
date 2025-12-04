@@ -86,10 +86,8 @@ Um Software auf allen Rechnern im Netzwerk nachzuinstallieren, passen Sie einfac
 | Benutzer | Funktion | Passwort (Standard) | Besonderheit |
 | :--- | :--- | :--- | :--- |
 | **linuxadmin** | Administrator | *(wird bei Install gesetzt)* | Hat sudo-Rechte, Profil bleibt erhalten. |
-| **user0** | Schüler / Lehrer | *(user0 / auto-login)* | **Wird bei jedem Neustart zurückgesetzt!** |
+| **user0** | Schüler / Lehrer | *(schule / auto-login)* | **Wird bei jedem Neustart zurückgesetzt!** |
 
-> **Wichtig:** Bitte setzen Sie nach der Installation sichere Passwörter für die Benutzer:
-> `sudo passwd linuxadmin` und `sudo passwd user0`.
 
 ## 📂 Struktur der Dateien
 
