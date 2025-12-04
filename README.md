@@ -61,6 +61,7 @@ Da das System sich bei jedem Neustart zurücksetzt, gehen Änderungen am Desktop
 2.  Nehmen Sie alle gewünschten Änderungen vor.
 3.  Öffnen Sie ein Terminal und führen Sie aus:
     ```bash
+    su linuxadmin
     sudo reset-kiosk.sh save
     ```
 4.  Fertig! Dieser Zustand ist nun das neue "Standard-Template".
