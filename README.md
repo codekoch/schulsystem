@@ -1,5 +1,5 @@
 # Schulsystem (v2.0) - Open Source Schullösung
-
+![schulsystem](https://github.com/codekoch/schulsystem/blob/main/files/Logo_website.jpg)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![System: Linux](https://img.shields.io/badge/System-Xubuntu_22.04_LTS-blue.svg)](https://xubuntu.org/)
 [![Management: Ansible](https://img.shields.io/badge/Management-Ansible-red.svg)](https://www.ansible.com/)
@@ -10,6 +10,7 @@ Es wurde entwickelt, um Lehrkräften und Administratoren die Arbeit zu erleichte
 
 > **Hinweis für Nutzer der alten Version:** Die ursprünglichen Shell-Skripte (`install.sh`, `software.sh`) und die Systemback-Integration sind im Branch `legacy-shell-scripts` archiviert. Die Version 2.0 setzt vollständig auf **Ansible** und moderne Imaging-Tools.
 
+https://github.com/codekoch/schulsystem/blob/main/files/schulsystem.png
 ## ✨ Features
 
 * **🔒 Selbstheilung (Kiosk-Modus):** Jeder Neustart setzt das Schüler-Profil (`user0`) auf einen definierten Standard zurück. Viren, verstellte Einstellungen oder gelöschte Icons sind nach einem Reboot Geschichte.
