@@ -1,5 +1,5 @@
 ![schulsystem](https://github.com/codekoch/schulsystem/blob/main/files/Logo_website.jpg)
-# Schulsystem (v2.0) - Open Source Schullösung
+# Schulsystem (v2.0) - Open Source Schulbestriebsystem
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![System: Linux](https://img.shields.io/badge/System-Xubuntu_22.04_LTS-blue.svg)](https://xubuntu.org/)
 [![Management: Ansible](https://img.shields.io/badge/Management-Ansible-red.svg)](https://www.ansible.com/)
