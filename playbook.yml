@@ -289,6 +289,12 @@
         dest: /usr/share/backgrounds/schulsystem-wallpaper.jpg
         mode: '0644'
       ignore_errors: yes
+  
+    - name: ISO Download Ordner erstellen
+        - file:
+            path: /isos
+            state: directory
+            mode: '0755'
 
     - name: Xubuntu ISO laden (Timeout 15m)
       get_url:
@@ -296,17 +302,7 @@
         dest: /isos/xubuntu-22.04.5-desktop-amd64.iso
         mode: '0644'
         timeout: 900
-      block:
-        - file:
-            path: /isos
-            state: directory
-            mode: '0755'
-        - get_url:
-            url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso
-            dest: /isos/xubuntu-22.04.5-desktop-amd64.iso
-            mode: '0644'
-            timeout: 900
-
+        
     # =========================================================================
     # 9. KIOSK MECHANIK
     # =========================================================================
