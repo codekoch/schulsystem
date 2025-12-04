@@ -23,6 +23,8 @@
       - net-tools
       - unrar
       - python3-pip
+      - nodejs
+      - npm
       - apt-transport-https
       # ISO Tools
       - xorriso
@@ -54,14 +56,16 @@
       # Wine
       - wine
       - winetricks
+      # Spiele
+      - ballerburg
 
     packages_edu:
       - geogebra
       - scratch
       - xournal
       - stellarium
-      - cura
       - umbrello
+      - bobdude
 
   tasks:
     # =========================================================================
@@ -99,24 +103,7 @@
       loop:
         - ppa:veyon/stable
       ignore_errors: yes
-
-    # Microsoft Edge Key (Auch hier: ignore errors bei Firewall Problemen)
-    - name: Microsoft Edge Key hinzufügen
-      apt_key:
-        url: https://packages.microsoft.com/keys/microsoft.asc
-        state: present
-      ignore_errors: yes
-
-    - name: Microsoft Edge Repository hinzufügen
-      apt_repository:
-        repo: "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
-        state: present
-      ignore_errors: yes
-
-    - name: Apt Cache komplett aktualisieren
-      apt:
-        update_cache: yes
-
+  
     # =========================================================================
     # 2. SOFTWARE INSTALLATION (APT)
     # =========================================================================
@@ -131,14 +118,7 @@
         name: "{{ packages_edu }}"
         state: present
       ignore_errors: yes
-
-    - name: Zusatz-Pakete installieren (Edge, Unetbootin)
-      apt:
-        name:
-          - microsoft-edge-dev
-        state: present
-      ignore_errors: yes
-
+    
     # =========================================================================
     # 3. EXTERNE DEB PAKETE
     # =========================================================================
@@ -152,18 +132,6 @@
     - name: Google Chrome installieren
       apt:
         deb: /tmp/google-chrome.deb
-      ignore_errors: yes
-
-    # OpenBoard
-    - name: OpenBoard herunterladen
-      get_url:
-        url: https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.7.2/openboard_debian_12_1.7.2_amd64.deb
-        dest: /tmp/openboard.deb
-      ignore_errors: yes
-
-    - name: OpenBoard installieren
-      apt:
-        deb: /tmp/openboard.deb
       ignore_errors: yes
 
     # Greenfoot
@@ -223,7 +191,7 @@
 
     - name: Eggs DEB herunterladen
       get_url:
-        url: https://sourceforge.net/projects/penguins-eggs/files/get-eggs/eggs_9.6.5-1_amd64.deb/download
+        url: https://sourceforge.net/projects/penguins-eggs/files/Packages/debs/penguins-eggs_25.12.3-1_arm64.deb/download
         dest: /tmp/eggs.deb
       ignore_errors: yes
       register: eggs_download
@@ -323,7 +291,6 @@
         mode: '0644'
       ignore_errors: yes
 
-    # FIX: Hier wurde der Block komplett entfernt. Jetzt sind es Einzel-Tasks.
     - name: ISO Download Ordner erstellen
       file:
         path: /isos
@@ -332,8 +299,8 @@
 
     - name: Xubuntu ISO herunterladen (Timeout 15m)
       get_url:
-        url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso
-        dest: /isos/xubuntu-22.04.5-desktop-amd64.iso
+        url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/25.10/release/xubuntu-25.10-desktop-amd64.iso
+        dest: /isos/xubuntu-25.10-desktop-amd64.iso
         mode: '0644'
         timeout: 900
       ignore_errors: yes
