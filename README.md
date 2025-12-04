@@ -44,7 +44,7 @@ Die Installation erfolgt nun vollautomatisch über Ansible.
 
 3.  **Installation starten:**
     ```bash
-    ./install.sh
+    sudo ./install.sh
     ```
     *Geben Sie bei Aufforderung Ihr `sudo`-Passwort ein.*
 
