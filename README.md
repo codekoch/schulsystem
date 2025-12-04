@@ -96,7 +96,7 @@ Um Software auf allen Rechnern im Netzwerk nachzuinstallieren, passen Sie einfac
 * `playbook.yml`: Die Hauptsteuerung der Installation (hier Software hinzufügen/entfernen).
 * `files/reset-kiosk.sh`: Das Herzstück. Verwaltet den Reset und das Speichern.
 * `files/create-iso.sh`: Wrapper für die ISO-Erstellung.
-* `files/schulsystem-wallpaper.jpg`: Das Standard-Hintergrundbild.
+* `files/logo.jpg oder logo.png`: Das Standard-Hintergrundlogo.
 
 ## Lizenz
 
