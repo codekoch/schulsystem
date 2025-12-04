@@ -27,13 +27,13 @@ Es wurde entwickelt, um Lehrkräften und Administratoren die Arbeit zu erleichte
 
 ## 🚀 Installation
 
-Die Installation erfolgt nun vollautomatisch über Ansible. Es müssen keine Skripte mehr manuell angepasst werden.
+Die Installation erfolgt nun vollautomatisch über Ansible. 
 
-1.  **Ansible & Git installieren:**
+1.  **Git installieren:**
     Öffnen Sie ein Terminal auf dem frischen System und führen Sie aus:
     ```bash
     sudo apt update
-    sudo apt install ansible git -y
+    sudo apt install git -y
     ```
 
 2.  **Repository klonen:**
@@ -44,7 +44,7 @@ Die Installation erfolgt nun vollautomatisch über Ansible. Es müssen keine Skr
 
 3.  **Installation starten:**
     ```bash
-    ansible-playbook -i inventory playbook.yml
+    ./install.sh
     ```
     *Geben Sie bei Aufforderung Ihr `sudo`-Passwort ein.*
 
