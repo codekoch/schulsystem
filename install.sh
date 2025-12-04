@@ -14,7 +14,7 @@ echo "=========================================="
 
 echo "[1/3] System-Update und Installation von Ansible/Git..."
 sudo apt update
-sudo apt install -y ansible git
+sudo apt install -y ansible 
 
 # 2. Inventory Check
 # Falls du vergessen hast, die inventory Datei mitzuliefern, erstellen wir sie temporär.
