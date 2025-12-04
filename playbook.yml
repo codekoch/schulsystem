@@ -291,7 +291,7 @@
       ignore_errors: yes
   
     - name: ISO Download Ordner erstellen
-        - file:
+      file:
             path: /isos
             state: directory
             mode: '0755'
