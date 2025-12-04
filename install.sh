@@ -61,7 +61,7 @@ echo "      (Dauert je nach Internetverbindung 10-20 Minuten)"
 echo "------------------------------------------"
 
 # Wir übergeben BEIDE Hashes an das Playbook
-ansible-playbook -i inventory playbook.yml -K \
+ansible-playbook -i inventory playbook.yml \
   -e "admin_password_hash='$ADMIN_HASH'" \
   -e "kiosk_password_hash='$KIOSK_HASH'"
 
