@@ -1,5 +1,5 @@
 ---
-- name: Schulsystem Installation & Konfiguration (v2)
+- name: Schulsystem Installation & Konfiguration (Final)
   hosts: computers
   become: yes
 
@@ -8,11 +8,13 @@
     kiosk_user: "user0"
     template_dir: "/home/{{ admin_user }}/TEMPLATE"
     
-    # --- BASIS PAKET LISTE (APT) ---
-    # Hier sammeln wir alle Pakete, die direkt aus den Ubuntu-Quellen kommen
-    packages:
-      # System-Tools
+    # Hinweis: admin_password_hash und kiosk_password_hash werden 
+    # vom install.sh Skript übergeben (-e "var=...").
+    
+    # --- BASIS PAKET LISTE ---
+    packages_system:
       - xubuntu-desktop
+      - lightdm          # Wichtig für Auto-Login
       - vim
       - curl
       - git
@@ -25,32 +27,27 @@
       - python3-pip
       - software-properties-common
       - apt-transport-https
-      # Java Stack (gemischte Versionen wie angefordert)
+      # ISO Tools
+      - xorriso
+      - isolinux
+      - syslinux-utils
+      - squashfs-tools
+      # Java
       - default-jdk
       - default-jre
       - openjdk-8-jre
       - openjdk-8-jdk
-      - openjdk-8-jre-headless
-      - openjdk-8-jdk-headless
       # Multimedia & Grafik
       - vlc
       - gimp
       - feh
       - simplescreenrecorder
       - qrencode
-      # blender (Wird aktuell als Snap Paket installiert, hier via Apt, wenn gewünscht, einkommentieren)
-      # Bildung / Schule
-      - geogebra
-      - scratch
-      - xournal
-      - stellarium
-      - cura
-      - umbrello
       # Netzwerk & Fernwartung
       - openssh-server
       - veyon-service
       - tigervnc-viewer
-      # Flatpak Basis
+      # Flatpak
       - flatpak
       - gnome-software-plugin-flatpak
       # Office
@@ -60,180 +57,214 @@
       # Wine
       - wine
       - winetricks
-      # Dependencies für ISO Creator
-      - xorriso
-      - isolinux
-      - syslinux-utils
-      - squashfs-tools
+
+    # Pakete, die manchmal Fehler werfen oder fehlen könnten (Best Effort)
+    packages_edu:
+      - geogebra
+      - scratch
+      - xournal
+      - stellarium
+      - cura
+      - umbrello
 
   tasks:
     # =========================================================================
-    # 1. REPOSITORIES & VORBEREITUNG
+    # 1. REPOSITORIES & SYSTEM
     # =========================================================================
     
-    - name: Universe Repository aktivieren (wichtig für Java 8 & andere)
+    - name: Universe und Multiverse Repositories aktivieren
       apt_repository:
-        repo: "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
+        repo: "{{ item }}"
         state: present
+      loop:
+        - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
+        - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse"
 
-    - name: PPAs hinzufügen (Unetbootin, Veyon)
+    - name: PPAs hinzufügen
       apt_repository:
         repo: "{{ item }}"
       loop:
         - ppa:gezakovacs/ppa
         - ppa:veyon/stable
 
-    - name: Microsoft Edge Repository Key hinzufügen
-      apt_key:
-        url: https://packages.microsoft.com/keys/microsoft.asc
-        state: present
-
     - name: Microsoft Edge Repository hinzufügen
-      apt_repository:
-        repo: "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
-        state: present
+      block:
+        - apt_key:
+            url: https://packages.microsoft.com/keys/microsoft.asc
+            state: present
+        - apt_repository:
+            repo: "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+            state: present
 
-    # =========================================================================
-    # 2. SOFTWARE INSTALLATION (APT & DEB)
-    # =========================================================================
-
-    - name: Basis-Software aus Variablen installieren
+    - name: Apt Cache aktualisieren
       apt:
-        name: "{{ packages }}"
-        state: present
         update_cache: yes
 
-    - name: Microsoft Edge installieren
+    # =========================================================================
+    # 2. SOFTWARE INSTALLATION (APT)
+    # =========================================================================
+
+    - name: Basis-Software installieren
       apt:
-        name: microsoft-edge-dev
+        name: "{{ packages_system }}"
         state: present
 
-    - name: Unetbootin installieren
+    - name: Edu-Software installieren (Best Effort)
       apt:
-        name: unetbootin
+        name: "{{ packages_edu }}"
+        state: present
+      ignore_errors: yes
+
+    - name: Weitere Pakete installieren (Edge, Unetbootin)
+      apt:
+        name:
+          - microsoft-edge-dev
+          - unetbootin
         state: present
 
-    # --- EXTERNE DEB PAKETE (Chrome, OpenBoard, Greenfoot) ---
-    
-    - name: Google Chrome installieren
-      apt:
-        deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    # =========================================================================
+    # 3. EXTERNE DEB PAKETE (Robuster Download)
+    # =========================================================================
 
-    - name: OpenBoard installieren
-      apt:
-        deb: https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.7.2/openboard_debian_12_1.7.2_amd64.deb
+    - name: Google Chrome
+      block:
+        - get_url:
+            url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            dest: /tmp/google-chrome.deb
+        - apt:
+            deb: /tmp/google-chrome.deb
 
-    - name: Greenfoot installieren
-      apt:
-        deb: https://www.greenfoot.org/download/files/Greenfoot-linux-x64-390.deb
+    - name: OpenBoard
+      block:
+        - get_url:
+            url: https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.7.2/openboard_debian_12_1.7.2_amd64.deb
+            dest: /tmp/openboard.deb
+        - apt:
+            deb: /tmp/openboard.deb
+      ignore_errors: yes
 
-    # --- VIRTUALBOX SPEZIAL (EULA) ---
-    
-    - name: VirtualBox Ext-Pack Lizenz vorab akzeptieren
-      debconf:
-        name: virtualbox-ext-pack
-        question: virtualbox-ext-pack/license
-        vtype: select
-        value: 'true'
+    - name: Greenfoot
+      block:
+        - get_url:
+            url: https://www.greenfoot.org/download/files/Greenfoot-linux-x64-390.deb
+            dest: /tmp/greenfoot.deb
+        - apt:
+            deb: /tmp/greenfoot.deb
 
+    # --- VIRTUALBOX ---
     - name: VirtualBox installieren
-      apt:
-        name:
-          - virtualbox
-          - virtualbox-ext-pack
-          - virtualbox-qt
-          - virtualbox-dkms
-        state: present
+      block:
+        - debconf:
+            name: virtualbox-ext-pack
+            question: virtualbox-ext-pack/license
+            vtype: select
+            value: 'true'
+        - apt:
+            name: [virtualbox, virtualbox-ext-pack, virtualbox-qt, virtualbox-dkms]
+            state: present
 
     # =========================================================================
-    # 3. SNAP & FLATPAK
+    # 4. SNAP & FLATPAK
     # =========================================================================
 
-    - name: Snap Pakete (Classic Mode) installieren
+    - name: Snap Pakete installieren
       community.general.snap:
-        name:
-          - netbeans
-          - intellij-idea-community
-          - eclipse
-          - blender 
-        classic: yes
-        state: present
+        name: "{{ item.name }}"
+        classic: "{{ item.classic | default(false) }}"
+      loop:
+        - { name: netbeans, classic: yes }
+        - { name: intellij-idea-community, classic: yes }
+        - { name: eclipse, classic: yes }
+        - { name: blender, classic: yes }
+        - { name: cura-slicer }
+        - { name: bluej }
+        - { name: arduino }
 
-    - name: Snap Pakete (Standard) installieren
-      community.general.snap:
-        name:
-          - cura-slicer
-          - bluej
-          - arduino
-        state: present
-
-    - name: Flathub Repository hinzufügen
+    - name: Flathub aktivieren
       community.general.flatpak_remote:
         name: flathub
         state: present
         flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
     # =========================================================================
-    # 4. ISO CREATOR (PENGUINS EGGS)
+    # 5. ISO CREATOR (PENGUINS EGGS)
     # =========================================================================
 
-    - name: Penguin's Eggs herunterladen und installieren
-      apt:
-        deb: https://sourceforge.net/projects/penguins-eggs/files/get-eggs/eggs_9.6.5-1_amd64.deb/download
-      ignore_errors: yes
-      register: eggs_install
-
-    - name: Fallback - Eggs via PPA installieren
+    - name: Eggs installieren
       block:
+        - get_url:
+            url: https://sourceforge.net/projects/penguins-eggs/files/get-eggs/eggs_9.6.5-1_amd64.deb/download
+            dest: /tmp/eggs.deb
+        - apt:
+            deb: /tmp/eggs.deb
+      rescue:
         - apt_repository:
             repo: ppa:pieroproietti/penguins-eggs
         - apt:
             name: eggs
             state: present
-      when: eggs_install is failed
 
     # =========================================================================
-    # 5. USER & GRUPPEN SETUP
+    # 6. USER & GRUPPEN SETUP
     # =========================================================================
 
-    - name: Admin User anlegen
+    - name: Admin User anlegen (Wird nur beim ersten Mal gesetzt)
       user:
         name: "{{ admin_user }}"
+        password: "{{ admin_password_hash }}"
+        update_password: on_create
         shell: /bin/bash
         groups: sudo,plugdev,users
         append: yes
 
-    - name: Kiosk User anlegen
+    - name: Kiosk User anlegen (Passwort wird immer gesetzt)
       user:
         name: "{{ kiosk_user }}"
+        password: "{{ kiosk_password_hash }}"
         shell: /bin/bash
         groups: audio,video,plugdev,users
         append: yes
 
     # =========================================================================
-    # 6. KONFIGURATION & DATEIEN
+    # 7. AUTO-LOGIN (LightDM)
     # =========================================================================
 
-    # --- VEYON ---
-    - name: Veyon Gruppe anlegen
-      group:
-        name: veyon-student
-        state: present
+    - name: LightDM Konfigurationsordner prüfen
+      file:
+        path: /etc/lightdm/lightdm.conf.d
+        state: directory
+        mode: '0755'
 
-    - name: Kiosk User zu Veyon hinzufügen
-      user:
-        name: "{{ kiosk_user }}"
-        groups: veyon-student
-        append: yes
+    - name: Autologin für Kiosk User setzen
+      copy:
+        dest: /etc/lightdm/lightdm.conf.d/12-autologin.conf
+        content: |
+          [Seat:*]
+          autologin-user={{ kiosk_user }}
+          autologin-user-timeout=0
+        owner: root
+        group: root
+        mode: '0644'
 
-    - name: Veyon Config importieren (falls vorhanden)
-      command: veyon-cli config import files/veyon-config.json
-      args:
-        removes: files/veyon-config.json
-      ignore_errors: yes
+    # =========================================================================
+    # 8. KONFIGURATION & DATEIEN
+    # =========================================================================
 
-    # --- LUPO & WINETRICKS ---
-    - name: LuPo Skript nach /usr/bin installieren
+    - name: Veyon Konfiguration
+      block:
+        - group:
+            name: veyon-student
+            state: present
+        - user:
+            name: "{{ kiosk_user }}"
+            groups: veyon-student
+            append: yes
+        - command: veyon-cli config import files/veyon-config.json
+          args:
+            removes: files/veyon-config.json
+          ignore_errors: yes
+
+    - name: LuPo Script installieren
       copy:
         src: files/lupo.sh
         dest: /usr/bin/lupo.sh
@@ -241,41 +272,43 @@
         group: root
         mode: '0755'
 
-    - name: Winetricks Update
+    - name: Winetricks Update (falls möglich)
       command: winetricks --self-update
-      changed_when: false
+      failed_when: false
+      ignore_errors: yes
 
-    # --- LOKALES SOFTWARE COPY ---
-    - name: Lokales Software Verzeichnis nach /tmp kopieren
+    - name: Software Verzeichnis kopieren
       copy:
         src: software/
         dest: /tmp/software/
         mode: '0777'
 
-    # --- HINTERGRUNDBILD ---
-    - name: Wallpaper kopieren
+    - name: Wallpaper setzen
       copy:
         src: files/schulsystem-wallpaper.jpg
         dest: /usr/share/backgrounds/schulsystem-wallpaper.jpg
         mode: '0644'
-        owner: root
       ignore_errors: yes
 
-    # --- ISO ORDNER ---
-    - name: ISO Download Ordner erstellen
-      file: 
-        path: /isos
-        state: directory
-        mode: '0755'
-        
-    - name: Xubuntu ISO herunterladen (für VMs)
+    - name: Xubuntu ISO laden (Timeout 15m)
       get_url:
         url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso
         dest: /isos/xubuntu-22.04.5-desktop-amd64.iso
         mode: '0644'
+        timeout: 900
+      block:
+        - file:
+            path: /isos
+            state: directory
+            mode: '0755'
+        - get_url:
+            url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso
+            dest: /isos/xubuntu-22.04.5-desktop-amd64.iso
+            mode: '0644'
+            timeout: 900
 
     # =========================================================================
-    # 7. KIOSK MECHANIK & SCRIPTS
+    # 9. KIOSK MECHANIK
     # =========================================================================
 
     - name: Template Verzeichnis anlegen
@@ -286,27 +319,23 @@
         group: "{{ admin_user }}"
         mode: '0755'
 
-    - name: Reset-Skript installieren
+    - name: Reset-Skripte installieren
       copy:
-        src: files/reset-kiosk.sh
-        dest: /usr/local/bin/reset-kiosk.sh
+        src: "files/{{ item.src }}"
+        dest: "{{ item.dest }}"
         mode: '0755'
+      loop:
+        - { src: 'reset-kiosk.sh', dest: '/usr/local/bin/reset-kiosk.sh' }
+        - { src: 'create-iso.sh', dest: '/usr/local/bin/create-iso.sh' }
 
-    - name: ISO-Skript installieren (Wrapper für Eggs)
-      copy:
-        src: files/create-iso.sh
-        dest: /usr/local/bin/create-iso.sh
-        mode: '0755'
-
-    - name: Systemd Service installieren
+    - name: Systemd Reset Service installieren
       copy:
         src: files/kiosk-reset.service
         dest: /etc/systemd/system/kiosk-reset.service
         mode: '0644'
       notify: restart_kiosk_service
 
-    # --- INITIALISIERUNG ---
-    - name: Initiales Template befüllen (nur wenn leer)
+    - name: Template initial befüllen (nur wenn leer)
       shell: |
         if [ -z "$(ls -A {{ template_dir }})" ]; then
            rsync -a /etc/skel/ {{ template_dir }}/
@@ -316,7 +345,7 @@
       changed_when: template_init.stdout != ""
 
     # =========================================================================
-    # 8. DIENSTE STARTEN
+    # 10. DIENSTE STARTEN
     # =========================================================================
 
     - name: Dienste aktivieren
@@ -329,6 +358,7 @@
         - kiosk-reset.service
         - ssh
         - veyon.service
+      ignore_errors: yes
 
   handlers:
     - name: restart_kiosk_service
