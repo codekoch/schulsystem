@@ -102,7 +102,7 @@
         name: "{{ packages_system }}"
         state: present
 
-    - name: Edu-Software installieren (Best Effort)
+    - name: Edu-Software installieren
       apt:
         name: "{{ packages_edu }}"
         state: present
