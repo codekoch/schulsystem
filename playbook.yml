@@ -8,8 +8,10 @@
     kiosk_user: "user0"
     template_dir: "/home/{{ admin_user }}/TEMPLATE"
     
-    # Software Liste (Ergänze nach Bedarf)
+    # --- BASIS PAKET LISTE (APT) ---
+    # Hier sammeln wir alle Pakete, die direkt aus den Ubuntu-Quellen kommen
     packages:
+      # System-Tools
       - xubuntu-desktop
       - vim
       - curl
@@ -17,33 +19,164 @@
       - rsync
       - htop
       - tree
+      - gparted
+      - net-tools
+      - unrar
+      - python3-pip
+      - software-properties-common
+      - apt-transport-https
+      # Java Stack (gemischte Versionen wie angefordert)
+      - default-jdk
+      - default-jre
+      - openjdk-8-jre
+      - openjdk-8-jdk
+      - openjdk-8-jre-headless
+      - openjdk-8-jdk-headless
+      # Multimedia & Grafik
+      - vlc
+      - gimp
+      - feh
+      - simplescreenrecorder
+      - qrencode
+      - blender # (Auch als Snap möglich, hier via Apt wenn gewünscht, sonst unten einkommentieren)
+      # Bildung / Schule
+      - geogebra
+      - scratch
+      - xournal
+      - stellarium
+      - cura
+      - umbrello
       # Netzwerk & Fernwartung
       - openssh-server
       - veyon-service
-      # Anwendungen
-      - firefox
-      - firefox-locale-de
-      - vlc
+      - tigervnc-viewer
+      # Flatpak Basis
+      - flatpak
+      - gnome-software-plugin-flatpak
+      # Office
       - libreoffice
       - libreoffice-l10n-de
-      - gimp
-      - geogebra
-      - scratch
-      # Dependencies für ISO Creator (Eggs)
+      - libreoffice-help-de
+      # Wine
+      - wine
+      - winetricks
+      # Dependencies für ISO Creator
       - xorriso
       - isolinux
       - syslinux-utils
       - squashfs-tools
 
   tasks:
-    # --- 1. SOFTWARE INSTALLATION ---
-    - name: System aktualisieren und Software installieren
+    # =========================================================================
+    # 1. REPOSITORIES & VORBEREITUNG
+    # =========================================================================
+    
+    - name: Universe Repository aktivieren (wichtig für Java 8 & andere)
+      apt_repository:
+        repo: "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
+        state: present
+
+    - name: PPAs hinzufügen (Unetbootin, Veyon)
+      apt_repository:
+        repo: "{{ item }}"
+      loop:
+        - ppa:gezakovacs/ppa
+        - ppa:veyon/stable
+
+    - name: Microsoft Edge Repository Key hinzufügen
+      apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+
+    - name: Microsoft Edge Repository hinzufügen
+      apt_repository:
+        repo: "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main"
+        state: present
+
+    # =========================================================================
+    # 2. SOFTWARE INSTALLATION (APT & DEB)
+    # =========================================================================
+
+    - name: Basis-Software aus Variablen installieren
       apt:
         name: "{{ packages }}"
         state: present
         update_cache: yes
 
-    # --- 2. ISO CREATOR (PENGUINS EGGS) ---
+    - name: Microsoft Edge installieren
+      apt:
+        name: microsoft-edge-dev
+        state: present
+
+    - name: Unetbootin installieren
+      apt:
+        name: unetbootin
+        state: present
+
+    # --- EXTERNE DEB PAKETE (Chrome, OpenBoard, Greenfoot) ---
+    
+    - name: Google Chrome installieren
+      apt:
+        deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+    - name: OpenBoard installieren
+      apt:
+        deb: https://github.com/OpenBoard-org/OpenBoard/releases/download/v1.7.2/openboard_debian_12_1.7.2_amd64.deb
+
+    - name: Greenfoot installieren
+      apt:
+        deb: https://www.greenfoot.org/download/files/Greenfoot-linux-x64-390.deb
+
+    # --- VIRTUALBOX SPEZIAL (EULA) ---
+    
+    - name: VirtualBox Ext-Pack Lizenz vorab akzeptieren
+      debconf:
+        name: virtualbox-ext-pack
+        question: virtualbox-ext-pack/license
+        vtype: select
+        value: 'true'
+
+    - name: VirtualBox installieren
+      apt:
+        name:
+          - virtualbox
+          - virtualbox-ext-pack
+          - virtualbox-qt
+          - virtualbox-dkms
+        state: present
+
+    # =========================================================================
+    # 3. SNAP & FLATPAK
+    # =========================================================================
+
+    - name: Snap Pakete (Classic Mode) installieren
+      community.general.snap:
+        name:
+          - netbeans
+          - intellij-idea-community
+          - eclipse
+          # - blender (Falls Apt Version zu alt, hier einkommentieren)
+        classic: yes
+        state: present
+
+    - name: Snap Pakete (Standard) installieren
+      community.general.snap:
+        name:
+          - cura-slicer
+          - bluej
+          - arduino
+        state: present
+
+    - name: Flathub Repository hinzufügen
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+
+    # =========================================================================
+    # 4. ISO CREATOR (PENGUINS EGGS)
+    # =========================================================================
+
     - name: Penguin's Eggs herunterladen und installieren
       apt:
         deb: https://sourceforge.net/projects/penguins-eggs/files/get-eggs/eggs_9.6.5-1_amd64.deb/download
@@ -59,7 +192,10 @@
             state: present
       when: eggs_install is failed
 
-    # --- 3. USER SETUP ---
+    # =========================================================================
+    # 5. USER & GRUPPEN SETUP
+    # =========================================================================
+
     - name: Admin User anlegen
       user:
         name: "{{ admin_user }}"
@@ -74,7 +210,11 @@
         groups: audio,video,plugdev,users
         append: yes
 
-    # --- 4. VEYON CONFIG ---
+    # =========================================================================
+    # 6. KONFIGURATION & DATEIEN
+    # =========================================================================
+
+    # --- VEYON ---
     - name: Veyon Gruppe anlegen
       group:
         name: veyon-student
@@ -92,16 +232,52 @@
         removes: files/veyon-config.json
       ignore_errors: yes
 
-    # --- 5. HINTERGRUNDBILD ---
+    # --- LUPO & WINETRICKS ---
+    - name: LuPo Skript nach /usr/bin installieren
+      copy:
+        src: files/lupo.sh
+        dest: /usr/bin/lupo.sh
+        owner: root
+        group: root
+        mode: '0755'
+
+    - name: Winetricks Update
+      command: winetricks --self-update
+      changed_when: false
+
+    # --- LOKALES SOFTWARE COPY ---
+    - name: Lokales Software Verzeichnis nach /tmp kopieren
+      copy:
+        src: software/
+        dest: /tmp/software/
+        mode: '0777'
+
+    # --- HINTERGRUNDBILD ---
     - name: Wallpaper kopieren
       copy:
         src: files/schulsystem-wallpaper.jpg
         dest: /usr/share/backgrounds/schulsystem-wallpaper.jpg
         mode: '0644'
         owner: root
-      ignore_errors: yes # Falls du kein Bild hast, läuft es trotzdem weiter
+      ignore_errors: yes
 
-    # --- 6. KIOSK MECHANIK ---
+    # --- ISO ORDNER ---
+    - name: ISO Download Ordner erstellen
+      file: 
+        path: /isos
+        state: directory
+        mode: '0755'
+        
+    - name: Xubuntu ISO herunterladen (für VMs)
+      get_url:
+        url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/22.04.5/release/xubuntu-22.04.5-desktop-amd64.iso
+        dest: /isos/xubuntu-22.04.5-desktop-amd64.iso
+        mode: '0644'
+
+    # =========================================================================
+    # 7. KIOSK MECHANIK & SCRIPTS
+    # =========================================================================
+
     - name: Template Verzeichnis anlegen
       file:
         path: "{{ template_dir }}"
@@ -116,7 +292,7 @@
         dest: /usr/local/bin/reset-kiosk.sh
         mode: '0755'
 
-    - name: ISO-Skript installieren
+    - name: ISO-Skript installieren (Wrapper für Eggs)
       copy:
         src: files/create-iso.sh
         dest: /usr/local/bin/create-iso.sh
@@ -129,8 +305,7 @@
         mode: '0644'
       notify: restart_kiosk_service
 
-    # --- 7. INITIALISIERUNG ---
-    # Kopiert beim allerersten Mal /etc/skel in das Template, damit user0 nicht leer startet
+    # --- INITIALISIERUNG ---
     - name: Initiales Template befüllen (nur wenn leer)
       shell: |
         if [ -z "$(ls -A {{ template_dir }})" ]; then
@@ -140,7 +315,10 @@
       register: template_init
       changed_when: template_init.stdout != ""
 
-    # --- 8. DIENSTE STARTEN ---
+    # =========================================================================
+    # 8. DIENSTE STARTEN
+    # =========================================================================
+
     - name: Dienste aktivieren
       systemd:
         name: "{{ item }}"
