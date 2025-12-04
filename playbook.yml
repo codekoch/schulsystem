@@ -320,8 +320,8 @@
 
     - name: Wallpaper setzen
       copy:
-        src: files/schulsystem-wallpaper.jpg
-        dest: /usr/share/backgrounds/schulsystem-wallpaper.jpg
+        src: files/logo.jpg
+        dest: /usr/share/backgrounds/logo.jpg
         mode: '0644'
       ignore_errors: yes
 
