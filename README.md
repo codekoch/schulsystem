@@ -66,7 +66,7 @@ Da das System sich bei jedem Neustart zurücksetzt, gehen Änderungen am Desktop
     ```
 4.  Fertig! Dieser Zustand ist nun das neue "Standard-Template".
 
-### 2. Ein ISO-Image erstellen
+### 2. Ein ISO-Image erstellen (noch experimentell)
 Möchten Sie den aktuellen Stand auf 30 andere Rechner klonen? Erstellen Sie einfach ein installierbares ISO:
 
 1.  Führen Sie als Admin aus:
