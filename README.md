@@ -48,7 +48,7 @@ Die Installation erfolgt nun vollautomatisch über Ansible.
     ```
     *Geben Sie bei Aufforderung Ihr `sudo`-Passwort ein.*
 
-Das Skript installiert nun alle Softwarepakete (LibreOffice, Geogebra, Veyon, etc.), legt die Nutzer `linuxadmin` und `user0` an und richtet den Selbstheilungs-Mechanismus ein.
+Das Skript installiert nun alle Softwarepakete (LibreOffice, Geogebra, Veyon, etc.), legt die Nutzer `linuxadmin` (falls nicht schon vorhanden) und `user0` an und richtet den Selbstheilungs-Mechanismus ein.
 
 ---
 
