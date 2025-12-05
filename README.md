@@ -38,7 +38,7 @@ Die Installation erfolgt nun vollautomatisch über Ansible.
 
 2.  **Repository klonen:**
     ```bash
-    git clone [https://github.com/codekoch/schulsystem.git](https://github.com/codekoch/schulsystem.git)
+    git clone https://github.com/codekoch/schulsystem.git
     cd schulsystem
     ```
 
