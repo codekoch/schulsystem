@@ -264,15 +264,7 @@
       args:
         removes: files/veyon-config.json
       ignore_errors: yes
-
-    - name: LuPo Script installieren
-      copy:
-        src: files/lupo.sh
-        dest: /usr/bin/lupo.sh
-        owner: root
-        group: root
-        mode: '0755'
-
+   
     - name: Winetricks Update (falls möglich)
       command: winetricks --self-update
       failed_when: false
