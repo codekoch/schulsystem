@@ -282,7 +282,7 @@
       copy:
         src: files/logo.jpg
         dest: /usr/share/backgrounds/logo.jpg
-        mode: '0644'
+        mode: '0755'
       ignore_errors: yes
 
     - name: ISO Download Ordner erstellen
