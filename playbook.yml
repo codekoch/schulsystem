@@ -198,9 +198,10 @@
 
     - name: AppImage ausführen
       ansible.builtin.command:
-        cmd: "/usr/local/bin/penguins-eggs --install"
+        cmd: "/usr/local/bin/penguins-eggs"
       register: result
       changed_when: result.rc == 0
+      ignore_errors: yes
 
    
     # =========================================================================
