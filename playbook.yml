@@ -190,7 +190,17 @@
     # 5. ISO CREATOR (PENGUINS EGGS)
     # =========================================================================
 
+    - name: AppImage herunterladen und Rechte setzen (chmod +x)
+      ansible.builtin.get_url:
+        url: "https://github.com/pieroproietti/penguins-eggs/releases/download/v25.12.3/penguins-eggs-25.12.3-1-x86_64.AppImage"
+        dest: "/usr/local/bin/penguins-eggs"
+        mode: '0755'
 
+    - name: AppImage ausführen
+      ansible.builtin.command:
+        cmd: "/usr/local/bin/penguins-eggs --install"
+      register: result
+      changed_when: result.rc == 0
 
    
     # =========================================================================
