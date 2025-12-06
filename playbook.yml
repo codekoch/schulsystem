@@ -1,5 +1,5 @@
 ---
-- name: Schulsystem Installation & Konfiguration (v7 - Firewall Safe)
+- name: Schulsystem Installation & Konfiguration 
   hosts: computers
   become: yes
 
@@ -72,7 +72,6 @@
     # 1. VORBEREITUNG (KRITISCHE SYSTEM-TOOLS)
     # =========================================================================
     
-    # Wir installieren gnupg ZUERST, damit apt-key funktioniert
     - name: System-Tools für Repositories installieren
       apt:
         name:
@@ -289,12 +288,11 @@
         state: directory
         mode: '0755'
 
-    - name: Xubuntu ISO herunterladen (Timeout 15m)
+    - name: Xubuntu ISO herunterladen 
       get_url:
-        url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/25.10/release/xubuntu-25.10-desktop-amd64.iso
-        dest: /isos/xubuntu-25.10-desktop-amd64.iso
+        url: http://ftp.uni-kl.de/pub/linux/ubuntu-dvd/xubuntu/releases/24.04.3/release/xubuntu-24.04.3-desktop-amd64.iso
+        dest: /isos/xubuntu-24.04.3-desktop-amd64.iso
         mode: '0644'
-        timeout: 900
       ignore_errors: yes
 
     # =========================================================================
