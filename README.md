@@ -21,7 +21,7 @@ Es wurde entwickelt, um Lehrkräften und Administratoren die Arbeit zu erleichte
 
 ## 📋 Voraussetzungen
 
-* Ein PC/Laptop mit einer frischen Installation von **Xubuntu 22.04 LTS** (oder neuer).
+* Ein PC/Laptop mit einer frischen Installation von **Xubuntu 24.04.3 LTS** (oder neuer).
 * Internetverbindung während der Installation.
 * Admin-Rechte (sudo).
 
