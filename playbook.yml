@@ -280,8 +280,8 @@
 
     - name: Wallpaper setzen
       copy:
-        src: files/logo.jpg
-        dest: /usr/share/backgrounds/logo.jpg
+        src: files/logo.png
+        dest: /usr/share/backgrounds/logo.png
         mode: '0755'
       ignore_errors: yes
 
