@@ -63,7 +63,6 @@ do_save() {
       --exclude '.local/share/Trash' \
       --exclude '.local/share/zeitgeist' \
       --exclude '.dbus' \
-      --exclude 'Downloads/*' \
       --exclude 'eggs/' \
       --exclude 'ISOS/' \
       "$HOME_DIR/" "$TEMPLATE_DIR/"
