@@ -99,8 +99,8 @@
 
     # --- Archive ---
 
-   - name: Apache NetBeans herunterladen und entpacken
-     unarchive:
+    - name: Apache NetBeans herunterladen und entpacken
+      unarchive:
         src: https://dlcdn.apache.org/netbeans/netbeans-installers/21/netbeans-21-bin.zip
         dest: /opt/
         remote_src: yes
