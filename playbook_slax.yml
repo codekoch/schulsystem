@@ -33,11 +33,10 @@
       loop:
         - gparted
         - unrar
+        - unzip
         - python3-pip
         - default-jdk
         - default-jre
-        - openjdk-8-jre
-        - openjdk-8-jdk
         - scratch
       ignore_errors: yes 
 
@@ -101,7 +100,7 @@
     # --- Archive ---
 
    - name: Apache NetBeans herunterladen und entpacken
-      unarchive:
+     unarchive:
         src: https://dlcdn.apache.org/netbeans/netbeans-installers/21/netbeans-21-bin.zip
         dest: /opt/
         remote_src: yes
