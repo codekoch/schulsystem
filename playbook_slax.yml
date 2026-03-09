@@ -31,8 +31,6 @@
         name: "{{ item }}"
         state: present
       loop:
-        - git
-        - rsync
         - gparted
         - unrar
         - python3-pip
@@ -40,29 +38,12 @@
         - default-jre
         - openjdk-8-jre
         - openjdk-8-jdk
-        - vlc
-        - gimp
-        - simplescreenrecorder
-        - qrencode
-        - libreoffice
-        - geogebra
         - scratch
       ignore_errors: yes 
 
     # =========================================================================
     # DEB-PAKETE HERUNTERLADEN & INSTALLIEREN
     # =========================================================================
-
-    - name: Google Chrome herunterladen
-      get_url:
-        url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        dest: /tmp/google-chrome.deb
-      ignore_errors: yes
-
-    - name: Google Chrome installieren
-      apt:
-        deb: /tmp/google-chrome.deb
-      ignore_errors: yes
 
     - name: Greenfoot herunterladen
       get_url:
