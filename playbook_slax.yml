@@ -108,17 +108,7 @@
         mode: '0755'
       loop:
         - /opt
-        - /opt/intellij
-        - /opt/blender
-
     # --- AppImages ---
-
-    - name: Ultimaker Cura (AppImage) herunterladen
-      get_url:
-        url: https://github.com/Ultimaker/Cura/releases/download/5.7.0/UltiMaker-Cura-5.7.0-linux-X64.AppImage
-        dest: /opt/Cura.AppImage
-        mode: '0755'
-      ignore_errors: yes
 
     - name: Arduino IDE (AppImage) herunterladen
       get_url:
@@ -129,35 +119,7 @@
 
     # --- Archive ---
 
-    - name: IntelliJ IDEA Community herunterladen und entpacken
-      unarchive:
-        src: https://download.jetbrains.com/idea/ideaIC-2024.1.tar.gz
-        dest: /opt/intellij/
-        remote_src: yes
-        extra_opts:
-          - --strip-components=1
-        creates: /opt/intellij/bin/idea.sh
-      ignore_errors: yes
-
-    - name: Eclipse for Java Developers herunterladen und entpacken
-      unarchive:
-        src: https://mirror.netcologne.de/eclipse//technology/epp/downloads/release/2024-03/R/eclipse-java-2024-03-R-linux-gtk-x86_64.tar.gz
-        dest: /opt/
-        remote_src: yes
-        creates: /opt/eclipse/eclipse
-      ignore_errors: yes
-
-    - name: Blender herunterladen und entpacken
-      unarchive:
-        src: https://download.blender.org/release/Blender4.1/blender-4.1.0-linux-x64.tar.xz
-        dest: /opt/blender/
-        remote_src: yes
-        extra_opts:
-          - --strip-components=1
-        creates: /opt/blender/blender
-      ignore_errors: yes
-
-    - name: Apache NetBeans herunterladen und entpacken
+   - name: Apache NetBeans herunterladen und entpacken
       unarchive:
         src: https://dlcdn.apache.org/netbeans/netbeans-installers/21/netbeans-21-bin.zip
         dest: /opt/
@@ -166,20 +128,41 @@
       ignore_errors: yes
 
     # =========================================================================
-    # STARTMENÜ-EINTRÄGE (.desktop Dateien) ERSTELLEN
+    # OPENJDK 8 MANUELL INSTALLIEREN
     # =========================================================================
 
-    - name: Desktop-Eintrag für Ultimaker Cura anlegen
-      copy:
-        dest: /usr/share/applications/cura.desktop
-        content: |
-          [Desktop Entry]
-          Name=Ultimaker Cura
-          Comment=3D Printing Slicer
-          Exec=/opt/Cura.AppImage
-          Terminal=false
-          Type=Application
-          Categories=Graphics;3DGraphics;Engineering;
+    - name: Zielverzeichnis für OpenJDK 8 sicherstellen
+      file:
+        path: /opt/openjdk-8
+        state: directory
+        mode: '0755'
+
+    - name: OpenJDK 8 (Amazon Corretto) herunterladen und entpacken
+      unarchive:
+        # Dieser Link lädt immer automatisch die aktuellste, sichere Version von Java 8 herunter
+        src: https://corretto.aws/downloads/latest/amazon-corretto-8-x64-linux-jdk.tar.gz
+        dest: /opt/openjdk-8/
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1
+        creates: /opt/openjdk-8/bin/java
+      ignore_errors: yes
+
+    # Damit Befehle wie "java -version" im Terminal funktionieren und Programme
+    # wie Greenfoot oder BlueJ die Java-Installation finden, müssen wir sie registrieren:
+    
+    - name: Java (JRE) dem System als Alternative bekannt machen
+      command: update-alternatives --install /usr/bin/java java /opt/openjdk-8/bin/java 100
+      ignore_errors: yes
+
+    - name: Javac (JDK Compiler) dem System als Alternative bekannt machen
+      command: update-alternatives --install /usr/bin/javac javac /opt/openjdk-8/bin/javac 100
+      ignore_errors: yes
+
+
+    # =========================================================================
+    # STARTMENÜ-EINTRÄGE (.desktop Dateien) ERSTELLEN
+    # =========================================================================
 
     - name: Desktop-Eintrag für Arduino IDE anlegen
       copy:
@@ -192,45 +175,6 @@
           Terminal=false
           Type=Application
           Categories=Development;IDE;Electronics;
-
-    - name: Desktop-Eintrag für IntelliJ IDEA anlegen
-      copy:
-        dest: /usr/share/applications/intellij.desktop
-        content: |
-          [Desktop Entry]
-          Name=IntelliJ IDEA Community
-          Comment=Capable and Ergonomic IDE for JVM
-          Exec=/opt/intellij/bin/idea.sh
-          Icon=/opt/intellij/bin/idea.png
-          Terminal=false
-          Type=Application
-          Categories=Development;IDE;Java;
-
-    - name: Desktop-Eintrag für Eclipse anlegen
-      copy:
-        dest: /usr/share/applications/eclipse.desktop
-        content: |
-          [Desktop Entry]
-          Name=Eclipse
-          Comment=Eclipse IDE for Java Developers
-          Exec=/opt/eclipse/eclipse
-          Icon=/opt/eclipse/icon.xpm
-          Terminal=false
-          Type=Application
-          Categories=Development;IDE;Java;
-
-    - name: Desktop-Eintrag für Blender anlegen
-      copy:
-        dest: /usr/share/applications/blender.desktop
-        content: |
-          [Desktop Entry]
-          Name=Blender
-          Comment=3D modeling, animation, rendering and post-production
-          Exec=/opt/blender/blender
-          Icon=/opt/blender/blender.svg
-          Terminal=false
-          Type=Application
-          Categories=Graphics;3DGraphics;
 
     - name: Desktop-Eintrag für Apache NetBeans anlegen
       copy:
