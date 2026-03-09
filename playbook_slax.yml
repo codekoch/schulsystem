@@ -36,8 +36,6 @@
         - gparted
         - unrar
         - python3-pip
-        - nodejs
-        - npm
         - default-jdk
         - default-jre
         - openjdk-8-jre
