@@ -1,0 +1,253 @@
+---
+- name: Minimales Schulsystem für Slax (USB-Persistenz)
+  hosts: localhost
+  connection: local
+  become: yes
+
+  tasks:
+    - name: Apt-Cache aktualisieren
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Deutsches Tastaturlayout konfigurieren
+      copy:
+        dest: /etc/default/keyboard
+        content: |
+          XKBMODEL="pc105"
+          XKBLAYOUT="de"
+          XKBVARIANT=""
+          XKBOPTIONS=""
+          BACKSPACE="guess"
+      notify: Tastatureinstellungen anwenden
+
+    - name: Bash-Autovervollständigung (apt) sicherstellen
+      apt:
+        name: bash-completion
+        state: present
+
+    - name: Gewünschte Softwarepakete aus Standardquellen installieren
+      apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - git
+        - rsync
+        - gparted
+        - unrar
+        - python3-pip
+        - nodejs
+        - npm
+        - default-jdk
+        - default-jre
+        - openjdk-8-jre
+        - openjdk-8-jdk
+        - vlc
+        - gimp
+        - simplescreenrecorder
+        - qrencode
+        - libreoffice
+        - geogebra
+        - scratch
+      ignore_errors: yes 
+
+    # =========================================================================
+    # DEB-PAKETE HERUNTERLADEN & INSTALLIEREN
+    # =========================================================================
+
+    - name: Google Chrome herunterladen
+      get_url:
+        url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        dest: /tmp/google-chrome.deb
+      ignore_errors: yes
+
+    - name: Google Chrome installieren
+      apt:
+        deb: /tmp/google-chrome.deb
+      ignore_errors: yes
+
+    - name: Greenfoot herunterladen
+      get_url:
+        url: https://www.greenfoot.org/download/files/Greenfoot-linux-x64-390.deb
+        dest: /tmp/greenfoot.deb
+      ignore_errors: yes
+
+    - name: Greenfoot installieren
+      apt:
+        deb: /tmp/greenfoot.deb
+      ignore_errors: yes
+    
+    - name: Filius herunterladen
+      get_url:
+        url: https://www.lernsoftware-filius.de/downloads/Setup/filius_2.9.4_all.deb
+        dest: /tmp/filius.deb
+      ignore_errors: yes
+
+    - name: Filius installieren
+      apt:
+        deb: /tmp/filius.deb
+      ignore_errors: yes
+
+    - name: BlueJ herunterladen (Ersatz für Snap)
+      get_url:
+        url: https://www.bluej.org/download/files/BlueJ-linux-530.deb
+        dest: /tmp/bluej.deb
+      ignore_errors: yes
+
+    - name: BlueJ installieren
+      apt:
+        deb: /tmp/bluej.deb
+      ignore_errors: yes
+
+    # =========================================================================
+    # PORTABLE SOFTWARE IN /OPT (AppImages & Archive)
+    # =========================================================================
+
+    - name: Zielverzeichnisse in /opt sicherstellen
+      file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+      loop:
+        - /opt
+        - /opt/intellij
+        - /opt/blender
+
+    # --- AppImages ---
+
+    - name: Ultimaker Cura (AppImage) herunterladen
+      get_url:
+        url: https://github.com/Ultimaker/Cura/releases/download/5.7.0/UltiMaker-Cura-5.7.0-linux-X64.AppImage
+        dest: /opt/Cura.AppImage
+        mode: '0755'
+      ignore_errors: yes
+
+    - name: Arduino IDE (AppImage) herunterladen
+      get_url:
+        url: https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.2_Linux_64bit.AppImage
+        dest: /opt/Arduino.AppImage
+        mode: '0755'
+      ignore_errors: yes
+
+    # --- Archive ---
+
+    - name: IntelliJ IDEA Community herunterladen und entpacken
+      unarchive:
+        src: https://download.jetbrains.com/idea/ideaIC-2024.1.tar.gz
+        dest: /opt/intellij/
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1
+        creates: /opt/intellij/bin/idea.sh
+      ignore_errors: yes
+
+    - name: Eclipse for Java Developers herunterladen und entpacken
+      unarchive:
+        src: https://mirror.netcologne.de/eclipse//technology/epp/downloads/release/2024-03/R/eclipse-java-2024-03-R-linux-gtk-x86_64.tar.gz
+        dest: /opt/
+        remote_src: yes
+        creates: /opt/eclipse/eclipse
+      ignore_errors: yes
+
+    - name: Blender herunterladen und entpacken
+      unarchive:
+        src: https://download.blender.org/release/Blender4.1/blender-4.1.0-linux-x64.tar.xz
+        dest: /opt/blender/
+        remote_src: yes
+        extra_opts:
+          - --strip-components=1
+        creates: /opt/blender/blender
+      ignore_errors: yes
+
+    - name: Apache NetBeans herunterladen und entpacken
+      unarchive:
+        src: https://dlcdn.apache.org/netbeans/netbeans-installers/21/netbeans-21-bin.zip
+        dest: /opt/
+        remote_src: yes
+        creates: /opt/netbeans/bin/netbeans
+      ignore_errors: yes
+
+    # =========================================================================
+    # STARTMENÜ-EINTRÄGE (.desktop Dateien) ERSTELLEN
+    # =========================================================================
+
+    - name: Desktop-Eintrag für Ultimaker Cura anlegen
+      copy:
+        dest: /usr/share/applications/cura.desktop
+        content: |
+          [Desktop Entry]
+          Name=Ultimaker Cura
+          Comment=3D Printing Slicer
+          Exec=/opt/Cura.AppImage
+          Terminal=false
+          Type=Application
+          Categories=Graphics;3DGraphics;Engineering;
+
+    - name: Desktop-Eintrag für Arduino IDE anlegen
+      copy:
+        dest: /usr/share/applications/arduino.desktop
+        content: |
+          [Desktop Entry]
+          Name=Arduino IDE
+          Comment=Open-source electronics prototyping platform
+          Exec=/opt/Arduino.AppImage
+          Terminal=false
+          Type=Application
+          Categories=Development;IDE;Electronics;
+
+    - name: Desktop-Eintrag für IntelliJ IDEA anlegen
+      copy:
+        dest: /usr/share/applications/intellij.desktop
+        content: |
+          [Desktop Entry]
+          Name=IntelliJ IDEA Community
+          Comment=Capable and Ergonomic IDE for JVM
+          Exec=/opt/intellij/bin/idea.sh
+          Icon=/opt/intellij/bin/idea.png
+          Terminal=false
+          Type=Application
+          Categories=Development;IDE;Java;
+
+    - name: Desktop-Eintrag für Eclipse anlegen
+      copy:
+        dest: /usr/share/applications/eclipse.desktop
+        content: |
+          [Desktop Entry]
+          Name=Eclipse
+          Comment=Eclipse IDE for Java Developers
+          Exec=/opt/eclipse/eclipse
+          Icon=/opt/eclipse/icon.xpm
+          Terminal=false
+          Type=Application
+          Categories=Development;IDE;Java;
+
+    - name: Desktop-Eintrag für Blender anlegen
+      copy:
+        dest: /usr/share/applications/blender.desktop
+        content: |
+          [Desktop Entry]
+          Name=Blender
+          Comment=3D modeling, animation, rendering and post-production
+          Exec=/opt/blender/blender
+          Icon=/opt/blender/blender.svg
+          Terminal=false
+          Type=Application
+          Categories=Graphics;3DGraphics;
+
+    - name: Desktop-Eintrag für Apache NetBeans anlegen
+      copy:
+        dest: /usr/share/applications/netbeans.desktop
+        content: |
+          [Desktop Entry]
+          Name=Apache NetBeans
+          Comment=The Smarter Way to Code
+          Exec=/opt/netbeans/bin/netbeans
+          Icon=/opt/netbeans/nb/netbeans.png
+          Terminal=false
+          Type=Application
+          Categories=Development;IDE;Java;
+
+  handlers:
+    - name: Tastatureinstellungen anwenden
+      command: setupcon
+      ignore_errors: yes
