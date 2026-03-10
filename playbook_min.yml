@@ -247,9 +247,7 @@
         state: started
         daemon_reload: yes
       loop:
-        - kiosk-reset.service
-        - ssh
-        - veyon.service
+        - kiosk-reset.service       
       ignore_errors: yes
 
   handlers:
