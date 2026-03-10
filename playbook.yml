@@ -20,6 +20,7 @@
       - htop
       - tree
       - gparted
+      - usb-creator-gtk
       - net-tools
       - unrar
       - python3-pip
