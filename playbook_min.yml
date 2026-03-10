@@ -22,6 +22,7 @@
       - net-tools
       - unrar
       - python3-pip
+      - usb-creator-gtk
       - apt-transport-https
       # Java
       - default-jdk
