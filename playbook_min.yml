@@ -1,0 +1,260 @@
+---
+- name: Schulsystem Installation & Konfiguration 
+  hosts: computers
+  become: yes
+
+  vars:
+    admin_user: "linuxadmin"
+    kiosk_user: "user0"
+    template_dir: "/home/{{ admin_user }}/TEMPLATE"
+    
+    # Hashes werden vom install.sh übergeben.
+    
+    # --- BASIS PAKET LISTE ---
+    packages_system:
+      - xubuntu-desktop
+      - lightdm
+      - vim
+      - rsync
+      - htop
+      - tree
+      - gparted
+      - net-tools
+      - unrar
+      - python3-pip
+      - apt-transport-https
+      # Java
+      - default-jdk
+      - default-jre
+      - openjdk-8-jre
+      - openjdk-8-jdk
+      # Flatpak
+      - flatpak
+      - gnome-software-plugin-flatpak
+      # Office
+      - libreoffice
+      - libreoffice-l10n-de
+      - libreoffice-help-de
+      
+    packages_edu:
+      - scratch
+      - xournal
+    
+  tasks:
+    # =========================================================================
+    # 1. VORBEREITUNG (KRITISCHE SYSTEM-TOOLS)
+    # =========================================================================
+    
+    - name: System-Tools für Repositories installieren
+      apt:
+        name:
+          - software-properties-common
+          - gnupg
+          - gnupg2
+          - dirmngr
+          - ca-certificates
+          - curl
+        state: present
+        update_cache: yes
+
+    - name: Universe und Multiverse Repositories aktivieren
+      apt_repository:
+        repo: "{{ item }}"
+        state: present
+      loop:
+        - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe"
+        - "deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} multiverse"
+     
+    # =========================================================================
+    # 2. SOFTWARE INSTALLATION (APT)
+    # =========================================================================
+
+    - name: Basis-Software installieren
+      apt:
+        name: "{{ packages_system }}"
+        state: present
+
+    - name: Edu-Software installieren
+      apt:
+        name: "{{ packages_edu }}"
+        state: present
+      ignore_errors: yes
+    
+    # =========================================================================
+    # 3. EXTERNE DEB PAKETE
+    # =========================================================================
+
+    # Chrome
+    - name: Google Chrome herunterladen
+      get_url:
+        url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        dest: /tmp/google-chrome.deb
+    
+    - name: Google Chrome installieren
+      apt:
+        deb: /tmp/google-chrome.deb
+      ignore_errors: yes
+
+    # Greenfoot
+    - name: Greenfoot herunterladen
+      get_url:
+        url: https://www.greenfoot.org/download/files/Greenfoot-linux-x64-390.deb
+        dest: /tmp/greenfoot.deb
+      ignore_errors: yes
+
+    - name: Greenfoot installieren
+      apt:
+        deb: /tmp/greenfoot.deb
+      ignore_errors: yes
+    
+    # Filius
+    - name: Filius herunterladen
+      get_url:
+        url: https://www.lernsoftware-filius.de/downloads/Setup/filius_2.9.4_all.deb
+        dest: /tmp/filius.deb
+      ignore_errors: yes
+
+    - name: Filius installieren
+      apt:
+        deb: /tmp/filius.deb
+      ignore_errors: yes
+     
+    # =========================================================================
+    # 4. SNAP & FLATPAK
+    # =========================================================================
+
+    - name: Snap Pakete installieren
+      community.general.snap:
+        name: "{{ item.name }}"
+        classic: "{{ item.classic | default(false) }}"
+      loop:
+        - { name: netbeans, classic: yes }
+        - { name: bluej }
+        - { name: arduino }
+      ignore_errors: yes
+
+    - name: Flathub aktivieren
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+      ignore_errors: yes
+   
+    # =========================================================================
+    # 6. USER & GRUPPEN SETUP
+    # =========================================================================
+
+    - name: Admin User anlegen
+      user:
+        name: "{{ admin_user }}"
+        password: "{{ admin_password_hash }}"
+        update_password: on_create
+        shell: /bin/bash
+        groups: sudo,plugdev,users
+        append: yes
+
+    - name: Kiosk User anlegen
+      user:
+        name: "{{ kiosk_user }}"
+        password: "{{ kiosk_password_hash }}"
+        shell: /bin/bash
+        groups: audio,video,plugdev,users
+        append: yes
+
+    # =========================================================================
+    # 7. AUTO-LOGIN (LightDM)
+    # =========================================================================
+
+    - name: LightDM Konfigurationsordner prüfen
+      file:
+        path: /etc/lightdm/lightdm.conf.d
+        state: directory
+        mode: '0755'
+
+    - name: Autologin für Kiosk User setzen
+      copy:
+        dest: /etc/lightdm/lightdm.conf.d/12-autologin.conf
+        content: |
+          [Seat:*]
+          autologin-user={{ kiosk_user }}
+          autologin-user-timeout=0
+        owner: root
+        group: root
+        mode: '0644'
+
+    # =========================================================================
+    # 8. KONFIGURATION & DATEIEN
+    # =========================================================================
+
+    - name: Software Verzeichnis kopieren
+      copy:
+        src: software/
+        dest: /tmp/software/
+        mode: '0777'
+
+    - name: Wallpaper setzen
+      copy:
+        src: files/logo.png
+        dest: /usr/share/backgrounds/logo.png
+        mode: '0755'
+      ignore_errors: yes
+
+    # =========================================================================
+    # 9. KIOSK MECHANIK
+    # =========================================================================
+
+    - name: Template Verzeichnis anlegen
+      file:
+        path: "{{ template_dir }}"
+        state: directory
+        owner: "{{ admin_user }}"
+        group: "{{ admin_user }}"
+        mode: '0755'
+
+    - name: Reset-Skripte installieren
+      copy:
+        src: "files/{{ item.src }}"
+        dest: "{{ item.dest }}"
+        mode: '0755'
+      loop:
+        - { src: 'reset-kiosk.sh', dest: '/usr/local/bin/reset-kiosk.sh' }
+        - { src: 'create-iso.sh', dest: '/usr/local/bin/create-iso.sh' }
+
+    - name: Systemd Reset Service installieren
+      copy:
+        src: files/kiosk-reset.service
+        dest: /etc/systemd/system/kiosk-reset.service
+        mode: '0644'
+      notify: restart_kiosk_service
+
+    - name: Template initial befüllen (nur wenn leer)
+      shell: |
+        if [ -z "$(ls -A {{ template_dir }})" ]; then
+           rsync -a /etc/skel/ {{ template_dir }}/
+           chown -R {{ kiosk_user }}:{{ kiosk_user }} {{ template_dir }}
+        fi
+      register: template_init
+      changed_when: template_init.stdout != ""
+
+    # =========================================================================
+    # 10. DIENSTE STARTEN
+    # =========================================================================
+
+    - name: Dienste aktivieren
+      systemd:
+        name: "{{ item }}"
+        enabled: yes
+        state: started
+        daemon_reload: yes
+      loop:
+        - kiosk-reset.service
+        - ssh
+        - veyon.service
+      ignore_errors: yes
+
+  handlers:
+    - name: restart_kiosk_service
+      systemd:
+        name: kiosk-reset.service
+        state: restarted
+        daemon_reload: yes
