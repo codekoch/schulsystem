@@ -188,18 +188,21 @@
       ignore_errors: yes
 
     # =========================================================================
-    # 5. ISO CREATOR (PENGUINS EGGS)
+    # 5. ISO CREATOR (FRESH EGGS)
     # =========================================================================
 
-    - name: PENGUINS EGGS AppImage herunterladen und Rechte setzen
-      ansible.builtin.get_url:
-        url: "https://github.com/pieroproietti/penguins-eggs/releases/download/v25.12.3/penguins-eggs-25.12.3-1-x86_64.AppImage"
-        dest: "/usr/local/bin/penguins-eggs"
-        mode: '0755'
+    - name: fresh-eggs Repository klonen
+      ansible.builtin.git:
+        repo: "https://github.com/pieroproietti/fresh-eggs.git"
+        dest: "/opt/fresh-eggs"
+        clone: yes
+        update: yes
 
-    - name: PENGUINS EGGS AppImage ausführen
-      ansible.builtin.command:
-        cmd: "/usr/local/bin/penguins-eggs"
+    - name: fresh-eggs Installationsskript ausführen (Enter simulieren)
+      ansible.builtin.shell: "yes '' | ./fresh-eggs.sh"
+      args:
+        chdir: "/opt/fresh-eggs"
+      become: yes
       register: result
       changed_when: result.rc == 0
       ignore_errors: yes
